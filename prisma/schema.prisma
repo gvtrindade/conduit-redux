@@ -1,0 +1,294 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Better-auth
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  emailVerified Boolean
+  image         String?
+  roles         String[] @default([]) 
+  createdAt     DateTime @default(now()) @db.Timestamptz
+  updatedAt     DateTime @updatedAt @db.Timestamptz
+
+  member            Member?
+  sessions          Session[]
+  accounts          Account[]
+  squadsCreated     Squad[]          @relation("SquadCreator")
+  squadCrews        SquadCrew[]
+  missionsCrewed    MissionCrew[]
+  receipts          Receipt[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String @id
+  expiresAt DateTime
+  token     String @unique
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId    String
+  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String @id
+  accountId             String
+  providerId            String
+  accessToken           String? @db.Text
+  refreshToken          String? @db.Text
+  idToken               String? @db.Text
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  userId                String
+  user                  User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String @id
+  identifier String
+  value      String @db.Text
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("verification")
+}
+
+
+// Conduit
+model Member {
+  id            String @id @default(cuid())
+  callsign      String?
+  active        Boolean  @default(true)
+  customConfig  Json?    @db.JsonB
+  createdAt     DateTime @db.Timestamptz
+  updatedAt     DateTime @db.Timestamptz
+
+
+  userId        String @unique
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("member")
+}
+
+model Squad {
+  id        String @id @default(cuid())
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  creatorId String
+  creator   User   @relation("SquadCreator", fields: [creatorId], references: [id])
+
+  crew      SquadCrew[]
+  merchants Merchant[]
+  missions  Mission[]
+  receipts  Receipt[]
+  items     Item[]
+  processingRules ProcessingRules[]
+
+  @@map("squad")
+}
+
+model SquadCrew {
+  id     String @id @default(cuid())
+
+  squadId String
+  userId  String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("squad_crew")
+}
+
+model Merchant {
+  id        String @id @default(cuid())
+  name      String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  aisles  MerchantAisle[]
+  aisleRules MerchantAisleRule[]
+  receipts Receipt[]
+
+  @@map("merchant")
+}
+
+model MerchantAisle {
+  id        String @id @default(cuid())
+  name      String
+  order     Int
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  merchantId String
+  merchant   Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+
+  rules MerchantAisleRule[]
+
+  @@map("merchant_aisle")
+}
+
+model MerchantAisleRule {
+  id        String @id @default(cuid())
+  order     Int
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  merchantId      String
+  missionItemId     String
+  merchantAisleId String
+  merchant        Merchant     @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  missionItem     MissionItem  @relation(fields: [missionItemId], references: [id])
+  merchantAisle   MerchantAisle @relation(fields: [merchantAisleId], references: [id], onDelete: Cascade)
+
+  @@map("merchant_aisle_rule")
+}
+
+model Mission {
+  id        String @id @default(cuid())
+  title     String
+  state     String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  itemEstimates MissionItemEst[]
+  crew          MissionCrew[]
+
+  @@map("mission")
+}
+
+model MissionItem {
+  id        String @id @default(cuid())
+  title     String
+  category  String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  estimates      MissionItemEst[]
+  aisleRules     MerchantAisleRule[]
+
+  @@map("mission_item")
+}
+
+model MissionItemEst {
+  id       String @id @default(cuid())
+  estValue Float
+
+  missionId     String
+  missionItemId String
+  mission       Mission     @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  missionItem   MissionItem @relation(fields: [missionItemId], references: [id])
+
+  @@map("mission_item_est")
+}
+
+model MissionCrew {
+  id String @id @default(cuid())
+
+  missionId String
+  userId    String
+  mission   Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("mission_crew")
+}
+
+model Receipt {
+  id         String    @id @default(cuid())
+  date       DateTime  @db.Date
+  status     String
+  nfce       String?
+  processedAt DateTime? @db.Timestamptz
+  createdAt  DateTime  @default(now()) @db.Timestamptz
+  updatedAt  DateTime  @updatedAt @db.Timestamptz
+
+  squadId    String
+  userId     String
+  merchantId String
+  squad      Squad    @relation(fields: [squadId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+
+  items ReceiptItem[]
+
+  @@map("receipt")
+}
+
+model ReceiptItem {
+  id        String @id @default(cuid())
+  qtd       Int
+  unitValue Float
+
+  receiptId String
+  itemId    String
+  receipt   Receipt @relation(fields: [receiptId], references: [id], onDelete: Cascade)
+  item      Item    @relation(fields: [itemId], references: [id])
+
+  @@map("receipt_item")
+}
+
+model Item {
+  id             String    @id @default(cuid())
+  name           String
+  unitName       String?
+  lastPriceDate  DateTime? @db.Date
+  lastPrice      Float?
+  lowestPriceDate DateTime? @db.Date
+  lowestPrice    Float?
+  createdAt      DateTime  @default(now()) @db.Timestamptz
+  updatedAt      DateTime  @updatedAt @db.Timestamptz
+
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  receipts     ReceiptItem[]
+
+  @@map("item")
+}
+
+model ProcessingRules {
+  id        String @id @default(cuid())
+  category  String
+  config    Json   @db.JsonB
+  enabled   Boolean
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  @@map("processing_rules")
+}
