@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { publishSquadChange } from "@/lib/realtime";
 
 export async function getCallsign(userId: string) {
     const callsign = await prisma.member.findUnique({
@@ -200,6 +201,7 @@ export async function renameSquad(
             where: { id: squadId },
             data: { name: trimmed },
         });
+        publishSquadChange(squadId, { type: "squad.updated", actorId: userId });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -238,6 +240,7 @@ export async function deleteSquad(userId: string, squadId: string) {
             }),
             prisma.squad.delete({ where: { id: squadId } }),
         ]);
+        publishSquadChange(squadId, { type: "squad.deleted", actorId: userId });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -275,6 +278,10 @@ export async function leaveSquad(userId: string, squadId: string) {
 
     try {
         await prisma.squadCrew.delete({ where: { id: crew.id } });
+        publishSquadChange(squadId, {
+            type: "crew.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -421,6 +428,10 @@ export async function inviteToCrew(userId: string, squadId: string, callsign: st
         await prisma.squadCrewInvite.create({
             data: { squadId, memberId: invitee.id },
         });
+        publishSquadChange(squadId, {
+            type: "squad.invites",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "alreadyInvited" as const };
@@ -453,6 +464,10 @@ export async function cancelCrewInvite(userId: string, squadId: string, inviteId
     try {
         await prisma.squadCrewInvite.delete({
             where: { id: inviteId },
+        });
+        publishSquadChange(squadId, {
+            type: "squad.invites",
+            actorId: userId,
         });
         return { success: true };
     } catch {
@@ -496,6 +511,10 @@ export async function acceptCrewInvite(userId: string, inviteId: string) {
                   ]),
             prisma.squadCrewInvite.delete({ where: { id: inviteId } }),
         ]);
+        publishSquadChange(invite.squadId, {
+            type: "crew.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -513,7 +532,7 @@ export async function declineCrewInvite(userId: string, inviteId: string) {
 
     const invite = await prisma.squadCrewInvite.findUnique({
         where: { id: inviteId },
-        select: { memberId: true },
+        select: { memberId: true, squadId: true },
     });
     if (!invite || invite.memberId !== member.id) {
         return { error: "forbidden" as const };
@@ -522,6 +541,10 @@ export async function declineCrewInvite(userId: string, inviteId: string) {
     try {
         await prisma.squadCrewInvite.delete({
             where: { id: inviteId },
+        });
+        publishSquadChange(invite.squadId, {
+            type: "squad.invites",
+            actorId: userId,
         });
         return { success: true };
     } catch {
@@ -567,6 +590,10 @@ export async function removeFromCrew(userId: string, squadId: string, memberId: 
             prisma.squadCrew.delete({ where: { id: crew.id } }),
             prisma.squadCrewInvite.deleteMany({ where: { squadId, memberId } }),
         ]);
+        publishSquadChange(squadId, {
+            type: "crew.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };

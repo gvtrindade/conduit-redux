@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { publishSquadChange } from "@/lib/realtime";
 
 export async function getMerchants(userId: string, squadId: string) {
     const member = await prisma.member.findUnique({
@@ -47,6 +48,10 @@ export async function createMerchant(userId: string, squadId: string, name: stri
     try {
         await prisma.merchant.create({
             data: { squadId, name: trimmed },
+        });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
         });
         return { success: true };
     } catch {
@@ -115,6 +120,10 @@ export async function renameMerchant(
         await prisma.merchant.update({
             where: { id: merchantId },
             data: { name: trimmed },
+        });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
         });
         return { success: true };
     } catch {
@@ -224,6 +233,10 @@ export async function createAisle(
                 order: (last?.order ?? -1) + 1,
             },
         });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -258,6 +271,10 @@ export async function renameAisle(
         await prisma.aisle.update({
             where: { id: junction.aisleId },
             data: { name: trimmed },
+        });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
         });
         return { success: true };
     } catch {
@@ -307,6 +324,10 @@ export async function deleteAisle(
             }
         });
 
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -351,6 +372,10 @@ export async function moveAisle(
                 data: { order: aisles[index].order },
             }),
         ]);
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -466,6 +491,10 @@ export async function createAisleRule(
                 order: (last?.order ?? -1) + 1,
             },
         });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -530,6 +559,10 @@ export async function updateAisleRule(
             where: { id: ruleId },
             data: { missionItemId, merchantAisleId },
         });
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -573,6 +606,10 @@ export async function deleteAisleRule(
             ),
         );
 
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };
@@ -617,6 +654,10 @@ export async function moveAisleRule(
                 data: { order: rules[index].order },
             }),
         ]);
+        publishSquadChange(squadId, {
+            type: "merchants.updated",
+            actorId: userId,
+        });
         return { success: true };
     } catch {
         return { error: "failed" as const };

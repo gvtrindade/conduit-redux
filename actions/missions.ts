@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { publishSquadChange } from "@/lib/realtime";
 
 type FinalStatus = {
   estimatedTotal: number;
@@ -76,6 +77,11 @@ export async function createMission(userId: string, squadId: string) {
     const mission = await prisma.mission.create({
       data: { squadId, title: "", state: "draft" },
       select: { id: true },
+    });
+    publishSquadChange(squadId, {
+      type: "mission.created",
+      actorId: userId,
+      missionId: mission.id,
     });
     return { id: mission.id };
   } catch {
@@ -201,6 +207,11 @@ export async function renameMission(
       where: { id: missionId },
       data: { title: trimmed },
     });
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -233,6 +244,11 @@ export async function activateMission(
     await prisma.mission.update({
       where: { id: missionId },
       data: { state: "active", merchantId },
+    });
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
     });
     return { success: true };
   } catch {
@@ -300,6 +316,11 @@ export async function finishMission(
       }),
       prisma.missionItemEst.deleteMany({ where: { missionId } }),
     ]);
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -317,6 +338,11 @@ export async function deleteMission(
 
   try {
     await prisma.mission.delete({ where: { id: missionId } });
+    publishSquadChange(squadId, {
+      type: "mission.deleted",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -347,6 +373,11 @@ export async function setMissionItemComplete(
       where: { id: estimateId },
       data: { complete },
     });
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -373,6 +404,11 @@ export async function removeMissionItem(
 
   try {
     await prisma.missionItemEst.delete({ where: { id: estimateId } });
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -449,6 +485,10 @@ export async function createMissionItem(
       data: { squadId, title: trimmed, category: aisle.name, aisleId },
       select: { id: true, title: true },
     });
+    publishSquadChange(squadId, {
+      type: "items.updated",
+      actorId: userId,
+    });
 
     return { id: item.id, title: item.title };
   } catch {
@@ -493,6 +533,10 @@ export async function updateMissionItem(
       where: { id: missionItemId },
       data: { title: trimmed, category: aisle.name, aisleId },
     });
+    publishSquadChange(squadId, {
+      type: "items.updated",
+      actorId: userId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -530,6 +574,11 @@ export async function addMissionItemEstimates(
         })),
       });
     }
+    publishSquadChange(squadId, {
+      type: "mission.updated",
+      actorId: userId,
+      missionId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
@@ -570,6 +619,10 @@ export async function deleteMissionItem(
       prisma.merchantAisleRule.deleteMany({ where: { missionItemId } }),
       prisma.missionItem.delete({ where: { id: missionItemId } }),
     ]);
+    publishSquadChange(squadId, {
+      type: "items.updated",
+      actorId: userId,
+    });
     return { success: true };
   } catch {
     return { error: "failed" as const };
