@@ -45,7 +45,7 @@ export default function EditMissionItemForm({
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!trimmed || !aisleId || isPending || !item) return;
+    if (!trimmed || isPending || !item) return;
 
     startTransition(async () => {
       const res = await updateMissionItem(
@@ -53,7 +53,7 @@ export default function EditMissionItemForm({
         squadId,
         item.id,
         trimmed,
-        aisleId,
+        aisleId === "__none__" ? null : aisleId,
       );
       if (res?.error) {
         setError(
@@ -89,7 +89,7 @@ export default function EditMissionItemForm({
         <Select
           value={aisleId ?? undefined}
           onValueChange={(value) => {
-            setAisleId(value);
+            setAisleId(value === "__none__" ? null : value);
             setError(null);
           }}
         >
@@ -100,6 +100,13 @@ export default function EditMissionItemForm({
             {aisles.length === 0 && (
               <div className="px-3 py-2 text-xs text-sand">{t("noAisles")}</div>
             )}
+            <SelectItem
+              value="__none__"
+              label={t("noAisle")}
+              className="text-xs font-bold tracking-wide"
+            >
+              {t("noAisle")}
+            </SelectItem>
             {aisles.map((aisle) => (
               <SelectItem
                 key={aisle.id}
@@ -117,7 +124,7 @@ export default function EditMissionItemForm({
 
         <Button
           type="submit"
-          disabled={!trimmed || !aisleId || isPending}
+          disabled={!trimmed || isPending}
           className="w-full bg-blue border-2 border-[#4A7A8D] rounded-xl py-4 text-[13px] tracking-widest text-hull cursor-pointer mt-1 transition-colors hover:text-cream hover:border-cream disabled:opacity-40"
         >
           {isPending ? t("saving") : t("save")}

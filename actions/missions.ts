@@ -222,28 +222,26 @@ export async function activateMission(
   userId: string,
   squadId: string,
   missionId: string,
-  merchantId: string,
+  merchantId: string | null,
 ) {
-  if (!merchantId) {
-    return { error: "required" as const };
-  }
-
   if (!(await isMissionAccessible(userId, squadId, missionId))) {
     return { error: "forbidden" as const };
   }
 
-  const merchant = await prisma.merchant.findUnique({
-    where: { id: merchantId },
-    select: { squadId: true },
-  });
-  if (!merchant || merchant.squadId !== squadId) {
-    return { error: "invalidMerchant" as const };
+  if (merchantId) {
+    const merchant = await prisma.merchant.findUnique({
+      where: { id: merchantId },
+      select: { squadId: true },
+    });
+    if (!merchant || merchant.squadId !== squadId) {
+      return { error: "invalidMerchant" as const };
+    }
   }
 
   try {
     await prisma.mission.update({
       where: { id: missionId },
-      data: { state: "active", merchantId },
+      data: { state: "active", merchantId: merchantId ?? null },
     });
     publishSquadChange(squadId, {
       type: "mission.updated",
@@ -461,10 +459,10 @@ export async function createMissionItem(
   userId: string,
   squadId: string,
   title: string,
-  aisleId: string,
+  aisleId: string | null,
 ) {
   const trimmed = title.trim();
-  if (!trimmed || !aisleId) {
+  if (!trimmed) {
     return { error: "required" as const };
   }
 
@@ -472,17 +470,21 @@ export async function createMissionItem(
     return { error: "forbidden" as const };
   }
 
-  const aisle = await prisma.aisle.findUnique({
-    where: { id: aisleId },
-    select: { squadId: true, name: true },
-  });
-  if (!aisle || aisle.squadId !== squadId) {
-    return { error: "invalidAisle" as const };
+  let category = "";
+  if (aisleId) {
+    const aisle = await prisma.aisle.findUnique({
+      where: { id: aisleId },
+      select: { squadId: true, name: true },
+    });
+    if (!aisle || aisle.squadId !== squadId) {
+      return { error: "invalidAisle" as const };
+    }
+    category = aisle.name;
   }
 
   try {
     const item = await prisma.missionItem.create({
-      data: { squadId, title: trimmed, category: aisle.name, aisleId },
+      data: { squadId, title: trimmed, category, aisleId },
       select: { id: true, title: true },
     });
     publishSquadChange(squadId, {
@@ -501,10 +503,10 @@ export async function updateMissionItem(
   squadId: string,
   missionItemId: string,
   title: string,
-  aisleId: string,
+  aisleId: string | null,
 ) {
   const trimmed = title.trim();
-  if (!trimmed || !aisleId) {
+  if (!trimmed) {
     return { error: "required" as const };
   }
 
@@ -520,18 +522,24 @@ export async function updateMissionItem(
     return { error: "forbidden" as const };
   }
 
-  const aisle = await prisma.aisle.findUnique({
-    where: { id: aisleId },
-    select: { squadId: true, name: true },
-  });
-  if (!aisle || aisle.squadId !== squadId) {
-    return { error: "invalidAisle" as const };
+  let category: string;
+  if (aisleId) {
+    const aisle = await prisma.aisle.findUnique({
+      where: { id: aisleId },
+      select: { squadId: true, name: true },
+    });
+    if (!aisle || aisle.squadId !== squadId) {
+      return { error: "invalidAisle" as const };
+    }
+    category = aisle.name;
+  } else {
+    category = "";
   }
 
   try {
     await prisma.missionItem.update({
       where: { id: missionItemId },
-      data: { title: trimmed, category: aisle.name, aisleId },
+      data: { title: trimmed, category, aisleId },
     });
     publishSquadChange(squadId, {
       type: "items.updated",

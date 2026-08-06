@@ -161,7 +161,12 @@
   "MissionsPage": {
     "title": "Missions",
     "empty": "NO_MISSIONS_REGISTERED",
-    "manageItems": "MANAGE_ITEMS"
+    "manageItems": "MANAGE_ITEMS",
+    "states": {
+      "draft": "DRAFTS ({count})",
+      "active": "ACTIVE ({count})",
+      "finished": "FINISHED ({count})"
+    }
   },
   "AddMissionButton": {
     "add": "ADD_MISSION",
@@ -192,9 +197,10 @@
   "ActivateMissionForm": {
     "activate": "ACTIVATE_MISSION",
     "title": "ACTIVATE MISSION",
-    "confirmation": "Pick the merchant and activate the mission.",
+    "confirmation": "Pick a merchant and activate the mission.",
     "merchantPlaceholder": "select merchant...",
     "noMerchants": "NO_MERCHANTS",
+    "noMerchant": "NO MERCHANT",
     "cancel": "CANCEL",
     "confirm": "ACTIVATE",
     "activating": "ACTIVATING...",
@@ -246,9 +252,10 @@
     "namePlaceholder": "enter item name...",
     "aislePlaceholder": "select merchant aisle...",
     "noAisles": "NO_MERCHANT_AISLES",
+    "noAisle": "NO MERCHANT AISLE",
     "saving": "SAVING...",
     "save": "SAVE_ITEM",
-    "errorRequired": "Name and aisle are required",
+    "errorRequired": "Item name is required",
     "errorInvalidAisle": "Aisle is not valid",
     "errorFailed": "Failed to update item"
   },
@@ -269,6 +276,7 @@
     "namePlaceholder": "enter item name...",
     "aislePlaceholder": "select merchant aisle...",
     "noAisles": "NO_MERCHANT_AISLES",
+    "noAisle": "NO MERCHANT AISLE",
     "cancel": "CANCEL",
     "confirm": "CONFIRM",
     "creating": "CREATING...",

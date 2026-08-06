@@ -93,10 +93,15 @@ export default function MissionItemPicker({
 
   const onCreate = () => {
     const title = newTitle.trim();
-    if (!title || !newAisleId || isCreating) return;
+    if (!title || isCreating) return;
 
     startCreating(async () => {
-      const res = await createMissionItem(userId, squadId, title, newAisleId);
+      const res = await createMissionItem(
+        userId,
+        squadId,
+        title,
+        newAisleId === "__none__" ? null : newAisleId,
+      );
       if (res?.error) {
         const errorKey =
           res.error === "invalidAisle" ? "errorInvalidAisle" : "errorFailed";
@@ -220,7 +225,7 @@ export default function MissionItemPicker({
             <Select
               value={newAisleId ?? undefined}
               onValueChange={(value) => {
-                setNewAisleId(value);
+                setNewAisleId(value === "__none__" ? null : value);
                 setCreateError(null);
               }}
             >
@@ -231,6 +236,13 @@ export default function MissionItemPicker({
                 {aisles.length === 0 && (
                   <div className="px-3 py-2 text-xs text-sand">{t("noAisles")}</div>
                 )}
+                <SelectItem
+                  value="__none__"
+                  label={t("noAisle")}
+                  className="text-xs font-bold tracking-wide"
+                >
+                  {t("noAisle")}
+                </SelectItem>
                 {aisles.map((aisle) => (
                   <SelectItem
                     key={aisle.id}
@@ -258,7 +270,7 @@ export default function MissionItemPicker({
               <Button
                 type="button"
                 onClick={onCreate}
-                disabled={!newTitle.trim() || !newAisleId || isCreating}
+                disabled={!newTitle.trim() || isCreating}
                 className="flex-1 bg-blue border-2 border-[#4A7A8D] rounded-xl py-3.5 text-xs tracking-widest text-hull cursor-pointer transition-colors hover:text-cream hover:border-cream"
               >
                 {isCreating ? t("creating") : t("confirm")}

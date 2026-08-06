@@ -36,10 +36,15 @@ export default function ActivateMissionForm({
   const [isPending, startTransition] = useTransition();
 
   const onConfirm = () => {
-    if (!merchantId || isPending) return;
+    if (isPending) return;
 
     startTransition(async () => {
-      const res = await activateMission(userId, squadId, missionId, merchantId);
+      const res = await activateMission(
+        userId,
+        squadId,
+        missionId,
+        merchantId === "__none__" ? null : merchantId,
+      );
       if (res?.success) {
         setOpen(false);
         setMerchantId(null);
@@ -85,6 +90,13 @@ export default function ActivateMissionForm({
                   {t("noMerchants")}
                 </div>
               )}
+              <SelectItem
+                value="__none__"
+                label={t("noMerchant")}
+                className="text-xs font-bold tracking-wide"
+              >
+                {t("noMerchant")}
+              </SelectItem>
               {merchants.map((merchant) => (
                 <SelectItem
                   key={merchant.id}
@@ -112,7 +124,7 @@ export default function ActivateMissionForm({
             <Button
               type="button"
               onClick={onConfirm}
-              disabled={!merchantId || isPending}
+              disabled={isPending}
               className="flex-1 bg-amber border-2 border-[#C07830] rounded-xl py-4 text-[13px] tracking-widest text-hull cursor-pointer transition-colors hover:text-cream hover:border-cream disabled:opacity-40 disabled:cursor-default disabled:hover:text-hull disabled:hover:border-[#C07830]"
             >
               {isPending ? t("activating") : t("confirm")}
