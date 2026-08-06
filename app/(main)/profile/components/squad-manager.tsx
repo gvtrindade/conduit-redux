@@ -1,8 +1,8 @@
-import DeleteSquadForm from "@/components/delete-squad-form";
-import LeaveSquadForm from "@/components/leave-squad-form";
-import NewSquadForm from "@/components/new-squad-form";
-import RenameSquadForm from "@/components/rename-squad-form";
-import SelectActiveSquad from "@/components/select-active-squad";
+import DeleteSquadForm from "./delete-squad-form";
+import LeaveSquadForm from "./leave-squad-form";
+import NewSquadForm from "./new-squad-form";
+import RenameSquadForm from "./rename-squad-form";
+import SelectActiveSquad from "./select-active-squad";
 
 export default function SquadManager({
   squads,

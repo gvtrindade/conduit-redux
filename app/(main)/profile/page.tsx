@@ -6,13 +6,13 @@ import {
   getMemberPreferences,
   getSquads,
 } from "@/actions/members";
-import CallsignForm from "@/components/callsign-form";
-import ChangeCallsign from "@/components/change-callsign";
-import CrewInvites from "@/components/crew-invites";
-import CrewList from "@/components/crew-list";
+import CallsignForm from "./components/callsign-form";
+import ChangeCallsign from "./components/change-callsign";
+import CrewInvites from "./components/crew-invites";
+import CrewList from "./components/crew-list";
+import LogoutButton from "./components/logout-button";
+import SquadManager from "./components/squad-manager";
 import ListLink from "@/components/list-link";
-import LogoutButton from "@/components/logout-button";
-import SquadManager from "@/components/squad-manager";
 import Topic from "@/components/topic";
 import { auth } from "@/lib/auth";
 import { getTranslations } from "next-intl/server";

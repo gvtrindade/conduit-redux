@@ -1,10 +1,10 @@
 "use client";
 
-import AisleList from "@/components/aisle-list";
-import AisleRuleList from "@/components/aisle-rule-list";
+import AisleList from "./aisle-list";
+import AisleRuleList from "./aisle-rule-list";
 import PageHeader from "@/components/page-header";
-import ReceiptList from "@/components/receipt-list";
-import RenameMerchantForm from "@/components/rename-merchant-form";
+import ReceiptList from "./receipt-list";
+import RenameMerchantForm from "./rename-merchant-form";
 import Topic from "@/components/topic";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

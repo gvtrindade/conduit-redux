@@ -1,6 +1,6 @@
 import { getActiveSquad } from "@/actions/members";
 import { getMerchants } from "@/actions/merchants";
-import AddMerchantForm from "@/components/add-merchant-form";
+import AddMerchantForm from "./components/add-merchant-form";
 import ListLink from "@/components/list-link";
 import PageHeader from "@/components/page-header";
 import { auth } from "@/lib/auth";

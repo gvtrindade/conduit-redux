@@ -1,6 +1,6 @@
 import { getActiveSquad } from "@/actions/members";
 import { getMissionItemBank } from "@/actions/missions";
-import MissionItemsManager from "@/components/mission-items-manager";
+import MissionItemsManager from "./components/mission-items-manager";
 import PageHeader from "@/components/page-header";
 import { auth } from "@/lib/auth";
 import { getTranslations } from "next-intl/server";

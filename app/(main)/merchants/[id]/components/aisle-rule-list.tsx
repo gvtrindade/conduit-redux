@@ -1,45 +1,60 @@
 "use client";
 
-import { moveAisle } from "@/actions/merchants";
-import AddAisleForm from "@/components/add-aisle-form";
-import DeleteAisleForm from "@/components/delete-aisle-form";
-import RenameAisleForm from "@/components/rename-aisle-form";
+import { moveAisleRule } from "@/actions/merchants";
+import AddAisleRuleForm from "./add-aisle-rule-form";
+import DeleteAisleRuleForm from "./delete-aisle-rule-form";
+import EditAisleRuleForm from "./edit-aisle-rule-form";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
-export default function AisleList({
+export default function AisleRuleList({
   userId,
   squadId,
   merchantId,
+  rules,
+  missionItems,
   aisles,
 }: {
   userId: string;
   squadId: string;
   merchantId: string;
-  aisles: { id: string; name: string; order: number }[];
+  rules: {
+    id: string;
+    order: number;
+    missionItem: { id: string; title: string };
+    merchantAisle: { id: string; name: string };
+  }[];
+  missionItems: { id: string; title: string }[];
+  aisles: { id: string; name: string }[];
 }) {
   const router = useRouter();
-  const t = useTranslations("AisleList");
+  const t = useTranslations("AisleRuleList");
   const [isPending, startTransition] = useTransition();
 
-  const onMove = (aisleId: string, direction: "up" | "down") => {
+  const onMove = (ruleId: string, direction: "up" | "down") => {
     startTransition(async () => {
-      const res = await moveAisle(userId, squadId, merchantId, aisleId, direction);
+      const res = await moveAisleRule(
+        userId,
+        squadId,
+        merchantId,
+        ruleId,
+        direction,
+      );
       if (res?.success) router.refresh();
     });
   };
 
   return (
     <div className="bg-panel border-2 border-border-custom rounded-2xl divide-y divide-border-custom overflow-hidden">
-      {aisles.length === 0 && (
+      {rules.length === 0 && (
         <div className="px-3.5 py-3.5 text-xs text-sand">{t("empty")}</div>
       )}
 
-      {aisles.map((aisle, index) => (
+      {rules.map((rule, index) => (
         <div
-          key={aisle.id}
+          key={rule.id}
           className="flex items-center justify-between gap-2 px-3.5 py-3.5"
         >
           <div className="flex items-center gap-2 shrink-0">
@@ -47,7 +62,7 @@ export default function AisleList({
               <button
                 type="button"
                 aria-label={t("moveUp")}
-                onClick={() => onMove(aisle.id, "up")}
+                onClick={() => onMove(rule.id, "up")}
                 disabled={isPending || index === 0}
                 className="text-sand cursor-pointer transition-colors hover:text-amber disabled:opacity-30 disabled:cursor-default"
               >
@@ -56,8 +71,8 @@ export default function AisleList({
               <button
                 type="button"
                 aria-label={t("moveDown")}
-                onClick={() => onMove(aisle.id, "down")}
-                disabled={isPending || index === aisles.length - 1}
+                onClick={() => onMove(rule.id, "down")}
+                disabled={isPending || index === rules.length - 1}
                 className="text-sand cursor-pointer transition-colors hover:text-amber disabled:opacity-30 disabled:cursor-default"
               >
                 <ChevronDown size={12} />
@@ -65,30 +80,44 @@ export default function AisleList({
             </div>
           </div>
 
-          <span className="flex-1 min-w-0 font-bold tracking-wide text-xs text-cream truncate">
-            {aisle.name}
-          </span>
+          <div className="flex-1 min-w-0">
+            <p className="font-bold tracking-wide text-xs text-cream truncate">
+              {rule.missionItem.title}
+            </p>
+            <p className="text-xs text-sand truncate">
+              {rule.merchantAisle.name}
+            </p>
+          </div>
 
           <div className="flex items-center gap-2 shrink-0">
-            <RenameAisleForm
+            <EditAisleRuleForm
               userId={userId}
               squadId={squadId}
               merchantId={merchantId}
-              aisleId={aisle.id}
-              aisleName={aisle.name}
+              ruleId={rule.id}
+              currentMissionItemId={rule.missionItem.id}
+              currentAisleId={rule.merchantAisle.id}
+              missionItems={missionItems}
+              aisles={aisles}
             />
-            <DeleteAisleForm
+            <DeleteAisleRuleForm
               userId={userId}
               squadId={squadId}
               merchantId={merchantId}
-              aisleId={aisle.id}
-              aisleName={aisle.name}
+              ruleId={rule.id}
+              ruleLabel={rule.missionItem.title}
             />
           </div>
         </div>
       ))}
 
-      <AddAisleForm userId={userId} squadId={squadId} merchantId={merchantId} />
+      <AddAisleRuleForm
+        userId={userId}
+        squadId={squadId}
+        merchantId={merchantId}
+        missionItems={missionItems}
+        aisles={aisles}
+      />
     </div>
   );
 }

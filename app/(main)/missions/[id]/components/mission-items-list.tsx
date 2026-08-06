@@ -2,7 +2,7 @@
 
 import { removeMissionItem, setMissionItemComplete } from "@/actions/missions";
 import BottomDrawer from "@/components/bottom-drawer";
-import MissionItemPicker from "@/components/mission-item-picker";
+import MissionItemPicker from "./mission-item-picker";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Trash2 } from "lucide-react";

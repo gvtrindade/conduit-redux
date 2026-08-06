@@ -1,7 +1,7 @@
 import { getActiveSquad } from "@/actions/members";
 import { getMerchants } from "@/actions/merchants";
 import { getMission, getMissionItemBank } from "@/actions/missions";
-import MissionContent from "@/components/mission-content";
+import MissionContent from "./components/mission-content";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";

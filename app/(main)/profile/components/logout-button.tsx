@@ -4,7 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import ListButton from "./list-button";
+import ListButton from "@/components/list-button";
 
 export default function LogoutButton({
   label,

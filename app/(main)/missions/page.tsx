@@ -1,8 +1,8 @@
 import { getActiveSquad } from "@/actions/members";
 import { getMissions } from "@/actions/missions";
-import AddMissionButton from "@/components/add-mission-button";
-import MissionLink from "@/components/mission-link";
-import MissionsHeader from "@/components/missions-header";
+import AddMissionButton from "./components/add-mission-button";
+import MissionLink from "./components/mission-link";
+import MissionsHeader from "./components/missions-header";
 import { auth } from "@/lib/auth";
 import { getTranslations } from "next-intl/server";
 import { headers } from "next/headers";

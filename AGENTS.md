@@ -2,3 +2,4 @@
 - Use shadcn components, if one that isnt installed would fit, install it
 - Every text should be added to the /messages
 - Only use named styles for text size and tracking, eg. text-xs, tracking-widest
+- New components must live inside a /component of the component being worked. Only shared components live in the root /components 

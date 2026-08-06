@@ -1,7 +1,7 @@
 "use client";
 
-import DeleteMissionItemForm from "@/components/delete-mission-item-form";
-import EditMissionItemForm from "@/components/edit-mission-item-form";
+import DeleteMissionItemForm from "./delete-mission-item-form";
+import EditMissionItemForm from "./edit-mission-item-form";
 import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";

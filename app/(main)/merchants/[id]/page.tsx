@@ -6,7 +6,7 @@ import {
   getMerchantReceipts,
   getMissionItems,
 } from "@/actions/merchants";
-import MerchantContent from "@/components/merchant-content";
+import MerchantContent from "./components/merchant-content";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { notFound, redirect } from "next/navigation";

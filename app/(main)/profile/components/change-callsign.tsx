@@ -1,9 +1,9 @@
 "use client";
 
-import CallsignForm from "@/components/callsign-form";
+import CallsignForm from "./callsign-form";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import ListButton from "./list-button";
+import ListButton from "@/components/list-button";
 
 export default function ChangeCallsign({ userId }: { userId: string }) {
   const t = useTranslations("ChangeCallsign");

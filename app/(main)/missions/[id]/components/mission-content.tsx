@@ -1,11 +1,11 @@
 "use client";
 
-import ActivateMissionForm from "@/components/activate-mission-form";
-import DeleteMissionForm from "@/components/delete-mission-form";
-import FinishMissionForm from "@/components/finish-mission-form";
-import MissionItemsList from "@/components/mission-items-list";
+import ActivateMissionForm from "./activate-mission-form";
+import DeleteMissionForm from "./delete-mission-form";
+import FinishMissionForm from "./finish-mission-form";
+import MissionItemsList from "./mission-items-list";
 import PageHeader from "@/components/page-header";
-import RenameMissionForm from "@/components/rename-mission-form";
+import RenameMissionForm from "./rename-mission-form";
 import Topic from "@/components/topic";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
