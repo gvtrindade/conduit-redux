@@ -1,23 +1,34 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
+import { useTransition } from "react";
+import ListButton from "./list-button";
 
-export default function LogoutButton() {
+export default function LogoutButton({
+  label,
+}: {
+  label?: string;
+}) {
+  const t = useTranslations("LogoutButton");
   const router = useRouter();
+  const [isPending, startTransition] = useTransition();
 
   async function handleSignOut() {
-    await authClient.signOut();
-    router.refresh();
-    router.push("/login");
+    startTransition(async () => {
+      await authClient.signOut();
+      router.refresh();
+      router.push("/login");
+    });
   }
 
   return (
-    <Button
+    <ListButton
+      tone="danger"
+      label={label ?? t("label")}
+      disabled={isPending}
       onClick={handleSignOut}
-    >
-      Logout
-    </Button>
+    />
   );
 }

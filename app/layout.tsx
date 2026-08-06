@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import { SerwistProvider } from "@serwist/turbopack/react";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
+import { Toaster } from "@/components/ui/sonner";
 import {
   Geist,
   Inter,
@@ -77,14 +78,14 @@ export default async function RootLayout({
         robotoMono.variable,
         jetbrainsMono.variable,
         interTight.variable,
-        "font-sans",
         geist.variable,
       )}
     >
-      <body className="scanlines">
+      <body className="scanlines h-full">
         <SerwistProvider swUrl="/serwist/sw.js">
           <NextIntlClientProvider>
             <>{children}</>
+            <Toaster />
           </NextIntlClientProvider>
         </SerwistProvider>
       </body>

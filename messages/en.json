@@ -106,5 +106,263 @@
     "emailVerifiedTitle": "EMAIL VERIFIED",
     "emailVerifiedMessage": "YOUR EMAIL HAS BEEN SUCCESFULLY VERIFIED. YOU CAN NOW ACCESS YOUR PROFILE",
     "goToMissions": "GO TO MISSIONS"
+  },
+  "BottomNav": {
+    "reports": "RPRT",
+    "items": "ITMS",
+    "missions": "MISN",
+    "profile": "PRFL"
+  },
+  "AppHeader": {
+    "connected": "CONNECTED",
+    "squad": "SQUAD: ",
+    "reports": "REPORTS",
+    "items": "ITEMS",
+    "missions": "MISSIONS",
+    "profile": "PROFILE",
+    "reportDetail": "REPORT_DETAIL",
+    "itemDetail": "ITEM_DETAIL",
+    "manifestDebrief": "MANIFEST_DEBREIF",
+    "conduit": "CONDUIT"
+  },
+  "Profile": {
+    "callsignLabel": "CALLSIGN: {callsign}",
+    "missions": "MISSIONS",
+    "itemsTracked": "ITEMS_TRK",
+    "variance": "VARIANCE",
+    "callsign": "CALLSIGN",
+    "invites": "SQUAD_INVITES",
+    "merchants": "MERCHANTS",
+    "manageMerchants": "MANAGE_MERCHANTS",
+    "systemPreferences": "SYSTEM_PREFERENCES",
+    "noPreferencesSet": "No preferences set",
+    "squads": "SQUADS",
+    "crew": "CREW",
+    "noActiveSquad": "NO ACTIVE SQUAD",
+    "dangerZone": "DANGER_ZONE"
+  },
+  "CallsignForm": {
+    "placeholder": "enter callsign...",
+    "checkingAvailability": "CHECKING_AVAILABILITY...",
+    "available": "CALLSIGN_AVAILABLE",
+    "taken": "CALLSIGN_TAKEN",
+    "setting": "SETTING...",
+    "setCallsign": "SET_CALLSIGN"
+  },
+  "ChangeCallsign": {
+    "label": "CHANGE_CALLSIGN"
+  },
+  "LogoutButton": {
+    "label": "TERMINATE_SESSION"
+  },
+  "ItemsPage": {
+    "title": "Items"
+  },
+  "MissionsPage": {
+    "title": "Missions"
+  },
+  "ReportsPage": {
+    "title": "Reports"
+  },
+  "NewSquadForm": {
+    "addSquad": "ADD SQUAD",
+    "title": "NEW SQUAD",
+    "placeholder": "enter squad name...",
+    "checkingAvailability": "CHECKING_AVAILABILITY...",
+    "available": "SQUAD_NAME_AVAILABLE",
+    "taken": "SQUAD_NAME_TAKEN",
+    "creating": "CREATING...",
+    "createSquad": "CREATE_SQUAD",
+    "errorRequired": "Squad name is required",
+    "errorTaken": "Squad name is already in use",
+    "errorFailed": "Failed to create squad"
+  },
+  "SelectActiveSquad": {
+    "setActive": "Set {squad} as active squad",
+    "changed": "Active squad changed to {squad}",
+    "errorForbidden": "You are not a member of this squad",
+    "errorFailed": "Failed to change active squad"
+  },
+  "RenameSquadForm": {
+    "rename": "RENAME",
+    "title": "RENAME SQUAD",
+    "placeholder": "enter squad name...",
+    "checkingAvailability": "CHECKING_AVAILABILITY...",
+    "available": "SQUAD_NAME_AVAILABLE",
+    "taken": "SQUAD_NAME_TAKEN",
+    "saving": "SAVING...",
+    "save": "SAVE_SQUAD",
+    "errorRequired": "Squad name is required",
+    "errorTaken": "Squad name is already in use",
+    "errorFailed": "Failed to rename squad"
+  },
+  "DeleteSquadForm": {
+    "delete": "DELETE",
+    "title": "DELETE SQUAD",
+    "confirmation": "Delete squad {squad}?",
+    "cancel": "CANCEL",
+    "confirm": "DELETE_SQUAD",
+    "deleting": "DELETING...",
+    "errorOnlySquad": "Cannot delete your only squad",
+    "errorFailed": "Failed to delete squad"
+  },
+  "LeaveSquadForm": {
+    "leave": "LEAVE",
+    "title": "LEAVE SQUAD",
+    "confirmation": "Leave squad {squad}?",
+    "cancel": "CANCEL",
+    "confirm": "LEAVE_SQUAD",
+    "leaving": "LEAVING...",
+    "errorOnlySquad": "Cannot leave your only squad",
+    "errorFailed": "Failed to leave squad"
+  },
+  "CrewList": {
+    "placeholder": "enter callsign...",
+    "checkingExists": "CHECKING_CALLSIGN...",
+    "exists": "CALLSIGN_FOUND",
+    "notFound": "CALLSIGN_NOT_FOUND",
+    "inviting": "INVITING...",
+    "invite": "INVITE_MEMBER",
+    "errorRequired": "Callsign is required",
+    "errorNotFound": "No member found with this callsign",
+    "errorSelf": "You are already part of this crew",
+    "errorAlreadyCrew": "This member is already in the crew",
+    "errorAlreadyInvited": "An invite has already been sent",
+    "errorForbidden": "You are not a member of this squad",
+    "errorFailed": "Failed to invite member",
+    "invited": "INVITED",
+    "cancelInvite": "CANCEL_INVITE",
+    "cancelInviteSuccess": "Invite cancelled",
+    "empty": "NO_CREW_MEMBERS",
+    "remove": "REMOVE",
+    "removeTitle": "REMOVE FROM SQUAD",
+    "removeConfirmation": "Remove {callsign} from squad?",
+    "cancel": "CANCEL",
+    "confirmRemove": "REMOVE",
+    "removing": "REMOVING...",
+    "errorNotCrew": "This member is not part of the crew",
+    "errorRemoveForbidden": "Only the squad creator can remove members",
+    "errorRemoveFailed": "Failed to remove member"
+  },
+  "CrewInvites": {
+    "accept": "ACCEPT",
+    "decline": "DECLINE",
+    "acceptTitle": "ACCEPT INVITE",
+    "acceptConfirmation": "Join squad {squad}?",
+    "accepting": "ACCEPTING...",
+    "declineTitle": "DECLINE INVITE",
+    "declineConfirmation": "Decline invite to squad {squad}?",
+    "declining": "DECLINING...",
+    "confirm": "CONFIRM",
+    "cancel": "CANCEL",
+    "errorFailed": "Failed to process invite"
+  },
+  "MerchantsPage": {
+    "title": "MERCHANTS",
+    "empty": "NO_MERCHANTS_REGISTERED"
+  },
+  "MerchantPage": {
+    "editName": "EDIT_NAME",
+    "aislesTopic": "AISLES",
+    "itemRulesTopic": "ITEM_RULES",
+    "receiptsTopic": "SQUAD_RECEIPTS"
+  },
+  "AisleList": {
+    "addAisle": "ADD_AISLE",
+    "empty": "NO_AISLES_REGISTERED",
+    "moveUp": "MOVE_AISLE_UP",
+    "moveDown": "MOVE_AISLE_DOWN"
+  },
+  "AddAisleForm": {
+    "addAisle": "ADD_AISLE",
+    "title": "NEW_AISLE",
+    "placeholder": "enter aisle name...",
+    "creating": "CREATING...",
+    "createAisle": "CREATE_AISLE",
+    "errorRequired": "Aisle name is required",
+    "errorForbidden": "You are not a member of this squad",
+    "errorFailed": "Failed to create aisle"
+  },
+  "RenameAisleForm": {
+    "rename": "RENAME",
+    "title": "RENAME_AISLE",
+    "placeholder": "enter aisle name...",
+    "saving": "SAVING...",
+    "save": "SAVE_AISLE",
+    "errorRequired": "Aisle name is required",
+    "errorFailed": "Failed to rename aisle"
+  },
+  "DeleteAisleForm": {
+    "delete": "DELETE",
+    "title": "DELETE_AISLE",
+    "confirmation": "Delete aisle {aisle}?",
+    "cancel": "CANCEL",
+    "confirm": "DELETE_AISLE",
+    "deleting": "DELETING...",
+    "errorFailed": "Failed to delete aisle"
+  },
+  "AisleRuleList": {
+    "addRule": "ADD_ITEM_RULE",
+    "empty": "NO_ITEM_RULES_REGISTERED",
+    "moveUp": "MOVE_RULE_UP",
+    "moveDown": "MOVE_RULE_DOWN"
+  },
+  "AddAisleRuleForm": {
+    "addRule": "ADD_ITEM_RULE",
+    "title": "NEW_ITEM_RULE",
+    "itemPlaceholder": "select mission item...",
+    "aislePlaceholder": "select aisle...",
+    "noItems": "NO_MISSION_ITEMS",
+    "noAisles": "NO_AISLES",
+    "creating": "CREATING...",
+    "createRule": "CREATE_ITEM_RULE",
+    "errorRequired": "All fields are required",
+    "errorDuplicate": "This rule already exists",
+    "errorInvalidAisle": "Aisle is not valid",
+    "errorInvalidMissionItem": "Mission item is not valid",
+    "errorForbidden": "You are not a member of this squad",
+    "errorFailed": "Failed to create rule"
+  },
+  "EditAisleRuleForm": {
+    "edit": "EDIT",
+    "title": "EDIT_ITEM_RULE",
+    "itemPlaceholder": "select mission item...",
+    "aislePlaceholder": "select aisle...",
+    "saving": "SAVING...",
+    "save": "SAVE_ITEM_RULE",
+    "errorRequired": "All fields are required",
+    "errorDuplicate": "This rule already exists",
+    "errorInvalidAisle": "Aisle is not valid",
+    "errorInvalidMissionItem": "Mission item is not valid",
+    "errorFailed": "Failed to update rule"
+  },
+  "DeleteAisleRuleForm": {
+    "delete": "DELETE",
+    "title": "DELETE_ITEM_RULE",
+    "confirmation": "Delete rule {rule}?",
+    "cancel": "CANCEL",
+    "confirm": "DELETE_ITEM_RULE",
+    "deleting": "DELETING...",
+    "errorFailed": "Failed to delete rule"
+  },
+  "ReceiptList": {
+    "empty": "NO_RECEIPTS_REGISTERED"
+  },
+  "AddMerchantForm": {
+    "add": "ADD_MERCHANT",
+    "title": "NEW MERCHANT",
+    "placeholder": "enter merchant name...",
+    "creating": "CREATING...",
+    "createMerchant": "CREATE_MERCHANT",
+    "errorRequired": "Merchant name is required",
+    "errorFailed": "Failed to create merchant"
+  },
+  "RenameMerchantForm": {
+    "title": "RENAME MERCHANT",
+    "placeholder": "enter merchant name...",
+    "saving": "SAVING...",
+    "save": "SAVE_MERCHANT",
+    "errorRequired": "Merchant name is required",
+    "errorFailed": "Failed to rename merchant"
   }
 }

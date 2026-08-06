@@ -27,19 +27,19 @@ export type AggregateMissionCrew = {
 export type MissionCrewMinAggregateOutputType = {
   id: string | null
   missionId: string | null
-  userId: string | null
+  memberId: string | null
 }
 
 export type MissionCrewMaxAggregateOutputType = {
   id: string | null
   missionId: string | null
-  userId: string | null
+  memberId: string | null
 }
 
 export type MissionCrewCountAggregateOutputType = {
   id: number
   missionId: number
-  userId: number
+  memberId: number
   _all: number
 }
 
@@ -47,19 +47,19 @@ export type MissionCrewCountAggregateOutputType = {
 export type MissionCrewMinAggregateInputType = {
   id?: true
   missionId?: true
-  userId?: true
+  memberId?: true
 }
 
 export type MissionCrewMaxAggregateInputType = {
   id?: true
   missionId?: true
-  userId?: true
+  memberId?: true
 }
 
 export type MissionCrewCountAggregateInputType = {
   id?: true
   missionId?: true
-  userId?: true
+  memberId?: true
   _all?: true
 }
 
@@ -138,7 +138,7 @@ export type MissionCrewGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type MissionCrewGroupByOutputType = {
   id: string
   missionId: string
-  userId: string
+  memberId: string
   _count: MissionCrewCountAggregateOutputType | null
   _min: MissionCrewMinAggregateOutputType | null
   _max: MissionCrewMaxAggregateOutputType | null
@@ -165,17 +165,17 @@ export type MissionCrewWhereInput = {
   NOT?: Prisma.MissionCrewWhereInput | Prisma.MissionCrewWhereInput[]
   id?: Prisma.StringFilter<"MissionCrew"> | string
   missionId?: Prisma.StringFilter<"MissionCrew"> | string
-  userId?: Prisma.StringFilter<"MissionCrew"> | string
+  memberId?: Prisma.StringFilter<"MissionCrew"> | string
   mission?: Prisma.XOR<Prisma.MissionScalarRelationFilter, Prisma.MissionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  member?: Prisma.XOR<Prisma.MemberNullableScalarRelationFilter, Prisma.MemberWhereInput> | null
 }
 
 export type MissionCrewOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
   mission?: Prisma.MissionOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
+  member?: Prisma.MemberOrderByWithRelationInput
 }
 
 export type MissionCrewWhereUniqueInput = Prisma.AtLeast<{
@@ -184,15 +184,15 @@ export type MissionCrewWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.MissionCrewWhereInput[]
   NOT?: Prisma.MissionCrewWhereInput | Prisma.MissionCrewWhereInput[]
   missionId?: Prisma.StringFilter<"MissionCrew"> | string
-  userId?: Prisma.StringFilter<"MissionCrew"> | string
+  memberId?: Prisma.StringFilter<"MissionCrew"> | string
   mission?: Prisma.XOR<Prisma.MissionScalarRelationFilter, Prisma.MissionWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  member?: Prisma.XOR<Prisma.MemberNullableScalarRelationFilter, Prisma.MemberWhereInput> | null
 }, "id">
 
 export type MissionCrewOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
   _count?: Prisma.MissionCrewCountOrderByAggregateInput
   _max?: Prisma.MissionCrewMaxOrderByAggregateInput
   _min?: Prisma.MissionCrewMinOrderByAggregateInput
@@ -204,37 +204,37 @@ export type MissionCrewScalarWhereWithAggregatesInput = {
   NOT?: Prisma.MissionCrewScalarWhereWithAggregatesInput | Prisma.MissionCrewScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"MissionCrew"> | string
   missionId?: Prisma.StringWithAggregatesFilter<"MissionCrew"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"MissionCrew"> | string
+  memberId?: Prisma.StringWithAggregatesFilter<"MissionCrew"> | string
 }
 
 export type MissionCrewCreateInput = {
   id?: string
   mission: Prisma.MissionCreateNestedOneWithoutCrewInput
-  user: Prisma.UserCreateNestedOneWithoutMissionsCrewedInput
+  member?: Prisma.MemberCreateNestedOneWithoutMissionsCrewedInput
 }
 
 export type MissionCrewUncheckedCreateInput = {
   id?: string
   missionId: string
-  userId: string
+  memberId: string
 }
 
 export type MissionCrewUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mission?: Prisma.MissionUpdateOneRequiredWithoutCrewNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutMissionsCrewedNestedInput
+  member?: Prisma.MemberUpdateOneWithoutMissionsCrewedNestedInput
 }
 
 export type MissionCrewUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MissionCrewCreateManyInput = {
   id?: string
   missionId: string
-  userId: string
+  memberId: string
 }
 
 export type MissionCrewUpdateManyMutationInput = {
@@ -244,7 +244,7 @@ export type MissionCrewUpdateManyMutationInput = {
 export type MissionCrewUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MissionCrewListRelationFilter = {
@@ -260,60 +260,60 @@ export type MissionCrewOrderByRelationAggregateInput = {
 export type MissionCrewCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
 export type MissionCrewMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
 export type MissionCrewMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
-export type MissionCrewCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput> | Prisma.MissionCrewCreateWithoutUserInput[] | Prisma.MissionCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutUserInput | Prisma.MissionCrewCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.MissionCrewCreateManyUserInputEnvelope
+export type MissionCrewCreateNestedManyWithoutMemberInput = {
+  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput> | Prisma.MissionCrewCreateWithoutMemberInput[] | Prisma.MissionCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutMemberInput | Prisma.MissionCrewCreateOrConnectWithoutMemberInput[]
+  createMany?: Prisma.MissionCrewCreateManyMemberInputEnvelope
   connect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
 }
 
-export type MissionCrewUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput> | Prisma.MissionCrewCreateWithoutUserInput[] | Prisma.MissionCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutUserInput | Prisma.MissionCrewCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.MissionCrewCreateManyUserInputEnvelope
+export type MissionCrewUncheckedCreateNestedManyWithoutMemberInput = {
+  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput> | Prisma.MissionCrewCreateWithoutMemberInput[] | Prisma.MissionCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutMemberInput | Prisma.MissionCrewCreateOrConnectWithoutMemberInput[]
+  createMany?: Prisma.MissionCrewCreateManyMemberInputEnvelope
   connect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
 }
 
-export type MissionCrewUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput> | Prisma.MissionCrewCreateWithoutUserInput[] | Prisma.MissionCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutUserInput | Prisma.MissionCrewCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.MissionCrewUpsertWithWhereUniqueWithoutUserInput | Prisma.MissionCrewUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.MissionCrewCreateManyUserInputEnvelope
+export type MissionCrewUpdateManyWithoutMemberNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput> | Prisma.MissionCrewCreateWithoutMemberInput[] | Prisma.MissionCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutMemberInput | Prisma.MissionCrewCreateOrConnectWithoutMemberInput[]
+  upsert?: Prisma.MissionCrewUpsertWithWhereUniqueWithoutMemberInput | Prisma.MissionCrewUpsertWithWhereUniqueWithoutMemberInput[]
+  createMany?: Prisma.MissionCrewCreateManyMemberInputEnvelope
   set?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   disconnect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   delete?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   connect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
-  update?: Prisma.MissionCrewUpdateWithWhereUniqueWithoutUserInput | Prisma.MissionCrewUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.MissionCrewUpdateManyWithWhereWithoutUserInput | Prisma.MissionCrewUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.MissionCrewUpdateWithWhereUniqueWithoutMemberInput | Prisma.MissionCrewUpdateWithWhereUniqueWithoutMemberInput[]
+  updateMany?: Prisma.MissionCrewUpdateManyWithWhereWithoutMemberInput | Prisma.MissionCrewUpdateManyWithWhereWithoutMemberInput[]
   deleteMany?: Prisma.MissionCrewScalarWhereInput | Prisma.MissionCrewScalarWhereInput[]
 }
 
-export type MissionCrewUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput> | Prisma.MissionCrewCreateWithoutUserInput[] | Prisma.MissionCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutUserInput | Prisma.MissionCrewCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.MissionCrewUpsertWithWhereUniqueWithoutUserInput | Prisma.MissionCrewUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.MissionCrewCreateManyUserInputEnvelope
+export type MissionCrewUncheckedUpdateManyWithoutMemberNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput> | Prisma.MissionCrewCreateWithoutMemberInput[] | Prisma.MissionCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.MissionCrewCreateOrConnectWithoutMemberInput | Prisma.MissionCrewCreateOrConnectWithoutMemberInput[]
+  upsert?: Prisma.MissionCrewUpsertWithWhereUniqueWithoutMemberInput | Prisma.MissionCrewUpsertWithWhereUniqueWithoutMemberInput[]
+  createMany?: Prisma.MissionCrewCreateManyMemberInputEnvelope
   set?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   disconnect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   delete?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
   connect?: Prisma.MissionCrewWhereUniqueInput | Prisma.MissionCrewWhereUniqueInput[]
-  update?: Prisma.MissionCrewUpdateWithWhereUniqueWithoutUserInput | Prisma.MissionCrewUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.MissionCrewUpdateManyWithWhereWithoutUserInput | Prisma.MissionCrewUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.MissionCrewUpdateWithWhereUniqueWithoutMemberInput | Prisma.MissionCrewUpdateWithWhereUniqueWithoutMemberInput[]
+  updateMany?: Prisma.MissionCrewUpdateManyWithWhereWithoutMemberInput | Prisma.MissionCrewUpdateManyWithWhereWithoutMemberInput[]
   deleteMany?: Prisma.MissionCrewScalarWhereInput | Prisma.MissionCrewScalarWhereInput[]
 }
 
@@ -359,40 +359,40 @@ export type MissionCrewUncheckedUpdateManyWithoutMissionNestedInput = {
   deleteMany?: Prisma.MissionCrewScalarWhereInput | Prisma.MissionCrewScalarWhereInput[]
 }
 
-export type MissionCrewCreateWithoutUserInput = {
+export type MissionCrewCreateWithoutMemberInput = {
   id?: string
   mission: Prisma.MissionCreateNestedOneWithoutCrewInput
 }
 
-export type MissionCrewUncheckedCreateWithoutUserInput = {
+export type MissionCrewUncheckedCreateWithoutMemberInput = {
   id?: string
   missionId: string
 }
 
-export type MissionCrewCreateOrConnectWithoutUserInput = {
+export type MissionCrewCreateOrConnectWithoutMemberInput = {
   where: Prisma.MissionCrewWhereUniqueInput
-  create: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput>
+  create: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput>
 }
 
-export type MissionCrewCreateManyUserInputEnvelope = {
-  data: Prisma.MissionCrewCreateManyUserInput | Prisma.MissionCrewCreateManyUserInput[]
+export type MissionCrewCreateManyMemberInputEnvelope = {
+  data: Prisma.MissionCrewCreateManyMemberInput | Prisma.MissionCrewCreateManyMemberInput[]
   skipDuplicates?: boolean
 }
 
-export type MissionCrewUpsertWithWhereUniqueWithoutUserInput = {
+export type MissionCrewUpsertWithWhereUniqueWithoutMemberInput = {
   where: Prisma.MissionCrewWhereUniqueInput
-  update: Prisma.XOR<Prisma.MissionCrewUpdateWithoutUserInput, Prisma.MissionCrewUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.MissionCrewCreateWithoutUserInput, Prisma.MissionCrewUncheckedCreateWithoutUserInput>
+  update: Prisma.XOR<Prisma.MissionCrewUpdateWithoutMemberInput, Prisma.MissionCrewUncheckedUpdateWithoutMemberInput>
+  create: Prisma.XOR<Prisma.MissionCrewCreateWithoutMemberInput, Prisma.MissionCrewUncheckedCreateWithoutMemberInput>
 }
 
-export type MissionCrewUpdateWithWhereUniqueWithoutUserInput = {
+export type MissionCrewUpdateWithWhereUniqueWithoutMemberInput = {
   where: Prisma.MissionCrewWhereUniqueInput
-  data: Prisma.XOR<Prisma.MissionCrewUpdateWithoutUserInput, Prisma.MissionCrewUncheckedUpdateWithoutUserInput>
+  data: Prisma.XOR<Prisma.MissionCrewUpdateWithoutMemberInput, Prisma.MissionCrewUncheckedUpdateWithoutMemberInput>
 }
 
-export type MissionCrewUpdateManyWithWhereWithoutUserInput = {
+export type MissionCrewUpdateManyWithWhereWithoutMemberInput = {
   where: Prisma.MissionCrewScalarWhereInput
-  data: Prisma.XOR<Prisma.MissionCrewUpdateManyMutationInput, Prisma.MissionCrewUncheckedUpdateManyWithoutUserInput>
+  data: Prisma.XOR<Prisma.MissionCrewUpdateManyMutationInput, Prisma.MissionCrewUncheckedUpdateManyWithoutMemberInput>
 }
 
 export type MissionCrewScalarWhereInput = {
@@ -401,17 +401,17 @@ export type MissionCrewScalarWhereInput = {
   NOT?: Prisma.MissionCrewScalarWhereInput | Prisma.MissionCrewScalarWhereInput[]
   id?: Prisma.StringFilter<"MissionCrew"> | string
   missionId?: Prisma.StringFilter<"MissionCrew"> | string
-  userId?: Prisma.StringFilter<"MissionCrew"> | string
+  memberId?: Prisma.StringFilter<"MissionCrew"> | string
 }
 
 export type MissionCrewCreateWithoutMissionInput = {
   id?: string
-  user: Prisma.UserCreateNestedOneWithoutMissionsCrewedInput
+  member?: Prisma.MemberCreateNestedOneWithoutMissionsCrewedInput
 }
 
 export type MissionCrewUncheckedCreateWithoutMissionInput = {
   id?: string
-  userId: string
+  memberId: string
 }
 
 export type MissionCrewCreateOrConnectWithoutMissionInput = {
@@ -440,44 +440,44 @@ export type MissionCrewUpdateManyWithWhereWithoutMissionInput = {
   data: Prisma.XOR<Prisma.MissionCrewUpdateManyMutationInput, Prisma.MissionCrewUncheckedUpdateManyWithoutMissionInput>
 }
 
-export type MissionCrewCreateManyUserInput = {
+export type MissionCrewCreateManyMemberInput = {
   id?: string
   missionId: string
 }
 
-export type MissionCrewUpdateWithoutUserInput = {
+export type MissionCrewUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   mission?: Prisma.MissionUpdateOneRequiredWithoutCrewNestedInput
 }
 
-export type MissionCrewUncheckedUpdateWithoutUserInput = {
+export type MissionCrewUncheckedUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type MissionCrewUncheckedUpdateManyWithoutUserInput = {
+export type MissionCrewUncheckedUpdateManyWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MissionCrewCreateManyMissionInput = {
   id?: string
-  userId: string
+  memberId: string
 }
 
 export type MissionCrewUpdateWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutMissionsCrewedNestedInput
+  member?: Prisma.MemberUpdateOneWithoutMissionsCrewedNestedInput
 }
 
 export type MissionCrewUncheckedUpdateWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MissionCrewUncheckedUpdateManyWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -485,57 +485,57 @@ export type MissionCrewUncheckedUpdateManyWithoutMissionInput = {
 export type MissionCrewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   missionId?: boolean
-  userId?: boolean
+  memberId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }, ExtArgs["result"]["missionCrew"]>
 
 export type MissionCrewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   missionId?: boolean
-  userId?: boolean
+  memberId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }, ExtArgs["result"]["missionCrew"]>
 
 export type MissionCrewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   missionId?: boolean
-  userId?: boolean
+  memberId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }, ExtArgs["result"]["missionCrew"]>
 
 export type MissionCrewSelectScalar = {
   id?: boolean
   missionId?: boolean
-  userId?: boolean
+  memberId?: boolean
 }
 
-export type MissionCrewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "missionId" | "userId", ExtArgs["result"]["missionCrew"]>
+export type MissionCrewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "missionId" | "memberId", ExtArgs["result"]["missionCrew"]>
 export type MissionCrewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }
 export type MissionCrewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }
 export type MissionCrewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MissionCrew$memberArgs<ExtArgs>
 }
 
 export type $MissionCrewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MissionCrew"
   objects: {
     mission: Prisma.$MissionPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
+    member: Prisma.$MemberPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     missionId: string
-    userId: string
+    memberId: string
   }, ExtArgs["result"]["missionCrew"]>
   composites: {}
 }
@@ -931,7 +931,7 @@ readonly fields: MissionCrewFieldRefs;
 export interface Prisma__MissionCrewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   mission<T extends Prisma.MissionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MissionDefaultArgs<ExtArgs>>): Prisma.Prisma__MissionClient<runtime.Types.Result.GetResult<Prisma.$MissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  member<T extends Prisma.MissionCrew$memberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MissionCrew$memberArgs<ExtArgs>>): Prisma.Prisma__MemberClient<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -963,7 +963,7 @@ export interface Prisma__MissionCrewClient<T, Null = never, ExtArgs extends runt
 export interface MissionCrewFieldRefs {
   readonly id: Prisma.FieldRef<"MissionCrew", 'String'>
   readonly missionId: Prisma.FieldRef<"MissionCrew", 'String'>
-  readonly userId: Prisma.FieldRef<"MissionCrew", 'String'>
+  readonly memberId: Prisma.FieldRef<"MissionCrew", 'String'>
 }
     
 
@@ -1362,6 +1362,25 @@ export type MissionCrewDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many MissionCrews to delete.
    */
   limit?: number
+}
+
+/**
+ * MissionCrew.member
+ */
+export type MissionCrew$memberArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Member
+   */
+  select?: Prisma.MemberSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Member
+   */
+  omit?: Prisma.MemberOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MemberInclude<ExtArgs> | null
+  where?: Prisma.MemberWhereInput
 }
 
 /**

@@ -1,6 +1,8 @@
+import { getTranslations } from "next-intl/server";
 
-export default function Missions() {
+export default async function Missions() {
+    const t = await getTranslations("MissionsPage");
     return (
-        <div>Missions</div>
+        <div>{t("title")}</div>
     )
 }

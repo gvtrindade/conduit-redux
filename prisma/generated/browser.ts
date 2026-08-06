@@ -53,6 +53,11 @@ export type Squad = Prisma.SquadModel
  */
 export type SquadCrew = Prisma.SquadCrewModel
 /**
+ * Model SquadCrewInvite
+ * 
+ */
+export type SquadCrewInvite = Prisma.SquadCrewInviteModel
+/**
  * Model Merchant
  * 
  */

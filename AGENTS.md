@@ -1,0 +1,4 @@
+- This project uses bun
+- Use shadcn components, if one that isnt installed would fit, install it
+- Every text should be added to the /messages
+- Only use named styles for text size and tracking, eg. text-xs, tracking-widest

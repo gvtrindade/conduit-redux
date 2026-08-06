@@ -205,10 +205,6 @@ export type UserWhereInput = {
   member?: Prisma.XOR<Prisma.MemberNullableScalarRelationFilter, Prisma.MemberWhereInput> | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
-  squadsCreated?: Prisma.SquadListRelationFilter
-  squadCrews?: Prisma.SquadCrewListRelationFilter
-  missionsCrewed?: Prisma.MissionCrewListRelationFilter
-  receipts?: Prisma.ReceiptListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -223,10 +219,6 @@ export type UserOrderByWithRelationInput = {
   member?: Prisma.MemberOrderByWithRelationInput
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   accounts?: Prisma.AccountOrderByRelationAggregateInput
-  squadsCreated?: Prisma.SquadOrderByRelationAggregateInput
-  squadCrews?: Prisma.SquadCrewOrderByRelationAggregateInput
-  missionsCrewed?: Prisma.MissionCrewOrderByRelationAggregateInput
-  receipts?: Prisma.ReceiptOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -244,10 +236,6 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   member?: Prisma.XOR<Prisma.MemberNullableScalarRelationFilter, Prisma.MemberWhereInput> | null
   sessions?: Prisma.SessionListRelationFilter
   accounts?: Prisma.AccountListRelationFilter
-  squadsCreated?: Prisma.SquadListRelationFilter
-  squadCrews?: Prisma.SquadCrewListRelationFilter
-  missionsCrewed?: Prisma.MissionCrewListRelationFilter
-  receipts?: Prisma.ReceiptListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -290,10 +278,6 @@ export type UserCreateInput = {
   member?: Prisma.MemberCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -308,10 +292,6 @@ export type UserUncheckedCreateInput = {
   member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -326,10 +306,6 @@ export type UserUpdateInput = {
   member?: Prisma.MemberUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -344,10 +320,6 @@ export type UserUncheckedUpdateInput = {
   member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -494,62 +466,6 @@ export type UserUpdateOneRequiredWithoutMemberNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMemberInput, Prisma.UserUpdateWithoutMemberInput>, Prisma.UserUncheckedUpdateWithoutMemberInput>
 }
 
-export type UserCreateNestedOneWithoutSquadsCreatedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSquadsCreatedInput, Prisma.UserUncheckedCreateWithoutSquadsCreatedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSquadsCreatedInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutSquadsCreatedNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSquadsCreatedInput, Prisma.UserUncheckedCreateWithoutSquadsCreatedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSquadsCreatedInput
-  upsert?: Prisma.UserUpsertWithoutSquadsCreatedInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSquadsCreatedInput, Prisma.UserUpdateWithoutSquadsCreatedInput>, Prisma.UserUncheckedUpdateWithoutSquadsCreatedInput>
-}
-
-export type UserCreateNestedOneWithoutSquadCrewsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSquadCrewsInput, Prisma.UserUncheckedCreateWithoutSquadCrewsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSquadCrewsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutSquadCrewsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSquadCrewsInput, Prisma.UserUncheckedCreateWithoutSquadCrewsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSquadCrewsInput
-  upsert?: Prisma.UserUpsertWithoutSquadCrewsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSquadCrewsInput, Prisma.UserUpdateWithoutSquadCrewsInput>, Prisma.UserUncheckedUpdateWithoutSquadCrewsInput>
-}
-
-export type UserCreateNestedOneWithoutMissionsCrewedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMissionsCrewedInput, Prisma.UserUncheckedCreateWithoutMissionsCrewedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMissionsCrewedInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutMissionsCrewedNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutMissionsCrewedInput, Prisma.UserUncheckedCreateWithoutMissionsCrewedInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMissionsCrewedInput
-  upsert?: Prisma.UserUpsertWithoutMissionsCrewedInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMissionsCrewedInput, Prisma.UserUpdateWithoutMissionsCrewedInput>, Prisma.UserUncheckedUpdateWithoutMissionsCrewedInput>
-}
-
-export type UserCreateNestedOneWithoutReceiptsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceiptsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutReceiptsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceiptsInput
-  upsert?: Prisma.UserUpsertWithoutReceiptsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceiptsInput, Prisma.UserUpdateWithoutReceiptsInput>, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-}
-
 export type UserCreateWithoutSessionsInput = {
   id?: string
   name: string
@@ -561,10 +477,6 @@ export type UserCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   member?: Prisma.MemberCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -578,10 +490,6 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   updatedAt?: Date | string
   member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -611,10 +519,6 @@ export type UserUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   member?: Prisma.MemberUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -628,10 +532,6 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAccountsInput = {
@@ -645,10 +545,6 @@ export type UserCreateWithoutAccountsInput = {
   updatedAt?: Date | string
   member?: Prisma.MemberCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -662,10 +558,6 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   updatedAt?: Date | string
   member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -695,10 +587,6 @@ export type UserUpdateWithoutAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   member?: Prisma.MemberUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -712,10 +600,6 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMemberInput = {
@@ -729,10 +613,6 @@ export type UserCreateWithoutMemberInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMemberInput = {
@@ -746,10 +626,6 @@ export type UserUncheckedCreateWithoutMemberInput = {
   updatedAt?: Date | string
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMemberInput = {
@@ -779,10 +655,6 @@ export type UserUpdateWithoutMemberInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMemberInput = {
@@ -796,346 +668,6 @@ export type UserUncheckedUpdateWithoutMemberInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutSquadsCreatedInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSquadsCreatedInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSquadsCreatedInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSquadsCreatedInput, Prisma.UserUncheckedCreateWithoutSquadsCreatedInput>
-}
-
-export type UserUpsertWithoutSquadsCreatedInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSquadsCreatedInput, Prisma.UserUncheckedUpdateWithoutSquadsCreatedInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSquadsCreatedInput, Prisma.UserUncheckedCreateWithoutSquadsCreatedInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSquadsCreatedInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSquadsCreatedInput, Prisma.UserUncheckedUpdateWithoutSquadsCreatedInput>
-}
-
-export type UserUpdateWithoutSquadsCreatedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSquadsCreatedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutSquadCrewsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutSquadCrewsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutSquadCrewsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSquadCrewsInput, Prisma.UserUncheckedCreateWithoutSquadCrewsInput>
-}
-
-export type UserUpsertWithoutSquadCrewsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSquadCrewsInput, Prisma.UserUncheckedUpdateWithoutSquadCrewsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSquadCrewsInput, Prisma.UserUncheckedCreateWithoutSquadCrewsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutSquadCrewsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSquadCrewsInput, Prisma.UserUncheckedUpdateWithoutSquadCrewsInput>
-}
-
-export type UserUpdateWithoutSquadCrewsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutSquadCrewsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutMissionsCrewedInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutMissionsCrewedInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutMissionsCrewedInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutMissionsCrewedInput, Prisma.UserUncheckedCreateWithoutMissionsCrewedInput>
-}
-
-export type UserUpsertWithoutMissionsCrewedInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutMissionsCrewedInput, Prisma.UserUncheckedUpdateWithoutMissionsCrewedInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutMissionsCrewedInput, Prisma.UserUncheckedCreateWithoutMissionsCrewedInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutMissionsCrewedInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutMissionsCrewedInput, Prisma.UserUncheckedUpdateWithoutMissionsCrewedInput>
-}
-
-export type UserUpdateWithoutMissionsCrewedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutMissionsCrewedInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutUserNestedInput
-}
-
-export type UserCreateWithoutReceiptsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewCreateNestedManyWithoutUserInput
-}
-
-export type UserUncheckedCreateWithoutReceiptsInput = {
-  id?: string
-  name: string
-  email: string
-  emailVerified: boolean
-  image?: string | null
-  roles?: Prisma.UserCreaterolesInput | string[]
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  member?: Prisma.MemberUncheckedCreateNestedOneWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  squadsCreated?: Prisma.SquadUncheckedCreateNestedManyWithoutCreatorInput
-  squadCrews?: Prisma.SquadCrewUncheckedCreateNestedManyWithoutUserInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutUserInput
-}
-
-export type UserCreateOrConnectWithoutReceiptsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-}
-
-export type UserUpsertWithoutReceiptsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutReceiptsInput, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutReceiptsInput, Prisma.UserUncheckedCreateWithoutReceiptsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutReceiptsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutReceiptsInput, Prisma.UserUncheckedUpdateWithoutReceiptsInput>
-}
-
-export type UserUpdateWithoutReceiptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUpdateManyWithoutUserNestedInput
-}
-
-export type UserUncheckedUpdateWithoutReceiptsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  emailVerified?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  roles?: Prisma.UserUpdaterolesInput | string[]
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  member?: Prisma.MemberUncheckedUpdateOneWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  squadsCreated?: Prisma.SquadUncheckedUpdateManyWithoutCreatorNestedInput
-  squadCrews?: Prisma.SquadCrewUncheckedUpdateManyWithoutUserNestedInput
-  missionsCrewed?: Prisma.MissionCrewUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1146,19 +678,11 @@ export type UserUncheckedUpdateWithoutReceiptsInput = {
 export type UserCountOutputType = {
   sessions: number
   accounts: number
-  squadsCreated: number
-  squadCrews: number
-  missionsCrewed: number
-  receipts: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
-  squadsCreated?: boolean | UserCountOutputTypeCountSquadsCreatedArgs
-  squadCrews?: boolean | UserCountOutputTypeCountSquadCrewsArgs
-  missionsCrewed?: boolean | UserCountOutputTypeCountMissionsCrewedArgs
-  receipts?: boolean | UserCountOutputTypeCountReceiptsArgs
 }
 
 /**
@@ -1185,34 +709,6 @@ export type UserCountOutputTypeCountAccountsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.AccountWhereInput
 }
 
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSquadsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SquadWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountSquadCrewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SquadCrewWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountMissionsCrewedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MissionCrewWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountReceiptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ReceiptWhereInput
-}
-
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1226,10 +722,6 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   member?: boolean | Prisma.User$memberArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  squadsCreated?: boolean | Prisma.User$squadsCreatedArgs<ExtArgs>
-  squadCrews?: boolean | Prisma.User$squadCrewsArgs<ExtArgs>
-  missionsCrewed?: boolean | Prisma.User$missionsCrewedArgs<ExtArgs>
-  receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1271,10 +763,6 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   member?: boolean | Prisma.User$memberArgs<ExtArgs>
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   accounts?: boolean | Prisma.User$accountsArgs<ExtArgs>
-  squadsCreated?: boolean | Prisma.User$squadsCreatedArgs<ExtArgs>
-  squadCrews?: boolean | Prisma.User$squadCrewsArgs<ExtArgs>
-  missionsCrewed?: boolean | Prisma.User$missionsCrewedArgs<ExtArgs>
-  receipts?: boolean | Prisma.User$receiptsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1286,10 +774,6 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     member: Prisma.$MemberPayload<ExtArgs> | null
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     accounts: Prisma.$AccountPayload<ExtArgs>[]
-    squadsCreated: Prisma.$SquadPayload<ExtArgs>[]
-    squadCrews: Prisma.$SquadCrewPayload<ExtArgs>[]
-    missionsCrewed: Prisma.$MissionCrewPayload<ExtArgs>[]
-    receipts: Prisma.$ReceiptPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1697,10 +1181,6 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   member<T extends Prisma.User$memberArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$memberArgs<ExtArgs>>): Prisma.Prisma__MemberClient<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accounts<T extends Prisma.User$accountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$accountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  squadsCreated<T extends Prisma.User$squadsCreatedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$squadsCreatedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SquadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  squadCrews<T extends Prisma.User$squadCrewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$squadCrewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SquadCrewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  missionsCrewed<T extends Prisma.User$missionsCrewedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$missionsCrewedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionCrewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  receipts<T extends Prisma.User$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2195,102 +1675,6 @@ export type User$accountsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.AccountScalarFieldEnum | Prisma.AccountScalarFieldEnum[]
-}
-
-/**
- * User.squadsCreated
- */
-export type User$squadsCreatedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Squad
-   */
-  select?: Prisma.SquadSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Squad
-   */
-  omit?: Prisma.SquadOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SquadInclude<ExtArgs> | null
-  where?: Prisma.SquadWhereInput
-  orderBy?: Prisma.SquadOrderByWithRelationInput | Prisma.SquadOrderByWithRelationInput[]
-  cursor?: Prisma.SquadWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SquadScalarFieldEnum | Prisma.SquadScalarFieldEnum[]
-}
-
-/**
- * User.squadCrews
- */
-export type User$squadCrewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the SquadCrew
-   */
-  select?: Prisma.SquadCrewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the SquadCrew
-   */
-  omit?: Prisma.SquadCrewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.SquadCrewInclude<ExtArgs> | null
-  where?: Prisma.SquadCrewWhereInput
-  orderBy?: Prisma.SquadCrewOrderByWithRelationInput | Prisma.SquadCrewOrderByWithRelationInput[]
-  cursor?: Prisma.SquadCrewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SquadCrewScalarFieldEnum | Prisma.SquadCrewScalarFieldEnum[]
-}
-
-/**
- * User.missionsCrewed
- */
-export type User$missionsCrewedArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MissionCrew
-   */
-  select?: Prisma.MissionCrewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MissionCrew
-   */
-  omit?: Prisma.MissionCrewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MissionCrewInclude<ExtArgs> | null
-  where?: Prisma.MissionCrewWhereInput
-  orderBy?: Prisma.MissionCrewOrderByWithRelationInput | Prisma.MissionCrewOrderByWithRelationInput[]
-  cursor?: Prisma.MissionCrewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MissionCrewScalarFieldEnum | Prisma.MissionCrewScalarFieldEnum[]
-}
-
-/**
- * User.receipts
- */
-export type User$receiptsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Receipt
-   */
-  select?: Prisma.ReceiptSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Receipt
-   */
-  omit?: Prisma.ReceiptOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ReceiptInclude<ExtArgs> | null
-  where?: Prisma.ReceiptWhereInput
-  orderBy?: Prisma.ReceiptOrderByWithRelationInput | Prisma.ReceiptOrderByWithRelationInput[]
-  cursor?: Prisma.ReceiptWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ReceiptScalarFieldEnum | Prisma.ReceiptScalarFieldEnum[]
 }
 
 /**

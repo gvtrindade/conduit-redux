@@ -404,6 +404,7 @@ export const ModelName = {
   Member: 'Member',
   Squad: 'Squad',
   SquadCrew: 'SquadCrew',
+  SquadCrewInvite: 'SquadCrewInvite',
   Merchant: 'Merchant',
   MerchantAisle: 'MerchantAisle',
   MerchantAisleRule: 'MerchantAisleRule',
@@ -430,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "member" | "squad" | "squadCrew" | "merchant" | "merchantAisle" | "merchantAisleRule" | "mission" | "missionItem" | "missionItemEst" | "missionCrew" | "receipt" | "receiptItem" | "item" | "processingRules"
+    modelProps: "user" | "session" | "account" | "verification" | "member" | "squad" | "squadCrew" | "squadCrewInvite" | "merchant" | "merchantAisle" | "merchantAisleRule" | "mission" | "missionItem" | "missionItemEst" | "missionCrew" | "receipt" | "receiptItem" | "item" | "processingRules"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -949,6 +950,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SquadCrewCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SquadCrewCountAggregateOutputType> | number
+        }
+      }
+    }
+    SquadCrewInvite: {
+      payload: Prisma.$SquadCrewInvitePayload<ExtArgs>
+      fields: Prisma.SquadCrewInviteFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SquadCrewInviteFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SquadCrewInviteFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        findFirst: {
+          args: Prisma.SquadCrewInviteFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SquadCrewInviteFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        findMany: {
+          args: Prisma.SquadCrewInviteFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>[]
+        }
+        create: {
+          args: Prisma.SquadCrewInviteCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        createMany: {
+          args: Prisma.SquadCrewInviteCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SquadCrewInviteCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>[]
+        }
+        delete: {
+          args: Prisma.SquadCrewInviteDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        update: {
+          args: Prisma.SquadCrewInviteUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        deleteMany: {
+          args: Prisma.SquadCrewInviteDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SquadCrewInviteUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SquadCrewInviteUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>[]
+        }
+        upsert: {
+          args: Prisma.SquadCrewInviteUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SquadCrewInvitePayload>
+        }
+        aggregate: {
+          args: Prisma.SquadCrewInviteAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSquadCrewInvite>
+        }
+        groupBy: {
+          args: Prisma.SquadCrewInviteGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SquadCrewInviteGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SquadCrewInviteCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SquadCrewInviteCountAggregateOutputType> | number
         }
       }
     }
@@ -1871,7 +1946,8 @@ export const MemberScalarFieldEnum = {
   customConfig: 'customConfig',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  activeSquadId: 'activeSquadId'
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
@@ -1879,6 +1955,7 @@ export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof 
 
 export const SquadScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   creatorId: 'creatorId'
@@ -1890,10 +1967,20 @@ export type SquadScalarFieldEnum = (typeof SquadScalarFieldEnum)[keyof typeof Sq
 export const SquadCrewScalarFieldEnum = {
   id: 'id',
   squadId: 'squadId',
-  userId: 'userId'
+  memberId: 'memberId'
 } as const
 
 export type SquadCrewScalarFieldEnum = (typeof SquadCrewScalarFieldEnum)[keyof typeof SquadCrewScalarFieldEnum]
+
+
+export const SquadCrewInviteScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  squadId: 'squadId',
+  memberId: 'memberId'
+} as const
+
+export type SquadCrewInviteScalarFieldEnum = (typeof SquadCrewInviteScalarFieldEnum)[keyof typeof SquadCrewInviteScalarFieldEnum]
 
 
 export const MerchantScalarFieldEnum = {
@@ -1968,7 +2055,7 @@ export type MissionItemEstScalarFieldEnum = (typeof MissionItemEstScalarFieldEnu
 export const MissionCrewScalarFieldEnum = {
   id: 'id',
   missionId: 'missionId',
-  userId: 'userId'
+  memberId: 'memberId'
 } as const
 
 export type MissionCrewScalarFieldEnum = (typeof MissionCrewScalarFieldEnum)[keyof typeof MissionCrewScalarFieldEnum]
@@ -1983,7 +2070,6 @@ export const ReceiptScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   squadId: 'squadId',
-  userId: 'userId',
   merchantId: 'merchantId'
 } as const
 
@@ -2318,6 +2404,7 @@ export type GlobalOmitConfig = {
   member?: Prisma.MemberOmit
   squad?: Prisma.SquadOmit
   squadCrew?: Prisma.SquadCrewOmit
+  squadCrewInvite?: Prisma.SquadCrewInviteOmit
   merchant?: Prisma.MerchantOmit
   merchantAisle?: Prisma.MerchantAisleOmit
   merchantAisleRule?: Prisma.MerchantAisleRuleOmit

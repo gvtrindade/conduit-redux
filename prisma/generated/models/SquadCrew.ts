@@ -27,19 +27,19 @@ export type AggregateSquadCrew = {
 export type SquadCrewMinAggregateOutputType = {
   id: string | null
   squadId: string | null
-  userId: string | null
+  memberId: string | null
 }
 
 export type SquadCrewMaxAggregateOutputType = {
   id: string | null
   squadId: string | null
-  userId: string | null
+  memberId: string | null
 }
 
 export type SquadCrewCountAggregateOutputType = {
   id: number
   squadId: number
-  userId: number
+  memberId: number
   _all: number
 }
 
@@ -47,19 +47,19 @@ export type SquadCrewCountAggregateOutputType = {
 export type SquadCrewMinAggregateInputType = {
   id?: true
   squadId?: true
-  userId?: true
+  memberId?: true
 }
 
 export type SquadCrewMaxAggregateInputType = {
   id?: true
   squadId?: true
-  userId?: true
+  memberId?: true
 }
 
 export type SquadCrewCountAggregateInputType = {
   id?: true
   squadId?: true
-  userId?: true
+  memberId?: true
   _all?: true
 }
 
@@ -138,7 +138,7 @@ export type SquadCrewGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type SquadCrewGroupByOutputType = {
   id: string
   squadId: string
-  userId: string
+  memberId: string
   _count: SquadCrewCountAggregateOutputType | null
   _min: SquadCrewMinAggregateOutputType | null
   _max: SquadCrewMaxAggregateOutputType | null
@@ -165,17 +165,17 @@ export type SquadCrewWhereInput = {
   NOT?: Prisma.SquadCrewWhereInput | Prisma.SquadCrewWhereInput[]
   id?: Prisma.StringFilter<"SquadCrew"> | string
   squadId?: Prisma.StringFilter<"SquadCrew"> | string
-  userId?: Prisma.StringFilter<"SquadCrew"> | string
+  memberId?: Prisma.StringFilter<"SquadCrew"> | string
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  member?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
 }
 
 export type SquadCrewOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
   squad?: Prisma.SquadOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
+  member?: Prisma.MemberOrderByWithRelationInput
 }
 
 export type SquadCrewWhereUniqueInput = Prisma.AtLeast<{
@@ -184,15 +184,15 @@ export type SquadCrewWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SquadCrewWhereInput[]
   NOT?: Prisma.SquadCrewWhereInput | Prisma.SquadCrewWhereInput[]
   squadId?: Prisma.StringFilter<"SquadCrew"> | string
-  userId?: Prisma.StringFilter<"SquadCrew"> | string
+  memberId?: Prisma.StringFilter<"SquadCrew"> | string
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  member?: Prisma.XOR<Prisma.MemberScalarRelationFilter, Prisma.MemberWhereInput>
 }, "id">
 
 export type SquadCrewOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
   _count?: Prisma.SquadCrewCountOrderByAggregateInput
   _max?: Prisma.SquadCrewMaxOrderByAggregateInput
   _min?: Prisma.SquadCrewMinOrderByAggregateInput
@@ -204,37 +204,37 @@ export type SquadCrewScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SquadCrewScalarWhereWithAggregatesInput | Prisma.SquadCrewScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"SquadCrew"> | string
   squadId?: Prisma.StringWithAggregatesFilter<"SquadCrew"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"SquadCrew"> | string
+  memberId?: Prisma.StringWithAggregatesFilter<"SquadCrew"> | string
 }
 
 export type SquadCrewCreateInput = {
   id?: string
   squad: Prisma.SquadCreateNestedOneWithoutCrewInput
-  user: Prisma.UserCreateNestedOneWithoutSquadCrewsInput
+  member: Prisma.MemberCreateNestedOneWithoutSquadCrewsInput
 }
 
 export type SquadCrewUncheckedCreateInput = {
   id?: string
   squadId: string
-  userId: string
+  memberId: string
 }
 
 export type SquadCrewUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutCrewNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutSquadCrewsNestedInput
+  member?: Prisma.MemberUpdateOneRequiredWithoutSquadCrewsNestedInput
 }
 
 export type SquadCrewUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SquadCrewCreateManyInput = {
   id?: string
   squadId: string
-  userId: string
+  memberId: string
 }
 
 export type SquadCrewUpdateManyMutationInput = {
@@ -244,7 +244,7 @@ export type SquadCrewUpdateManyMutationInput = {
 export type SquadCrewUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SquadCrewListRelationFilter = {
@@ -260,60 +260,60 @@ export type SquadCrewOrderByRelationAggregateInput = {
 export type SquadCrewCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
 export type SquadCrewMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
 export type SquadCrewMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
+  memberId?: Prisma.SortOrder
 }
 
-export type SquadCrewCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput> | Prisma.SquadCrewCreateWithoutUserInput[] | Prisma.SquadCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutUserInput | Prisma.SquadCrewCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.SquadCrewCreateManyUserInputEnvelope
+export type SquadCrewCreateNestedManyWithoutMemberInput = {
+  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput> | Prisma.SquadCrewCreateWithoutMemberInput[] | Prisma.SquadCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutMemberInput | Prisma.SquadCrewCreateOrConnectWithoutMemberInput[]
+  createMany?: Prisma.SquadCrewCreateManyMemberInputEnvelope
   connect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
 }
 
-export type SquadCrewUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput> | Prisma.SquadCrewCreateWithoutUserInput[] | Prisma.SquadCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutUserInput | Prisma.SquadCrewCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.SquadCrewCreateManyUserInputEnvelope
+export type SquadCrewUncheckedCreateNestedManyWithoutMemberInput = {
+  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput> | Prisma.SquadCrewCreateWithoutMemberInput[] | Prisma.SquadCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutMemberInput | Prisma.SquadCrewCreateOrConnectWithoutMemberInput[]
+  createMany?: Prisma.SquadCrewCreateManyMemberInputEnvelope
   connect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
 }
 
-export type SquadCrewUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput> | Prisma.SquadCrewCreateWithoutUserInput[] | Prisma.SquadCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutUserInput | Prisma.SquadCrewCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.SquadCrewUpsertWithWhereUniqueWithoutUserInput | Prisma.SquadCrewUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.SquadCrewCreateManyUserInputEnvelope
+export type SquadCrewUpdateManyWithoutMemberNestedInput = {
+  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput> | Prisma.SquadCrewCreateWithoutMemberInput[] | Prisma.SquadCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutMemberInput | Prisma.SquadCrewCreateOrConnectWithoutMemberInput[]
+  upsert?: Prisma.SquadCrewUpsertWithWhereUniqueWithoutMemberInput | Prisma.SquadCrewUpsertWithWhereUniqueWithoutMemberInput[]
+  createMany?: Prisma.SquadCrewCreateManyMemberInputEnvelope
   set?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   disconnect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   delete?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   connect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
-  update?: Prisma.SquadCrewUpdateWithWhereUniqueWithoutUserInput | Prisma.SquadCrewUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.SquadCrewUpdateManyWithWhereWithoutUserInput | Prisma.SquadCrewUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.SquadCrewUpdateWithWhereUniqueWithoutMemberInput | Prisma.SquadCrewUpdateWithWhereUniqueWithoutMemberInput[]
+  updateMany?: Prisma.SquadCrewUpdateManyWithWhereWithoutMemberInput | Prisma.SquadCrewUpdateManyWithWhereWithoutMemberInput[]
   deleteMany?: Prisma.SquadCrewScalarWhereInput | Prisma.SquadCrewScalarWhereInput[]
 }
 
-export type SquadCrewUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput> | Prisma.SquadCrewCreateWithoutUserInput[] | Prisma.SquadCrewUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutUserInput | Prisma.SquadCrewCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.SquadCrewUpsertWithWhereUniqueWithoutUserInput | Prisma.SquadCrewUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.SquadCrewCreateManyUserInputEnvelope
+export type SquadCrewUncheckedUpdateManyWithoutMemberNestedInput = {
+  create?: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput> | Prisma.SquadCrewCreateWithoutMemberInput[] | Prisma.SquadCrewUncheckedCreateWithoutMemberInput[]
+  connectOrCreate?: Prisma.SquadCrewCreateOrConnectWithoutMemberInput | Prisma.SquadCrewCreateOrConnectWithoutMemberInput[]
+  upsert?: Prisma.SquadCrewUpsertWithWhereUniqueWithoutMemberInput | Prisma.SquadCrewUpsertWithWhereUniqueWithoutMemberInput[]
+  createMany?: Prisma.SquadCrewCreateManyMemberInputEnvelope
   set?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   disconnect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   delete?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
   connect?: Prisma.SquadCrewWhereUniqueInput | Prisma.SquadCrewWhereUniqueInput[]
-  update?: Prisma.SquadCrewUpdateWithWhereUniqueWithoutUserInput | Prisma.SquadCrewUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.SquadCrewUpdateManyWithWhereWithoutUserInput | Prisma.SquadCrewUpdateManyWithWhereWithoutUserInput[]
+  update?: Prisma.SquadCrewUpdateWithWhereUniqueWithoutMemberInput | Prisma.SquadCrewUpdateWithWhereUniqueWithoutMemberInput[]
+  updateMany?: Prisma.SquadCrewUpdateManyWithWhereWithoutMemberInput | Prisma.SquadCrewUpdateManyWithWhereWithoutMemberInput[]
   deleteMany?: Prisma.SquadCrewScalarWhereInput | Prisma.SquadCrewScalarWhereInput[]
 }
 
@@ -359,40 +359,40 @@ export type SquadCrewUncheckedUpdateManyWithoutSquadNestedInput = {
   deleteMany?: Prisma.SquadCrewScalarWhereInput | Prisma.SquadCrewScalarWhereInput[]
 }
 
-export type SquadCrewCreateWithoutUserInput = {
+export type SquadCrewCreateWithoutMemberInput = {
   id?: string
   squad: Prisma.SquadCreateNestedOneWithoutCrewInput
 }
 
-export type SquadCrewUncheckedCreateWithoutUserInput = {
+export type SquadCrewUncheckedCreateWithoutMemberInput = {
   id?: string
   squadId: string
 }
 
-export type SquadCrewCreateOrConnectWithoutUserInput = {
+export type SquadCrewCreateOrConnectWithoutMemberInput = {
   where: Prisma.SquadCrewWhereUniqueInput
-  create: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput>
+  create: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput>
 }
 
-export type SquadCrewCreateManyUserInputEnvelope = {
-  data: Prisma.SquadCrewCreateManyUserInput | Prisma.SquadCrewCreateManyUserInput[]
+export type SquadCrewCreateManyMemberInputEnvelope = {
+  data: Prisma.SquadCrewCreateManyMemberInput | Prisma.SquadCrewCreateManyMemberInput[]
   skipDuplicates?: boolean
 }
 
-export type SquadCrewUpsertWithWhereUniqueWithoutUserInput = {
+export type SquadCrewUpsertWithWhereUniqueWithoutMemberInput = {
   where: Prisma.SquadCrewWhereUniqueInput
-  update: Prisma.XOR<Prisma.SquadCrewUpdateWithoutUserInput, Prisma.SquadCrewUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.SquadCrewCreateWithoutUserInput, Prisma.SquadCrewUncheckedCreateWithoutUserInput>
+  update: Prisma.XOR<Prisma.SquadCrewUpdateWithoutMemberInput, Prisma.SquadCrewUncheckedUpdateWithoutMemberInput>
+  create: Prisma.XOR<Prisma.SquadCrewCreateWithoutMemberInput, Prisma.SquadCrewUncheckedCreateWithoutMemberInput>
 }
 
-export type SquadCrewUpdateWithWhereUniqueWithoutUserInput = {
+export type SquadCrewUpdateWithWhereUniqueWithoutMemberInput = {
   where: Prisma.SquadCrewWhereUniqueInput
-  data: Prisma.XOR<Prisma.SquadCrewUpdateWithoutUserInput, Prisma.SquadCrewUncheckedUpdateWithoutUserInput>
+  data: Prisma.XOR<Prisma.SquadCrewUpdateWithoutMemberInput, Prisma.SquadCrewUncheckedUpdateWithoutMemberInput>
 }
 
-export type SquadCrewUpdateManyWithWhereWithoutUserInput = {
+export type SquadCrewUpdateManyWithWhereWithoutMemberInput = {
   where: Prisma.SquadCrewScalarWhereInput
-  data: Prisma.XOR<Prisma.SquadCrewUpdateManyMutationInput, Prisma.SquadCrewUncheckedUpdateManyWithoutUserInput>
+  data: Prisma.XOR<Prisma.SquadCrewUpdateManyMutationInput, Prisma.SquadCrewUncheckedUpdateManyWithoutMemberInput>
 }
 
 export type SquadCrewScalarWhereInput = {
@@ -401,17 +401,17 @@ export type SquadCrewScalarWhereInput = {
   NOT?: Prisma.SquadCrewScalarWhereInput | Prisma.SquadCrewScalarWhereInput[]
   id?: Prisma.StringFilter<"SquadCrew"> | string
   squadId?: Prisma.StringFilter<"SquadCrew"> | string
-  userId?: Prisma.StringFilter<"SquadCrew"> | string
+  memberId?: Prisma.StringFilter<"SquadCrew"> | string
 }
 
 export type SquadCrewCreateWithoutSquadInput = {
   id?: string
-  user: Prisma.UserCreateNestedOneWithoutSquadCrewsInput
+  member: Prisma.MemberCreateNestedOneWithoutSquadCrewsInput
 }
 
 export type SquadCrewUncheckedCreateWithoutSquadInput = {
   id?: string
-  userId: string
+  memberId: string
 }
 
 export type SquadCrewCreateOrConnectWithoutSquadInput = {
@@ -440,44 +440,44 @@ export type SquadCrewUpdateManyWithWhereWithoutSquadInput = {
   data: Prisma.XOR<Prisma.SquadCrewUpdateManyMutationInput, Prisma.SquadCrewUncheckedUpdateManyWithoutSquadInput>
 }
 
-export type SquadCrewCreateManyUserInput = {
+export type SquadCrewCreateManyMemberInput = {
   id?: string
   squadId: string
 }
 
-export type SquadCrewUpdateWithoutUserInput = {
+export type SquadCrewUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutCrewNestedInput
 }
 
-export type SquadCrewUncheckedUpdateWithoutUserInput = {
+export type SquadCrewUncheckedUpdateWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type SquadCrewUncheckedUpdateManyWithoutUserInput = {
+export type SquadCrewUncheckedUpdateManyWithoutMemberInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SquadCrewCreateManySquadInput = {
   id?: string
-  userId: string
+  memberId: string
 }
 
 export type SquadCrewUpdateWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutSquadCrewsNestedInput
+  member?: Prisma.MemberUpdateOneRequiredWithoutSquadCrewsNestedInput
 }
 
 export type SquadCrewUncheckedUpdateWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type SquadCrewUncheckedUpdateManyWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  memberId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -485,57 +485,57 @@ export type SquadCrewUncheckedUpdateManyWithoutSquadInput = {
 export type SquadCrewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   squadId?: boolean
-  userId?: boolean
+  memberId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["squadCrew"]>
 
 export type SquadCrewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   squadId?: boolean
-  userId?: boolean
+  memberId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["squadCrew"]>
 
 export type SquadCrewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   squadId?: boolean
-  userId?: boolean
+  memberId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["squadCrew"]>
 
 export type SquadCrewSelectScalar = {
   id?: boolean
   squadId?: boolean
-  userId?: boolean
+  memberId?: boolean
 }
 
-export type SquadCrewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "squadId" | "userId", ExtArgs["result"]["squadCrew"]>
+export type SquadCrewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "squadId" | "memberId", ExtArgs["result"]["squadCrew"]>
 export type SquadCrewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }
 export type SquadCrewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }
 export type SquadCrewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  member?: boolean | Prisma.MemberDefaultArgs<ExtArgs>
 }
 
 export type $SquadCrewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "SquadCrew"
   objects: {
     squad: Prisma.$SquadPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
+    member: Prisma.$MemberPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     squadId: string
-    userId: string
+    memberId: string
   }, ExtArgs["result"]["squadCrew"]>
   composites: {}
 }
@@ -931,7 +931,7 @@ readonly fields: SquadCrewFieldRefs;
 export interface Prisma__SquadCrewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   squad<T extends Prisma.SquadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SquadDefaultArgs<ExtArgs>>): Prisma.Prisma__SquadClient<runtime.Types.Result.GetResult<Prisma.$SquadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  member<T extends Prisma.MemberDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MemberDefaultArgs<ExtArgs>>): Prisma.Prisma__MemberClient<runtime.Types.Result.GetResult<Prisma.$MemberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -963,7 +963,7 @@ export interface Prisma__SquadCrewClient<T, Null = never, ExtArgs extends runtim
 export interface SquadCrewFieldRefs {
   readonly id: Prisma.FieldRef<"SquadCrew", 'String'>
   readonly squadId: Prisma.FieldRef<"SquadCrew", 'String'>
-  readonly userId: Prisma.FieldRef<"SquadCrew", 'String'>
+  readonly memberId: Prisma.FieldRef<"SquadCrew", 'String'>
 }
     
 

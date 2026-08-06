@@ -33,7 +33,6 @@ export type ReceiptMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   squadId: string | null
-  userId: string | null
   merchantId: string | null
 }
 
@@ -46,7 +45,6 @@ export type ReceiptMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   squadId: string | null
-  userId: string | null
   merchantId: string | null
 }
 
@@ -59,7 +57,6 @@ export type ReceiptCountAggregateOutputType = {
   createdAt: number
   updatedAt: number
   squadId: number
-  userId: number
   merchantId: number
   _all: number
 }
@@ -74,7 +71,6 @@ export type ReceiptMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   squadId?: true
-  userId?: true
   merchantId?: true
 }
 
@@ -87,7 +83,6 @@ export type ReceiptMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   squadId?: true
-  userId?: true
   merchantId?: true
 }
 
@@ -100,7 +95,6 @@ export type ReceiptCountAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   squadId?: true
-  userId?: true
   merchantId?: true
   _all?: true
 }
@@ -186,7 +180,6 @@ export type ReceiptGroupByOutputType = {
   createdAt: Date
   updatedAt: Date
   squadId: string
-  userId: string
   merchantId: string
   _count: ReceiptCountAggregateOutputType | null
   _min: ReceiptMinAggregateOutputType | null
@@ -220,10 +213,8 @@ export type ReceiptWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
   squadId?: Prisma.StringFilter<"Receipt"> | string
-  userId?: Prisma.StringFilter<"Receipt"> | string
   merchantId?: Prisma.StringFilter<"Receipt"> | string
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
   items?: Prisma.ReceiptItemListRelationFilter
 }
@@ -237,10 +228,8 @@ export type ReceiptOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   squad?: Prisma.SquadOrderByWithRelationInput
-  user?: Prisma.UserOrderByWithRelationInput
   merchant?: Prisma.MerchantOrderByWithRelationInput
   items?: Prisma.ReceiptItemOrderByRelationAggregateInput
 }
@@ -257,10 +246,8 @@ export type ReceiptWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
   squadId?: Prisma.StringFilter<"Receipt"> | string
-  userId?: Prisma.StringFilter<"Receipt"> | string
   merchantId?: Prisma.StringFilter<"Receipt"> | string
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
-  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
   items?: Prisma.ReceiptItemListRelationFilter
 }, "id">
@@ -274,7 +261,6 @@ export type ReceiptOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   _count?: Prisma.ReceiptCountOrderByAggregateInput
   _max?: Prisma.ReceiptMaxOrderByAggregateInput
@@ -293,7 +279,6 @@ export type ReceiptScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Receipt"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Receipt"> | Date | string
   squadId?: Prisma.StringWithAggregatesFilter<"Receipt"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Receipt"> | string
   merchantId?: Prisma.StringWithAggregatesFilter<"Receipt"> | string
 }
 
@@ -306,7 +291,6 @@ export type ReceiptCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squad: Prisma.SquadCreateNestedOneWithoutReceiptsInput
-  user: Prisma.UserCreateNestedOneWithoutReceiptsInput
   merchant: Prisma.MerchantCreateNestedOneWithoutReceiptsInput
   items?: Prisma.ReceiptItemCreateNestedManyWithoutReceiptInput
 }
@@ -320,7 +304,6 @@ export type ReceiptUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  userId: string
   merchantId: string
   items?: Prisma.ReceiptItemUncheckedCreateNestedManyWithoutReceiptInput
 }
@@ -334,7 +317,6 @@ export type ReceiptUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutReceiptsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutReceiptsNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutReceiptsNestedInput
   items?: Prisma.ReceiptItemUpdateManyWithoutReceiptNestedInput
 }
@@ -348,7 +330,6 @@ export type ReceiptUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ReceiptItemUncheckedUpdateManyWithoutReceiptNestedInput
 }
@@ -362,7 +343,6 @@ export type ReceiptCreateManyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  userId: string
   merchantId: string
 }
 
@@ -385,7 +365,6 @@ export type ReceiptUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -408,7 +387,6 @@ export type ReceiptCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
 }
 
@@ -421,7 +399,6 @@ export type ReceiptMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
 }
 
@@ -434,55 +411,12 @@ export type ReceiptMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
 }
 
 export type ReceiptScalarRelationFilter = {
   is?: Prisma.ReceiptWhereInput
   isNot?: Prisma.ReceiptWhereInput
-}
-
-export type ReceiptCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput> | Prisma.ReceiptCreateWithoutUserInput[] | Prisma.ReceiptUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ReceiptCreateOrConnectWithoutUserInput | Prisma.ReceiptCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ReceiptCreateManyUserInputEnvelope
-  connect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-}
-
-export type ReceiptUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput> | Prisma.ReceiptCreateWithoutUserInput[] | Prisma.ReceiptUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ReceiptCreateOrConnectWithoutUserInput | Prisma.ReceiptCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.ReceiptCreateManyUserInputEnvelope
-  connect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-}
-
-export type ReceiptUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput> | Prisma.ReceiptCreateWithoutUserInput[] | Prisma.ReceiptUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ReceiptCreateOrConnectWithoutUserInput | Prisma.ReceiptCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ReceiptUpsertWithWhereUniqueWithoutUserInput | Prisma.ReceiptUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ReceiptCreateManyUserInputEnvelope
-  set?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  disconnect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  delete?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  connect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  update?: Prisma.ReceiptUpdateWithWhereUniqueWithoutUserInput | Prisma.ReceiptUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ReceiptUpdateManyWithWhereWithoutUserInput | Prisma.ReceiptUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
-}
-
-export type ReceiptUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput> | Prisma.ReceiptCreateWithoutUserInput[] | Prisma.ReceiptUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.ReceiptCreateOrConnectWithoutUserInput | Prisma.ReceiptCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.ReceiptUpsertWithWhereUniqueWithoutUserInput | Prisma.ReceiptUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.ReceiptCreateManyUserInputEnvelope
-  set?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  disconnect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  delete?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  connect?: Prisma.ReceiptWhereUniqueInput | Prisma.ReceiptWhereUniqueInput[]
-  update?: Prisma.ReceiptUpdateWithWhereUniqueWithoutUserInput | Prisma.ReceiptUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.ReceiptUpdateManyWithWhereWithoutUserInput | Prisma.ReceiptUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
 }
 
 export type ReceiptCreateNestedManyWithoutSquadInput = {
@@ -583,74 +517,6 @@ export type ReceiptUpdateOneRequiredWithoutItemsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ReceiptUpdateToOneWithWhereWithoutItemsInput, Prisma.ReceiptUpdateWithoutItemsInput>, Prisma.ReceiptUncheckedUpdateWithoutItemsInput>
 }
 
-export type ReceiptCreateWithoutUserInput = {
-  id?: string
-  date: Date | string
-  status: string
-  nfce?: string | null
-  processedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  squad: Prisma.SquadCreateNestedOneWithoutReceiptsInput
-  merchant: Prisma.MerchantCreateNestedOneWithoutReceiptsInput
-  items?: Prisma.ReceiptItemCreateNestedManyWithoutReceiptInput
-}
-
-export type ReceiptUncheckedCreateWithoutUserInput = {
-  id?: string
-  date: Date | string
-  status: string
-  nfce?: string | null
-  processedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  squadId: string
-  merchantId: string
-  items?: Prisma.ReceiptItemUncheckedCreateNestedManyWithoutReceiptInput
-}
-
-export type ReceiptCreateOrConnectWithoutUserInput = {
-  where: Prisma.ReceiptWhereUniqueInput
-  create: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput>
-}
-
-export type ReceiptCreateManyUserInputEnvelope = {
-  data: Prisma.ReceiptCreateManyUserInput | Prisma.ReceiptCreateManyUserInput[]
-  skipDuplicates?: boolean
-}
-
-export type ReceiptUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ReceiptWhereUniqueInput
-  update: Prisma.XOR<Prisma.ReceiptUpdateWithoutUserInput, Prisma.ReceiptUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.ReceiptCreateWithoutUserInput, Prisma.ReceiptUncheckedCreateWithoutUserInput>
-}
-
-export type ReceiptUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.ReceiptWhereUniqueInput
-  data: Prisma.XOR<Prisma.ReceiptUpdateWithoutUserInput, Prisma.ReceiptUncheckedUpdateWithoutUserInput>
-}
-
-export type ReceiptUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.ReceiptScalarWhereInput
-  data: Prisma.XOR<Prisma.ReceiptUpdateManyMutationInput, Prisma.ReceiptUncheckedUpdateManyWithoutUserInput>
-}
-
-export type ReceiptScalarWhereInput = {
-  AND?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
-  OR?: Prisma.ReceiptScalarWhereInput[]
-  NOT?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
-  id?: Prisma.StringFilter<"Receipt"> | string
-  date?: Prisma.DateTimeFilter<"Receipt"> | Date | string
-  status?: Prisma.StringFilter<"Receipt"> | string
-  nfce?: Prisma.StringNullableFilter<"Receipt"> | string | null
-  processedAt?: Prisma.DateTimeNullableFilter<"Receipt"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
-  squadId?: Prisma.StringFilter<"Receipt"> | string
-  userId?: Prisma.StringFilter<"Receipt"> | string
-  merchantId?: Prisma.StringFilter<"Receipt"> | string
-}
-
 export type ReceiptCreateWithoutSquadInput = {
   id?: string
   date: Date | string
@@ -659,7 +525,6 @@ export type ReceiptCreateWithoutSquadInput = {
   processedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutReceiptsInput
   merchant: Prisma.MerchantCreateNestedOneWithoutReceiptsInput
   items?: Prisma.ReceiptItemCreateNestedManyWithoutReceiptInput
 }
@@ -672,7 +537,6 @@ export type ReceiptUncheckedCreateWithoutSquadInput = {
   processedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  userId: string
   merchantId: string
   items?: Prisma.ReceiptItemUncheckedCreateNestedManyWithoutReceiptInput
 }
@@ -703,6 +567,21 @@ export type ReceiptUpdateManyWithWhereWithoutSquadInput = {
   data: Prisma.XOR<Prisma.ReceiptUpdateManyMutationInput, Prisma.ReceiptUncheckedUpdateManyWithoutSquadInput>
 }
 
+export type ReceiptScalarWhereInput = {
+  AND?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
+  OR?: Prisma.ReceiptScalarWhereInput[]
+  NOT?: Prisma.ReceiptScalarWhereInput | Prisma.ReceiptScalarWhereInput[]
+  id?: Prisma.StringFilter<"Receipt"> | string
+  date?: Prisma.DateTimeFilter<"Receipt"> | Date | string
+  status?: Prisma.StringFilter<"Receipt"> | string
+  nfce?: Prisma.StringNullableFilter<"Receipt"> | string | null
+  processedAt?: Prisma.DateTimeNullableFilter<"Receipt"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Receipt"> | Date | string
+  squadId?: Prisma.StringFilter<"Receipt"> | string
+  merchantId?: Prisma.StringFilter<"Receipt"> | string
+}
+
 export type ReceiptCreateWithoutMerchantInput = {
   id?: string
   date: Date | string
@@ -712,7 +591,6 @@ export type ReceiptCreateWithoutMerchantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squad: Prisma.SquadCreateNestedOneWithoutReceiptsInput
-  user: Prisma.UserCreateNestedOneWithoutReceiptsInput
   items?: Prisma.ReceiptItemCreateNestedManyWithoutReceiptInput
 }
 
@@ -725,7 +603,6 @@ export type ReceiptUncheckedCreateWithoutMerchantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  userId: string
   items?: Prisma.ReceiptItemUncheckedCreateNestedManyWithoutReceiptInput
 }
 
@@ -764,7 +641,6 @@ export type ReceiptCreateWithoutItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squad: Prisma.SquadCreateNestedOneWithoutReceiptsInput
-  user: Prisma.UserCreateNestedOneWithoutReceiptsInput
   merchant: Prisma.MerchantCreateNestedOneWithoutReceiptsInput
 }
 
@@ -777,7 +653,6 @@ export type ReceiptUncheckedCreateWithoutItemsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  userId: string
   merchantId: string
 }
 
@@ -806,62 +681,10 @@ export type ReceiptUpdateWithoutItemsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutReceiptsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutReceiptsNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutReceiptsNestedInput
 }
 
 export type ReceiptUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  nfce?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type ReceiptCreateManyUserInput = {
-  id?: string
-  date: Date | string
-  status: string
-  nfce?: string | null
-  processedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  squadId: string
-  merchantId: string
-}
-
-export type ReceiptUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  nfce?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  squad?: Prisma.SquadUpdateOneRequiredWithoutReceiptsNestedInput
-  merchant?: Prisma.MerchantUpdateOneRequiredWithoutReceiptsNestedInput
-  items?: Prisma.ReceiptItemUpdateManyWithoutReceiptNestedInput
-}
-
-export type ReceiptUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  nfce?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-  items?: Prisma.ReceiptItemUncheckedUpdateManyWithoutReceiptNestedInput
-}
-
-export type ReceiptUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -881,7 +704,6 @@ export type ReceiptCreateManySquadInput = {
   processedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  userId: string
   merchantId: string
 }
 
@@ -893,7 +715,6 @@ export type ReceiptUpdateWithoutSquadInput = {
   processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutReceiptsNestedInput
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutReceiptsNestedInput
   items?: Prisma.ReceiptItemUpdateManyWithoutReceiptNestedInput
 }
@@ -906,7 +727,6 @@ export type ReceiptUncheckedUpdateWithoutSquadInput = {
   processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ReceiptItemUncheckedUpdateManyWithoutReceiptNestedInput
 }
@@ -919,7 +739,6 @@ export type ReceiptUncheckedUpdateManyWithoutSquadInput = {
   processedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -932,7 +751,6 @@ export type ReceiptCreateManyMerchantInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  userId: string
 }
 
 export type ReceiptUpdateWithoutMerchantInput = {
@@ -944,7 +762,6 @@ export type ReceiptUpdateWithoutMerchantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutReceiptsNestedInput
-  user?: Prisma.UserUpdateOneRequiredWithoutReceiptsNestedInput
   items?: Prisma.ReceiptItemUpdateManyWithoutReceiptNestedInput
 }
 
@@ -957,7 +774,6 @@ export type ReceiptUncheckedUpdateWithoutMerchantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ReceiptItemUncheckedUpdateManyWithoutReceiptNestedInput
 }
 
@@ -970,7 +786,6 @@ export type ReceiptUncheckedUpdateManyWithoutMerchantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1013,10 +828,8 @@ export type ReceiptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
-  userId?: boolean
   merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Receipt$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.ReceiptCountOutputTypeDefaultArgs<ExtArgs>
@@ -1031,10 +844,8 @@ export type ReceiptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
-  userId?: boolean
   merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["receipt"]>
 
@@ -1047,10 +858,8 @@ export type ReceiptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
-  userId?: boolean
   merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["receipt"]>
 
@@ -1063,26 +872,22 @@ export type ReceiptSelectScalar = {
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
-  userId?: boolean
   merchantId?: boolean
 }
 
-export type ReceiptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "status" | "nfce" | "processedAt" | "createdAt" | "updatedAt" | "squadId" | "userId" | "merchantId", ExtArgs["result"]["receipt"]>
+export type ReceiptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "status" | "nfce" | "processedAt" | "createdAt" | "updatedAt" | "squadId" | "merchantId", ExtArgs["result"]["receipt"]>
 export type ReceiptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Receipt$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.ReceiptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ReceiptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
 }
 export type ReceiptIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
-  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
 }
 
@@ -1090,7 +895,6 @@ export type $ReceiptPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Receipt"
   objects: {
     squad: Prisma.$SquadPayload<ExtArgs>
-    user: Prisma.$UserPayload<ExtArgs>
     merchant: Prisma.$MerchantPayload<ExtArgs>
     items: Prisma.$ReceiptItemPayload<ExtArgs>[]
   }
@@ -1103,7 +907,6 @@ export type $ReceiptPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     createdAt: Date
     updatedAt: Date
     squadId: string
-    userId: string
     merchantId: string
   }, ExtArgs["result"]["receipt"]>
   composites: {}
@@ -1500,7 +1303,6 @@ readonly fields: ReceiptFieldRefs;
 export interface Prisma__ReceiptClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   squad<T extends Prisma.SquadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SquadDefaultArgs<ExtArgs>>): Prisma.Prisma__SquadClient<runtime.Types.Result.GetResult<Prisma.$SquadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   merchant<T extends Prisma.MerchantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantDefaultArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Receipt$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Receipt$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1540,7 +1342,6 @@ export interface ReceiptFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Receipt", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Receipt", 'DateTime'>
   readonly squadId: Prisma.FieldRef<"Receipt", 'String'>
-  readonly userId: Prisma.FieldRef<"Receipt", 'String'>
   readonly merchantId: Prisma.FieldRef<"Receipt", 'String'>
 }
     

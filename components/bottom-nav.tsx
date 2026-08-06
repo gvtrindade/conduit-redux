@@ -1,21 +1,23 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { href: "/reports", icon: "$", label: "RPRT" },
-  { href: "/items", icon: "#", label: "ITMS" },
-  { href: "/missions", icon: "=", label: "MISN" },
-  { href: "/profile", icon: "@", label: "PRFL" },
+  { href: "/reports", icon: "$", key: "reports" },
+  { href: "/items", icon: "#", key: "items" },
+  { href: "/missions", icon: "=", key: "missions" },
+  { href: "/profile", icon: "@", key: "profile" },
 ];
 
 export default function BottomNav() {
   const pathName = usePathname();
+  const t = useTranslations("BottomNav");
 
   return (
-    <div className="fixed bottom-0 w-full bg-panel border-t-2 border-border-custom px-0 pt-2.5 pb-6 flex justify-around z-50">
-      {navItems.map(({ href, icon, label }) => {
+    <div className="bottom-0 w-full bg-panel border-t-2 border-border-custom px-0 pt-2.5 pb-6 flex justify-around z-50">
+      {navItems.map(({ href, icon, key }) => {
         const isActive = pathName.startsWith(href);
 
         return (
@@ -37,7 +39,7 @@ export default function BottomNav() {
             <span
               className={`text-sm ${isActive ? "text-amber" : "text-sand"}`}
             >
-              {label}
+              {t(key)}
             </span>
           </Link>
         );

@@ -12,6 +12,26 @@
   --color-blue: #5B8A9E;
   --color-border-custom: #3E3830;
 
+  --color-background: #1A1614;
+  --color-foreground: #F5F2E8;
+  --color-card: #2D2824;
+  --color-card-foreground: #F5F2E8;
+  --color-popover: #2D2824;
+  --color-popover-foreground: #F5F2E8;
+  --color-primary: #5B8A9E;
+  --color-primary-foreground: #1A1614;
+  --color-secondary: #36312D;
+  --color-secondary-foreground: #F5F2E8;
+  --color-muted: #36312D;
+  --color-muted-foreground: #A09687;
+  --color-input: #3E3830;
+  --color-ring: #D98C45;
+  --color-border: #3E3830;
+  --color-accent: #36312D;
+  --color-accent-foreground: #F5F2E8;
+  --color-destructive: #A64444;
+  --color-destructive-foreground: #F5F2E8;
+
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains);
   --font-heading: var(--font-roboto-mono);
@@ -63,4 +83,54 @@ body {
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
+}
+
+/* Sonner toasts styled to match app theme */
+[data-sonner-toaster] {
+  --width: 320px;
+  font-family: var(--font-mono), var(--font-sans), sans-serif;
+}
+
+[data-sonner-toast] {
+  background: var(--color-panel);
+  border: 2px solid var(--color-border-custom);
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+[data-sonner-toast][data-type="success"] {
+  border-color: var(--color-green);
+}
+
+[data-sonner-toast][data-type="error"] {
+  border-color: var(--color-red);
+}
+
+[data-sonner-toast][data-type="info"] {
+  border-color: var(--color-blue);
+}
+
+[data-sonner-toast][data-type="warning"] {
+  border-color: var(--color-amber);
+}
+
+[data-sonner-toast] [data-title] {
+  color: var(--color-cream);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-sonner-toast] [data-description] {
+  color: var(--color-sand);
+  letter-spacing: 0.03em;
+}
+
+[data-sonner-toast] [data-close-button] {
+  color: var(--color-sand);
+}
+
+[data-sonner-toast] [data-close-button]:hover {
+  background: var(--color-panel2);
+  color: var(--color-cream);
 }

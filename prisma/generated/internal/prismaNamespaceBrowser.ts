@@ -58,6 +58,7 @@ export const ModelName = {
   Member: 'Member',
   Squad: 'Squad',
   SquadCrew: 'SquadCrew',
+  SquadCrewInvite: 'SquadCrewInvite',
   Merchant: 'Merchant',
   MerchantAisle: 'MerchantAisle',
   MerchantAisleRule: 'MerchantAisleRule',
@@ -153,7 +154,8 @@ export const MemberScalarFieldEnum = {
   customConfig: 'customConfig',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  activeSquadId: 'activeSquadId'
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
@@ -161,6 +163,7 @@ export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof 
 
 export const SquadScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   creatorId: 'creatorId'
@@ -172,10 +175,20 @@ export type SquadScalarFieldEnum = (typeof SquadScalarFieldEnum)[keyof typeof Sq
 export const SquadCrewScalarFieldEnum = {
   id: 'id',
   squadId: 'squadId',
-  userId: 'userId'
+  memberId: 'memberId'
 } as const
 
 export type SquadCrewScalarFieldEnum = (typeof SquadCrewScalarFieldEnum)[keyof typeof SquadCrewScalarFieldEnum]
+
+
+export const SquadCrewInviteScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  squadId: 'squadId',
+  memberId: 'memberId'
+} as const
+
+export type SquadCrewInviteScalarFieldEnum = (typeof SquadCrewInviteScalarFieldEnum)[keyof typeof SquadCrewInviteScalarFieldEnum]
 
 
 export const MerchantScalarFieldEnum = {
@@ -250,7 +263,7 @@ export type MissionItemEstScalarFieldEnum = (typeof MissionItemEstScalarFieldEnu
 export const MissionCrewScalarFieldEnum = {
   id: 'id',
   missionId: 'missionId',
-  userId: 'userId'
+  memberId: 'memberId'
 } as const
 
 export type MissionCrewScalarFieldEnum = (typeof MissionCrewScalarFieldEnum)[keyof typeof MissionCrewScalarFieldEnum]
@@ -265,7 +278,6 @@ export const ReceiptScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   squadId: 'squadId',
-  userId: 'userId',
   merchantId: 'merchantId'
 } as const
 

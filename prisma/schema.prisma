@@ -20,60 +20,56 @@ model User {
   email         String   @unique
   emailVerified Boolean
   image         String?
-  roles         String[] @default([]) 
+  roles         String[] @default([])
   createdAt     DateTime @default(now()) @db.Timestamptz
   updatedAt     DateTime @updatedAt @db.Timestamptz
 
-  member            Member?
-  sessions          Session[]
-  accounts          Account[]
-  squadsCreated     Squad[]          @relation("SquadCreator")
-  squadCrews        SquadCrew[]
-  missionsCrewed    MissionCrew[]
-  receipts          Receipt[]
+  member   Member?
+  sessions Session[]
+  accounts Account[]
 
   @@map("user")
 }
 
 model Session {
-  id        String @id
+  id        String   @id
   expiresAt DateTime
-  token     String @unique
+  token     String   @unique
   ipAddress String?
   userAgent String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  userId    String
-  user      User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("session")
 }
 
 model Account {
-  id                    String @id
+  id                    String    @id
   accountId             String
   providerId            String
-  accessToken           String? @db.Text
-  refreshToken          String? @db.Text
-  idToken               String? @db.Text
+  accessToken           String?   @db.Text
+  refreshToken          String?   @db.Text
+  idToken               String?   @db.Text
   accessTokenExpiresAt  DateTime?
   refreshTokenExpiresAt DateTime?
   scope                 String?
   password              String?
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
 
-  userId                String
-  user                  User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
 
 model Verification {
-  id         String @id
+  id         String   @id
   identifier String
-  value      String @db.Text
+  value      String   @db.Text
   expiresAt  DateTime
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
@@ -81,54 +77,76 @@ model Verification {
   @@map("verification")
 }
 
-
 // Conduit
 model Member {
   id            String @id @default(cuid())
-  callsign      String?
+  callsign      String? @unique
   active        Boolean  @default(true)
-  customConfig  Json?    @db.JsonB
-  createdAt     DateTime @db.Timestamptz
-  updatedAt     DateTime @db.Timestamptz
+  customConfig Json?    @db.JsonB
+  createdAt    DateTime @db.Timestamptz
+  updatedAt    DateTime @db.Timestamptz
 
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  userId        String @unique
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activeSquadId String?
+  activeSquad   Squad?  @relation("SquadActiveMember", fields: [activeSquadId], references: [id])
+
+  squadsCreated  Squad[]            @relation("SquadCreator")
+  squadCrews     SquadCrew[]
+  crewInvites    SquadCrewInvite[]
+  missionsCrewed MissionCrew[]
 
   @@map("member")
 }
 
 model Squad {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
+  name      String?
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
 
   creatorId String
-  creator   User   @relation("SquadCreator", fields: [creatorId], references: [id])
+  creator   Member @relation("SquadCreator", fields: [creatorId], references: [id])
 
-  crew      SquadCrew[]
-  merchants Merchant[]
-  missions  Mission[]
-  receipts  Receipt[]
-  items     Item[]
+  activeMembers Member[]   @relation("SquadActiveMember")
+  crew            SquadCrew[]
+  crewInvites     SquadCrewInvite[]
+  merchants       Merchant[]
+  missions        Mission[]
+  receipts        Receipt[]
+  items           Item[]
   processingRules ProcessingRules[]
 
   @@map("squad")
 }
 
 model SquadCrew {
-  id     String @id @default(cuid())
+  id String @id @default(cuid())
 
-  squadId String
-  userId  String
-  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  squadId  String
+  memberId String
+  squad    Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
   @@map("squad_crew")
 }
 
+model SquadCrewInvite {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  squadId  String
+  memberId String
+  squad    Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+  member   Member @relation(fields: [memberId], references: [id], onDelete: Cascade)
+
+  @@unique([squadId, memberId])
+  @@map("squad_crew_invite")
+}
+
 model Merchant {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
@@ -136,15 +154,15 @@ model Merchant {
   squadId String
   squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
 
-  aisles  MerchantAisle[]
+  aisles     MerchantAisle[]
   aisleRules MerchantAisleRule[]
-  receipts Receipt[]
+  receipts   Receipt[]
 
   @@map("merchant")
 }
 
 model MerchantAisle {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   name      String
   order     Int
   createdAt DateTime @default(now()) @db.Timestamptz
@@ -159,23 +177,23 @@ model MerchantAisle {
 }
 
 model MerchantAisleRule {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   order     Int
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
 
   merchantId      String
-  missionItemId     String
+  missionItemId   String
   merchantAisleId String
-  merchant        Merchant     @relation(fields: [merchantId], references: [id], onDelete: Cascade)
-  missionItem     MissionItem  @relation(fields: [missionItemId], references: [id])
+  merchant        Merchant      @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  missionItem     MissionItem   @relation(fields: [missionItemId], references: [id])
   merchantAisle   MerchantAisle @relation(fields: [merchantAisleId], references: [id], onDelete: Cascade)
 
   @@map("merchant_aisle_rule")
 }
 
 model Mission {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   state     String
   createdAt DateTime @default(now()) @db.Timestamptz
@@ -191,14 +209,14 @@ model Mission {
 }
 
 model MissionItem {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
   category  String
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
 
-  estimates      MissionItemEst[]
-  aisleRules     MerchantAisleRule[]
+  estimates  MissionItemEst[]
+  aisleRules MerchantAisleRule[]
 
   @@map("mission_item")
 }
@@ -219,27 +237,25 @@ model MissionCrew {
   id String @id @default(cuid())
 
   missionId String
-  userId    String
+  memberId  String
   mission   Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
-  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  member    Member? @relation(fields: [memberId], references: [id])
 
   @@map("mission_crew")
 }
 
 model Receipt {
-  id         String    @id @default(cuid())
-  date       DateTime  @db.Date
-  status     String
-  nfce       String?
+  id          String    @id @default(cuid())
+  date        DateTime  @db.Date
+  status      String
+  nfce        String?
   processedAt DateTime? @db.Timestamptz
-  createdAt  DateTime  @default(now()) @db.Timestamptz
-  updatedAt  DateTime  @updatedAt @db.Timestamptz
+  createdAt   DateTime  @default(now()) @db.Timestamptz
+  updatedAt   DateTime  @updatedAt @db.Timestamptz
 
   squadId    String
-  userId     String
   merchantId String
   squad      Squad    @relation(fields: [squadId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
   merchant   Merchant @relation(fields: [merchantId], references: [id])
 
   items ReceiptItem[]
@@ -261,28 +277,28 @@ model ReceiptItem {
 }
 
 model Item {
-  id             String    @id @default(cuid())
-  name           String
-  unitName       String?
-  lastPriceDate  DateTime? @db.Date
-  lastPrice      Float?
+  id              String    @id @default(cuid())
+  name            String
+  unitName        String?
+  lastPriceDate   DateTime? @db.Date
+  lastPrice       Float?
   lowestPriceDate DateTime? @db.Date
-  lowestPrice    Float?
-  createdAt      DateTime  @default(now()) @db.Timestamptz
-  updatedAt      DateTime  @updatedAt @db.Timestamptz
+  lowestPrice     Float?
+  createdAt       DateTime  @default(now()) @db.Timestamptz
+  updatedAt       DateTime  @updatedAt @db.Timestamptz
 
   squadId String
   squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
 
-  receipts     ReceiptItem[]
+  receipts ReceiptItem[]
 
   @@map("item")
 }
 
 model ProcessingRules {
-  id        String @id @default(cuid())
+  id        String   @id @default(cuid())
   category  String
-  config    Json   @db.JsonB
+  config    Json     @db.JsonB
   enabled   Boolean
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz

@@ -12,6 +12,42 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          await prisma.$transaction(async (tx) => {
+            const member = await tx.member.create({
+              data: {
+                userId: user.id,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              },
+            });
+
+            const squad = await tx.squad.create({
+              data: {
+                name: user.email.split("@")[0],
+                creatorId: member.id,
+              },
+            });
+
+            await tx.squadCrew.create({
+              data: {
+                squadId: squad.id,
+                memberId: member.id,
+              },
+            });
+
+            await tx.member.update({
+              where: { id: member.id },
+              data: { activeSquadId: squad.id },
+            });
+          });
+        },
+      },
+    },
+  },
   basePath: "/api/auth",
   baseURL: process.env.APPLICATION_URL,
   secret: process.env.BETTER_AUTH_SECRET,
