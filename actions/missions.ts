@@ -2,6 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { publishSquadChange } from "@/lib/realtime";
+import { orderEstimatesByAisles } from "@/lib/mission-item-ordering";
 
 type FinalStatus = {
   estimatedTotal: number;
@@ -146,7 +147,7 @@ export async function getMission(
           complete: true,
           missionItem: { select: { id: true, title: true, category: true } },
         },
-        orderBy: { missionItem: { title: "asc" } },
+        orderBy: [{ order: "asc" }, { missionItem: { title: "asc" } }],
       },
     },
   });
@@ -239,10 +240,60 @@ export async function activateMission(
   }
 
   try {
-    await prisma.mission.update({
-      where: { id: missionId },
-      data: { state: "active", merchantId: merchantId ?? null },
-    });
+    if (merchantId) {
+      const [estimates, aisles, rules] = await Promise.all([
+        prisma.missionItemEst.findMany({
+          where: { missionId },
+          select: {
+            id: true,
+            missionItem: {
+              select: { id: true, title: true, aisleId: true },
+            },
+          },
+        }),
+        prisma.merchantAisle.findMany({
+          where: { merchantId },
+          select: { id: true, order: true, aisleId: true },
+        }),
+        prisma.merchantAisleRule.findMany({
+          where: { merchantId },
+          select: {
+            missionItemId: true,
+            merchantAisleId: true,
+            order: true,
+          },
+        }),
+      ]);
+
+      const ordered = orderEstimatesByAisles(
+        estimates.map((estimate) => ({
+          id: estimate.id,
+          missionItemId: estimate.missionItem.id,
+          aisleId: estimate.missionItem.aisleId,
+          title: estimate.missionItem.title,
+        })),
+        aisles,
+        rules,
+      );
+
+      await prisma.$transaction([
+        prisma.mission.update({
+          where: { id: missionId },
+          data: { state: "active", merchantId },
+        }),
+        ...ordered.map((estimate, index) =>
+          prisma.missionItemEst.update({
+            where: { id: estimate.id },
+            data: { order: index },
+          }),
+        ),
+      ]);
+    } else {
+      await prisma.mission.update({
+        where: { id: missionId },
+        data: { state: "active", merchantId: null },
+      });
+    }
     publishSquadChange(squadId, {
       type: "mission.updated",
       actorId: userId,
@@ -276,7 +327,7 @@ export async function finishMission(
               select: { id: true, title: true, category: true },
             },
           },
-          orderBy: { missionItem: { title: "asc" } },
+          orderBy: [{ order: "asc" }, { missionItem: { title: "asc" } }],
         },
       },
     });
@@ -574,11 +625,22 @@ export async function addMissionItemEstimates(
       (id) => !existing.some((estimate) => estimate.missionItemId === id),
     );
     if (toAdd.length) {
+      const missionInfo = await prisma.mission.findUnique({
+        where: { id: missionId },
+        select: { state: true },
+      });
+      const orderInfo = await prisma.missionItemEst.aggregate({
+        where: { missionId },
+        _max: { order: true },
+      });
+      const startOrder =
+        missionInfo?.state === "active" ? (orderInfo._max.order ?? -1) + 1 : 0;
       await prisma.missionItemEst.createMany({
-        data: toAdd.map((missionItemId) => ({
+        data: toAdd.map((missionItemId, index) => ({
           missionId,
           missionItemId,
           estValue: 0,
+          order: startOrder + index,
         })),
       });
     }

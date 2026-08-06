@@ -28,16 +28,19 @@ export type AggregateMissionItemEst = {
 
 export type MissionItemEstAvgAggregateOutputType = {
   estValue: number | null
+  order: number | null
 }
 
 export type MissionItemEstSumAggregateOutputType = {
   estValue: number | null
+  order: number | null
 }
 
 export type MissionItemEstMinAggregateOutputType = {
   id: string | null
   estValue: number | null
   complete: boolean | null
+  order: number | null
   missionId: string | null
   missionItemId: string | null
 }
@@ -46,6 +49,7 @@ export type MissionItemEstMaxAggregateOutputType = {
   id: string | null
   estValue: number | null
   complete: boolean | null
+  order: number | null
   missionId: string | null
   missionItemId: string | null
 }
@@ -54,6 +58,7 @@ export type MissionItemEstCountAggregateOutputType = {
   id: number
   estValue: number
   complete: number
+  order: number
   missionId: number
   missionItemId: number
   _all: number
@@ -62,16 +67,19 @@ export type MissionItemEstCountAggregateOutputType = {
 
 export type MissionItemEstAvgAggregateInputType = {
   estValue?: true
+  order?: true
 }
 
 export type MissionItemEstSumAggregateInputType = {
   estValue?: true
+  order?: true
 }
 
 export type MissionItemEstMinAggregateInputType = {
   id?: true
   estValue?: true
   complete?: true
+  order?: true
   missionId?: true
   missionItemId?: true
 }
@@ -80,6 +88,7 @@ export type MissionItemEstMaxAggregateInputType = {
   id?: true
   estValue?: true
   complete?: true
+  order?: true
   missionId?: true
   missionItemId?: true
 }
@@ -88,6 +97,7 @@ export type MissionItemEstCountAggregateInputType = {
   id?: true
   estValue?: true
   complete?: true
+  order?: true
   missionId?: true
   missionItemId?: true
   _all?: true
@@ -183,6 +193,7 @@ export type MissionItemEstGroupByOutputType = {
   id: string
   estValue: number
   complete: boolean
+  order: number
   missionId: string
   missionItemId: string
   _count: MissionItemEstCountAggregateOutputType | null
@@ -214,6 +225,7 @@ export type MissionItemEstWhereInput = {
   id?: Prisma.StringFilter<"MissionItemEst"> | string
   estValue?: Prisma.FloatFilter<"MissionItemEst"> | number
   complete?: Prisma.BoolFilter<"MissionItemEst"> | boolean
+  order?: Prisma.IntFilter<"MissionItemEst"> | number
   missionId?: Prisma.StringFilter<"MissionItemEst"> | string
   missionItemId?: Prisma.StringFilter<"MissionItemEst"> | string
   mission?: Prisma.XOR<Prisma.MissionScalarRelationFilter, Prisma.MissionWhereInput>
@@ -224,6 +236,7 @@ export type MissionItemEstOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   estValue?: Prisma.SortOrder
   complete?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
   missionItemId?: Prisma.SortOrder
   mission?: Prisma.MissionOrderByWithRelationInput
@@ -237,6 +250,7 @@ export type MissionItemEstWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MissionItemEstWhereInput | Prisma.MissionItemEstWhereInput[]
   estValue?: Prisma.FloatFilter<"MissionItemEst"> | number
   complete?: Prisma.BoolFilter<"MissionItemEst"> | boolean
+  order?: Prisma.IntFilter<"MissionItemEst"> | number
   missionId?: Prisma.StringFilter<"MissionItemEst"> | string
   missionItemId?: Prisma.StringFilter<"MissionItemEst"> | string
   mission?: Prisma.XOR<Prisma.MissionScalarRelationFilter, Prisma.MissionWhereInput>
@@ -247,6 +261,7 @@ export type MissionItemEstOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   estValue?: Prisma.SortOrder
   complete?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
   missionItemId?: Prisma.SortOrder
   _count?: Prisma.MissionItemEstCountOrderByAggregateInput
@@ -263,6 +278,7 @@ export type MissionItemEstScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"MissionItemEst"> | string
   estValue?: Prisma.FloatWithAggregatesFilter<"MissionItemEst"> | number
   complete?: Prisma.BoolWithAggregatesFilter<"MissionItemEst"> | boolean
+  order?: Prisma.IntWithAggregatesFilter<"MissionItemEst"> | number
   missionId?: Prisma.StringWithAggregatesFilter<"MissionItemEst"> | string
   missionItemId?: Prisma.StringWithAggregatesFilter<"MissionItemEst"> | string
 }
@@ -271,6 +287,7 @@ export type MissionItemEstCreateInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   mission: Prisma.MissionCreateNestedOneWithoutItemEstimatesInput
   missionItem: Prisma.MissionItemCreateNestedOneWithoutEstimatesInput
 }
@@ -279,6 +296,7 @@ export type MissionItemEstUncheckedCreateInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionId: string
   missionItemId: string
 }
@@ -287,6 +305,7 @@ export type MissionItemEstUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   mission?: Prisma.MissionUpdateOneRequiredWithoutItemEstimatesNestedInput
   missionItem?: Prisma.MissionItemUpdateOneRequiredWithoutEstimatesNestedInput
 }
@@ -295,6 +314,7 @@ export type MissionItemEstUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
   missionItemId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -303,6 +323,7 @@ export type MissionItemEstCreateManyInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionId: string
   missionItemId: string
 }
@@ -311,12 +332,14 @@ export type MissionItemEstUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type MissionItemEstUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
   missionItemId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -335,18 +358,21 @@ export type MissionItemEstCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estValue?: Prisma.SortOrder
   complete?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
   missionItemId?: Prisma.SortOrder
 }
 
 export type MissionItemEstAvgOrderByAggregateInput = {
   estValue?: Prisma.SortOrder
+  order?: Prisma.SortOrder
 }
 
 export type MissionItemEstMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estValue?: Prisma.SortOrder
   complete?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
   missionItemId?: Prisma.SortOrder
 }
@@ -355,12 +381,14 @@ export type MissionItemEstMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   estValue?: Prisma.SortOrder
   complete?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   missionId?: Prisma.SortOrder
   missionItemId?: Prisma.SortOrder
 }
 
 export type MissionItemEstSumOrderByAggregateInput = {
   estValue?: Prisma.SortOrder
+  order?: Prisma.SortOrder
 }
 
 export type MissionItemEstCreateNestedManyWithoutMissionInput = {
@@ -459,6 +487,7 @@ export type MissionItemEstCreateWithoutMissionInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionItem: Prisma.MissionItemCreateNestedOneWithoutEstimatesInput
 }
 
@@ -466,6 +495,7 @@ export type MissionItemEstUncheckedCreateWithoutMissionInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionItemId: string
 }
 
@@ -502,6 +532,7 @@ export type MissionItemEstScalarWhereInput = {
   id?: Prisma.StringFilter<"MissionItemEst"> | string
   estValue?: Prisma.FloatFilter<"MissionItemEst"> | number
   complete?: Prisma.BoolFilter<"MissionItemEst"> | boolean
+  order?: Prisma.IntFilter<"MissionItemEst"> | number
   missionId?: Prisma.StringFilter<"MissionItemEst"> | string
   missionItemId?: Prisma.StringFilter<"MissionItemEst"> | string
 }
@@ -510,6 +541,7 @@ export type MissionItemEstCreateWithoutMissionItemInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   mission: Prisma.MissionCreateNestedOneWithoutItemEstimatesInput
 }
 
@@ -517,6 +549,7 @@ export type MissionItemEstUncheckedCreateWithoutMissionItemInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionId: string
 }
 
@@ -550,6 +583,7 @@ export type MissionItemEstCreateManyMissionInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionItemId: string
 }
 
@@ -557,6 +591,7 @@ export type MissionItemEstUpdateWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionItem?: Prisma.MissionItemUpdateOneRequiredWithoutEstimatesNestedInput
 }
 
@@ -564,6 +599,7 @@ export type MissionItemEstUncheckedUpdateWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionItemId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -571,6 +607,7 @@ export type MissionItemEstUncheckedUpdateManyWithoutMissionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionItemId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -578,6 +615,7 @@ export type MissionItemEstCreateManyMissionItemInput = {
   id?: string
   estValue: number
   complete?: boolean
+  order?: number
   missionId: string
 }
 
@@ -585,6 +623,7 @@ export type MissionItemEstUpdateWithoutMissionItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   mission?: Prisma.MissionUpdateOneRequiredWithoutItemEstimatesNestedInput
 }
 
@@ -592,6 +631,7 @@ export type MissionItemEstUncheckedUpdateWithoutMissionItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -599,6 +639,7 @@ export type MissionItemEstUncheckedUpdateManyWithoutMissionItemInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   estValue?: Prisma.FloatFieldUpdateOperationsInput | number
   complete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   missionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -608,6 +649,7 @@ export type MissionItemEstSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   estValue?: boolean
   complete?: boolean
+  order?: boolean
   missionId?: boolean
   missionItemId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
@@ -618,6 +660,7 @@ export type MissionItemEstSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   estValue?: boolean
   complete?: boolean
+  order?: boolean
   missionId?: boolean
   missionItemId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
@@ -628,6 +671,7 @@ export type MissionItemEstSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   estValue?: boolean
   complete?: boolean
+  order?: boolean
   missionId?: boolean
   missionItemId?: boolean
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
@@ -638,11 +682,12 @@ export type MissionItemEstSelectScalar = {
   id?: boolean
   estValue?: boolean
   complete?: boolean
+  order?: boolean
   missionId?: boolean
   missionItemId?: boolean
 }
 
-export type MissionItemEstOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estValue" | "complete" | "missionId" | "missionItemId", ExtArgs["result"]["missionItemEst"]>
+export type MissionItemEstOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "estValue" | "complete" | "order" | "missionId" | "missionItemId", ExtArgs["result"]["missionItemEst"]>
 export type MissionItemEstInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mission?: boolean | Prisma.MissionDefaultArgs<ExtArgs>
   missionItem?: boolean | Prisma.MissionItemDefaultArgs<ExtArgs>
@@ -666,6 +711,7 @@ export type $MissionItemEstPayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     estValue: number
     complete: boolean
+    order: number
     missionId: string
     missionItemId: string
   }, ExtArgs["result"]["missionItemEst"]>
@@ -1096,6 +1142,7 @@ export interface MissionItemEstFieldRefs {
   readonly id: Prisma.FieldRef<"MissionItemEst", 'String'>
   readonly estValue: Prisma.FieldRef<"MissionItemEst", 'Float'>
   readonly complete: Prisma.FieldRef<"MissionItemEst", 'Boolean'>
+  readonly order: Prisma.FieldRef<"MissionItemEst", 'Int'>
   readonly missionId: Prisma.FieldRef<"MissionItemEst", 'String'>
   readonly missionItemId: Prisma.FieldRef<"MissionItemEst", 'String'>
 }

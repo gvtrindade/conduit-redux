@@ -254,6 +254,7 @@ model MissionItemEst {
   id       String @id @default(cuid())
   estValue Float
   complete Boolean @default(false)
+  order    Int    @default(0)
 
   missionId     String
   missionItemId String

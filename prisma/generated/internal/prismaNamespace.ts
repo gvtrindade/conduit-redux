@@ -2061,6 +2061,7 @@ export const MissionItemEstScalarFieldEnum = {
   id: 'id',
   estValue: 'estValue',
   complete: 'complete',
+  order: 'order',
   missionId: 'missionId',
   missionItemId: 'missionItemId'
 } as const
