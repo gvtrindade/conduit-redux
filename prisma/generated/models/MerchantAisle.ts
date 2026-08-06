@@ -36,29 +36,29 @@ export type MerchantAisleSumAggregateOutputType = {
 
 export type MerchantAisleMinAggregateOutputType = {
   id: string | null
-  name: string | null
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
   merchantId: string | null
+  aisleId: string | null
 }
 
 export type MerchantAisleMaxAggregateOutputType = {
   id: string | null
-  name: string | null
   order: number | null
   createdAt: Date | null
   updatedAt: Date | null
   merchantId: string | null
+  aisleId: string | null
 }
 
 export type MerchantAisleCountAggregateOutputType = {
   id: number
-  name: number
   order: number
   createdAt: number
   updatedAt: number
   merchantId: number
+  aisleId: number
   _all: number
 }
 
@@ -73,29 +73,29 @@ export type MerchantAisleSumAggregateInputType = {
 
 export type MerchantAisleMinAggregateInputType = {
   id?: true
-  name?: true
   order?: true
   createdAt?: true
   updatedAt?: true
   merchantId?: true
+  aisleId?: true
 }
 
 export type MerchantAisleMaxAggregateInputType = {
   id?: true
-  name?: true
   order?: true
   createdAt?: true
   updatedAt?: true
   merchantId?: true
+  aisleId?: true
 }
 
 export type MerchantAisleCountAggregateInputType = {
   id?: true
-  name?: true
   order?: true
   createdAt?: true
   updatedAt?: true
   merchantId?: true
+  aisleId?: true
   _all?: true
 }
 
@@ -187,11 +187,11 @@ export type MerchantAisleGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type MerchantAisleGroupByOutputType = {
   id: string
-  name: string
   order: number
   createdAt: Date
   updatedAt: Date
   merchantId: string
+  aisleId: string
   _count: MerchantAisleCountAggregateOutputType | null
   _avg: MerchantAisleAvgAggregateOutputType | null
   _sum: MerchantAisleSumAggregateOutputType | null
@@ -219,47 +219,51 @@ export type MerchantAisleWhereInput = {
   OR?: Prisma.MerchantAisleWhereInput[]
   NOT?: Prisma.MerchantAisleWhereInput | Prisma.MerchantAisleWhereInput[]
   id?: Prisma.StringFilter<"MerchantAisle"> | string
-  name?: Prisma.StringFilter<"MerchantAisle"> | string
   order?: Prisma.IntFilter<"MerchantAisle"> | number
   createdAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   merchantId?: Prisma.StringFilter<"MerchantAisle"> | string
+  aisleId?: Prisma.StringFilter<"MerchantAisle"> | string
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
+  aisle?: Prisma.XOR<Prisma.AisleScalarRelationFilter, Prisma.AisleWhereInput>
   rules?: Prisma.MerchantAisleRuleListRelationFilter
 }
 
 export type MerchantAisleOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
   merchant?: Prisma.MerchantOrderByWithRelationInput
+  aisle?: Prisma.AisleOrderByWithRelationInput
   rules?: Prisma.MerchantAisleRuleOrderByRelationAggregateInput
 }
 
 export type MerchantAisleWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  merchantId_aisleId?: Prisma.MerchantAisleMerchantIdAisleIdCompoundUniqueInput
   AND?: Prisma.MerchantAisleWhereInput | Prisma.MerchantAisleWhereInput[]
   OR?: Prisma.MerchantAisleWhereInput[]
   NOT?: Prisma.MerchantAisleWhereInput | Prisma.MerchantAisleWhereInput[]
-  name?: Prisma.StringFilter<"MerchantAisle"> | string
   order?: Prisma.IntFilter<"MerchantAisle"> | number
   createdAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   merchantId?: Prisma.StringFilter<"MerchantAisle"> | string
+  aisleId?: Prisma.StringFilter<"MerchantAisle"> | string
   merchant?: Prisma.XOR<Prisma.MerchantScalarRelationFilter, Prisma.MerchantWhereInput>
+  aisle?: Prisma.XOR<Prisma.AisleScalarRelationFilter, Prisma.AisleWhereInput>
   rules?: Prisma.MerchantAisleRuleListRelationFilter
-}, "id">
+}, "id" | "merchantId_aisleId">
 
 export type MerchantAisleOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
   _count?: Prisma.MerchantAisleCountOrderByAggregateInput
   _avg?: Prisma.MerchantAisleAvgOrderByAggregateInput
   _max?: Prisma.MerchantAisleMaxOrderByAggregateInput
@@ -272,65 +276,64 @@ export type MerchantAisleScalarWhereWithAggregatesInput = {
   OR?: Prisma.MerchantAisleScalarWhereWithAggregatesInput[]
   NOT?: Prisma.MerchantAisleScalarWhereWithAggregatesInput | Prisma.MerchantAisleScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"MerchantAisle"> | string
-  name?: Prisma.StringWithAggregatesFilter<"MerchantAisle"> | string
   order?: Prisma.IntWithAggregatesFilter<"MerchantAisle"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MerchantAisle"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MerchantAisle"> | Date | string
   merchantId?: Prisma.StringWithAggregatesFilter<"MerchantAisle"> | string
+  aisleId?: Prisma.StringWithAggregatesFilter<"MerchantAisle"> | string
 }
 
 export type MerchantAisleCreateInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
   merchant: Prisma.MerchantCreateNestedOneWithoutAislesInput
+  aisle: Prisma.AisleCreateNestedOneWithoutMerchantAislesInput
   rules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantAisleInput
 }
 
 export type MerchantAisleUncheckedCreateInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
   merchantId: string
+  aisleId: string
   rules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantAisleInput
 }
 
 export type MerchantAisleUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutAislesNestedInput
+  aisle?: Prisma.AisleUpdateOneRequiredWithoutMerchantAislesNestedInput
   rules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantAisleNestedInput
 }
 
 export type MerchantAisleUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantAisleNestedInput
 }
 
 export type MerchantAisleCreateManyInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
   merchantId: string
+  aisleId: string
 }
 
 export type MerchantAisleUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -338,11 +341,11 @@ export type MerchantAisleUpdateManyMutationInput = {
 
 export type MerchantAisleUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MerchantAisleListRelationFilter = {
@@ -355,13 +358,18 @@ export type MerchantAisleOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type MerchantAisleMerchantIdAisleIdCompoundUniqueInput = {
+  merchantId: string
+  aisleId: string
+}
+
 export type MerchantAisleCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
 }
 
 export type MerchantAisleAvgOrderByAggregateInput = {
@@ -370,20 +378,20 @@ export type MerchantAisleAvgOrderByAggregateInput = {
 
 export type MerchantAisleMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
 }
 
 export type MerchantAisleMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
   order?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
 }
 
 export type MerchantAisleSumOrderByAggregateInput = {
@@ -437,6 +445,48 @@ export type MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput = {
   deleteMany?: Prisma.MerchantAisleScalarWhereInput | Prisma.MerchantAisleScalarWhereInput[]
 }
 
+export type MerchantAisleCreateNestedManyWithoutAisleInput = {
+  create?: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput> | Prisma.MerchantAisleCreateWithoutAisleInput[] | Prisma.MerchantAisleUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MerchantAisleCreateOrConnectWithoutAisleInput | Prisma.MerchantAisleCreateOrConnectWithoutAisleInput[]
+  createMany?: Prisma.MerchantAisleCreateManyAisleInputEnvelope
+  connect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+}
+
+export type MerchantAisleUncheckedCreateNestedManyWithoutAisleInput = {
+  create?: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput> | Prisma.MerchantAisleCreateWithoutAisleInput[] | Prisma.MerchantAisleUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MerchantAisleCreateOrConnectWithoutAisleInput | Prisma.MerchantAisleCreateOrConnectWithoutAisleInput[]
+  createMany?: Prisma.MerchantAisleCreateManyAisleInputEnvelope
+  connect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+}
+
+export type MerchantAisleUpdateManyWithoutAisleNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput> | Prisma.MerchantAisleCreateWithoutAisleInput[] | Prisma.MerchantAisleUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MerchantAisleCreateOrConnectWithoutAisleInput | Prisma.MerchantAisleCreateOrConnectWithoutAisleInput[]
+  upsert?: Prisma.MerchantAisleUpsertWithWhereUniqueWithoutAisleInput | Prisma.MerchantAisleUpsertWithWhereUniqueWithoutAisleInput[]
+  createMany?: Prisma.MerchantAisleCreateManyAisleInputEnvelope
+  set?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  disconnect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  delete?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  connect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  update?: Prisma.MerchantAisleUpdateWithWhereUniqueWithoutAisleInput | Prisma.MerchantAisleUpdateWithWhereUniqueWithoutAisleInput[]
+  updateMany?: Prisma.MerchantAisleUpdateManyWithWhereWithoutAisleInput | Prisma.MerchantAisleUpdateManyWithWhereWithoutAisleInput[]
+  deleteMany?: Prisma.MerchantAisleScalarWhereInput | Prisma.MerchantAisleScalarWhereInput[]
+}
+
+export type MerchantAisleUncheckedUpdateManyWithoutAisleNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput> | Prisma.MerchantAisleCreateWithoutAisleInput[] | Prisma.MerchantAisleUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MerchantAisleCreateOrConnectWithoutAisleInput | Prisma.MerchantAisleCreateOrConnectWithoutAisleInput[]
+  upsert?: Prisma.MerchantAisleUpsertWithWhereUniqueWithoutAisleInput | Prisma.MerchantAisleUpsertWithWhereUniqueWithoutAisleInput[]
+  createMany?: Prisma.MerchantAisleCreateManyAisleInputEnvelope
+  set?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  disconnect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  delete?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  connect?: Prisma.MerchantAisleWhereUniqueInput | Prisma.MerchantAisleWhereUniqueInput[]
+  update?: Prisma.MerchantAisleUpdateWithWhereUniqueWithoutAisleInput | Prisma.MerchantAisleUpdateWithWhereUniqueWithoutAisleInput[]
+  updateMany?: Prisma.MerchantAisleUpdateManyWithWhereWithoutAisleInput | Prisma.MerchantAisleUpdateManyWithWhereWithoutAisleInput[]
+  deleteMany?: Prisma.MerchantAisleScalarWhereInput | Prisma.MerchantAisleScalarWhereInput[]
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -461,19 +511,19 @@ export type MerchantAisleUpdateOneRequiredWithoutRulesNestedInput = {
 
 export type MerchantAisleCreateWithoutMerchantInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  aisle: Prisma.AisleCreateNestedOneWithoutMerchantAislesInput
   rules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantAisleInput
 }
 
 export type MerchantAisleUncheckedCreateWithoutMerchantInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  aisleId: string
   rules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantAisleInput
 }
 
@@ -508,29 +558,73 @@ export type MerchantAisleScalarWhereInput = {
   OR?: Prisma.MerchantAisleScalarWhereInput[]
   NOT?: Prisma.MerchantAisleScalarWhereInput | Prisma.MerchantAisleScalarWhereInput[]
   id?: Prisma.StringFilter<"MerchantAisle"> | string
-  name?: Prisma.StringFilter<"MerchantAisle"> | string
   order?: Prisma.IntFilter<"MerchantAisle"> | number
   createdAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MerchantAisle"> | Date | string
   merchantId?: Prisma.StringFilter<"MerchantAisle"> | string
+  aisleId?: Prisma.StringFilter<"MerchantAisle"> | string
 }
 
-export type MerchantAisleCreateWithoutRulesInput = {
+export type MerchantAisleCreateWithoutAisleInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
   merchant: Prisma.MerchantCreateNestedOneWithoutAislesInput
+  rules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantAisleInput
 }
 
-export type MerchantAisleUncheckedCreateWithoutRulesInput = {
+export type MerchantAisleUncheckedCreateWithoutAisleInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
   merchantId: string
+  rules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantAisleInput
+}
+
+export type MerchantAisleCreateOrConnectWithoutAisleInput = {
+  where: Prisma.MerchantAisleWhereUniqueInput
+  create: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput>
+}
+
+export type MerchantAisleCreateManyAisleInputEnvelope = {
+  data: Prisma.MerchantAisleCreateManyAisleInput | Prisma.MerchantAisleCreateManyAisleInput[]
+  skipDuplicates?: boolean
+}
+
+export type MerchantAisleUpsertWithWhereUniqueWithoutAisleInput = {
+  where: Prisma.MerchantAisleWhereUniqueInput
+  update: Prisma.XOR<Prisma.MerchantAisleUpdateWithoutAisleInput, Prisma.MerchantAisleUncheckedUpdateWithoutAisleInput>
+  create: Prisma.XOR<Prisma.MerchantAisleCreateWithoutAisleInput, Prisma.MerchantAisleUncheckedCreateWithoutAisleInput>
+}
+
+export type MerchantAisleUpdateWithWhereUniqueWithoutAisleInput = {
+  where: Prisma.MerchantAisleWhereUniqueInput
+  data: Prisma.XOR<Prisma.MerchantAisleUpdateWithoutAisleInput, Prisma.MerchantAisleUncheckedUpdateWithoutAisleInput>
+}
+
+export type MerchantAisleUpdateManyWithWhereWithoutAisleInput = {
+  where: Prisma.MerchantAisleScalarWhereInput
+  data: Prisma.XOR<Prisma.MerchantAisleUpdateManyMutationInput, Prisma.MerchantAisleUncheckedUpdateManyWithoutAisleInput>
+}
+
+export type MerchantAisleCreateWithoutRulesInput = {
+  id?: string
+  order: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  merchant: Prisma.MerchantCreateNestedOneWithoutAislesInput
+  aisle: Prisma.AisleCreateNestedOneWithoutMerchantAislesInput
+}
+
+export type MerchantAisleUncheckedCreateWithoutRulesInput = {
+  id?: string
+  order: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  merchantId: string
+  aisleId: string
 }
 
 export type MerchantAisleCreateOrConnectWithoutRulesInput = {
@@ -551,54 +645,88 @@ export type MerchantAisleUpdateToOneWithWhereWithoutRulesInput = {
 
 export type MerchantAisleUpdateWithoutRulesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchant?: Prisma.MerchantUpdateOneRequiredWithoutAislesNestedInput
+  aisle?: Prisma.AisleUpdateOneRequiredWithoutMerchantAislesNestedInput
 }
 
 export type MerchantAisleUncheckedUpdateWithoutRulesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MerchantAisleCreateManyMerchantInput = {
   id?: string
-  name: string
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
+  aisleId: string
 }
 
 export type MerchantAisleUpdateWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisle?: Prisma.AisleUpdateOneRequiredWithoutMerchantAislesNestedInput
   rules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantAisleNestedInput
 }
 
 export type MerchantAisleUncheckedUpdateWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisleId?: Prisma.StringFieldUpdateOperationsInput | string
   rules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantAisleNestedInput
 }
 
 export type MerchantAisleUncheckedUpdateManyWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisleId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type MerchantAisleCreateManyAisleInput = {
+  id?: string
+  order: number
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  merchantId: string
+}
+
+export type MerchantAisleUpdateWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchant?: Prisma.MerchantUpdateOneRequiredWithoutAislesNestedInput
+  rules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantAisleNestedInput
+}
+
+export type MerchantAisleUncheckedUpdateWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
+  rules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantAisleNestedInput
+}
+
+export type MerchantAisleUncheckedUpdateManyWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -634,71 +762,78 @@ export type MerchantAisleCountOutputTypeCountRulesArgs<ExtArgs extends runtime.T
 
 export type MerchantAisleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchantId?: boolean
+  aisleId?: boolean
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
   rules?: boolean | Prisma.MerchantAisle$rulesArgs<ExtArgs>
   _count?: boolean | Prisma.MerchantAisleCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["merchantAisle"]>
 
 export type MerchantAisleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchantId?: boolean
+  aisleId?: boolean
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["merchantAisle"]>
 
 export type MerchantAisleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchantId?: boolean
+  aisleId?: boolean
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["merchantAisle"]>
 
 export type MerchantAisleSelectScalar = {
   id?: boolean
-  name?: boolean
   order?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchantId?: boolean
+  aisleId?: boolean
 }
 
-export type MerchantAisleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "order" | "createdAt" | "updatedAt" | "merchantId", ExtArgs["result"]["merchantAisle"]>
+export type MerchantAisleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "order" | "createdAt" | "updatedAt" | "merchantId" | "aisleId", ExtArgs["result"]["merchantAisle"]>
 export type MerchantAisleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
   rules?: boolean | Prisma.MerchantAisle$rulesArgs<ExtArgs>
   _count?: boolean | Prisma.MerchantAisleCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MerchantAisleIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
 }
 export type MerchantAisleIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.MerchantDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.AisleDefaultArgs<ExtArgs>
 }
 
 export type $MerchantAislePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MerchantAisle"
   objects: {
     merchant: Prisma.$MerchantPayload<ExtArgs>
+    aisle: Prisma.$AislePayload<ExtArgs>
     rules: Prisma.$MerchantAisleRulePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
     order: number
     createdAt: Date
     updatedAt: Date
     merchantId: string
+    aisleId: string
   }, ExtArgs["result"]["merchantAisle"]>
   composites: {}
 }
@@ -1094,6 +1229,7 @@ readonly fields: MerchantAisleFieldRefs;
 export interface Prisma__MerchantAisleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   merchant<T extends Prisma.MerchantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantDefaultArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  aisle<T extends Prisma.AisleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AisleDefaultArgs<ExtArgs>>): Prisma.Prisma__AisleClient<runtime.Types.Result.GetResult<Prisma.$AislePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   rules<T extends Prisma.MerchantAisle$rulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MerchantAisle$rulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantAisleRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1125,11 +1261,11 @@ export interface Prisma__MerchantAisleClient<T, Null = never, ExtArgs extends ru
  */
 export interface MerchantAisleFieldRefs {
   readonly id: Prisma.FieldRef<"MerchantAisle", 'String'>
-  readonly name: Prisma.FieldRef<"MerchantAisle", 'String'>
   readonly order: Prisma.FieldRef<"MerchantAisle", 'Int'>
   readonly createdAt: Prisma.FieldRef<"MerchantAisle", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MerchantAisle", 'DateTime'>
   readonly merchantId: Prisma.FieldRef<"MerchantAisle", 'String'>
+  readonly aisleId: Prisma.FieldRef<"MerchantAisle", 'String'>
 }
     
 

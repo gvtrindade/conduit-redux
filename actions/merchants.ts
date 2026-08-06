@@ -162,11 +162,17 @@ export async function getAisles(
 
     const aisles = await prisma.merchantAisle.findMany({
         where: { merchantId },
-        select: { id: true, name: true, order: true },
+        select: { id: true, order: true, aisle: { select: { name: true } } },
         orderBy: { order: "asc" },
     });
 
-    return { aisles };
+    return {
+        aisles: aisles.map((aisle) => ({
+            id: aisle.id,
+            name: aisle.aisle.name,
+            order: aisle.order,
+        })),
+    };
 }
 
 export async function createAisle(
@@ -185,13 +191,38 @@ export async function createAisle(
     }
 
     try {
+        let aisle = await prisma.aisle.findFirst({
+            where: { squadId, name: trimmed },
+            select: { id: true },
+        });
+        if (!aisle) {
+            aisle = await prisma.aisle.create({
+                data: { squadId, name: trimmed },
+                select: { id: true },
+            });
+        }
+
+        const duplicate = await prisma.merchantAisle.findUnique({
+            where: {
+                merchantId_aisleId: { merchantId, aisleId: aisle.id },
+            },
+            select: { id: true },
+        });
+        if (duplicate) {
+            return { error: "duplicate" as const };
+        }
+
         const last = await prisma.merchantAisle.findFirst({
             where: { merchantId },
             orderBy: { order: "desc" },
             select: { order: true },
         });
         await prisma.merchantAisle.create({
-            data: { merchantId, name: trimmed, order: (last?.order ?? -1) + 1 },
+            data: {
+                merchantId,
+                aisleId: aisle.id,
+                order: (last?.order ?? -1) + 1,
+            },
         });
         return { success: true };
     } catch {
@@ -215,17 +246,17 @@ export async function renameAisle(
         return { error: "forbidden" as const };
     }
 
-    const aisle = await prisma.merchantAisle.findUnique({
+    const junction = await prisma.merchantAisle.findUnique({
         where: { id: aisleId },
-        select: { merchantId: true },
+        select: { merchantId: true, aisleId: true },
     });
-    if (!aisle || aisle.merchantId !== merchantId) {
+    if (!junction || junction.merchantId !== merchantId) {
         return { error: "notFound" as const };
     }
 
     try {
-        await prisma.merchantAisle.update({
-            where: { id: aisleId },
+        await prisma.aisle.update({
+            where: { id: junction.aisleId },
             data: { name: trimmed },
         });
         return { success: true };
@@ -244,32 +275,37 @@ export async function deleteAisle(
         return { error: "forbidden" as const };
     }
 
-    const aisle = await prisma.merchantAisle.findUnique({
+    const junction = await prisma.merchantAisle.findUnique({
         where: { id: aisleId },
-        select: { merchantId: true },
+        select: { merchantId: true, aisleId: true },
     });
-    if (!aisle || aisle.merchantId !== merchantId) {
+    if (!junction || junction.merchantId !== merchantId) {
         return { error: "notFound" as const };
     }
 
     try {
-        await prisma.merchantAisle.delete({
-            where: { id: aisleId },
-        });
+        await prisma.$transaction(async (tx) => {
+            await tx.merchantAisle.delete({ where: { id: aisleId } });
 
-        const aisles = await prisma.merchantAisle.findMany({
-            where: { merchantId },
-            orderBy: { order: "asc" },
-            select: { id: true },
-        });
-        await prisma.$transaction(
-            aisles.map((a, index) =>
-                prisma.merchantAisle.update({
-                    where: { id: a.id },
+            const remaining = await tx.merchantAisle.count({
+                where: { aisleId: junction.aisleId },
+            });
+            if (remaining === 0) {
+                await tx.aisle.delete({ where: { id: junction.aisleId } });
+            }
+
+            const aisles = await tx.merchantAisle.findMany({
+                where: { merchantId },
+                orderBy: { order: "asc" },
+                select: { id: true },
+            });
+            for (const [index, aisle] of aisles.entries()) {
+                await tx.merchantAisle.update({
+                    where: { id: aisle.id },
                     data: { order: index },
-                }),
-            ),
-        );
+                });
+            }
+        });
 
         return { success: true };
     } catch {
@@ -337,15 +373,39 @@ export async function getAisleRules(
             id: true,
             order: true,
             missionItem: { select: { id: true, title: true } },
-            merchantAisle: { select: { id: true, name: true } },
+            merchantAisle: { select: { id: true, aisle: { select: { name: true } } } },
         },
     });
 
-    return { rules };
+    return {
+        rules: rules.map((rule) => ({
+            id: rule.id,
+            order: rule.order,
+            missionItem: rule.missionItem,
+            merchantAisle: {
+                id: rule.merchantAisle.id,
+                name: rule.merchantAisle.aisle.name,
+            },
+        })),
+    };
 }
 
-export async function getMissionItems() {
+export async function getMissionItems(userId: string, squadId: string) {
+    const member = await prisma.member.findUnique({
+        where: { userId },
+        select: {
+            squadCrews: {
+                where: { squadId },
+                select: { id: true },
+            },
+        },
+    });
+    if (!member?.squadCrews.length) {
+        return { items: [] };
+    }
+
     const items = await prisma.missionItem.findMany({
+        where: { squadId },
         select: { id: true, title: true },
         orderBy: { title: "asc" },
     });

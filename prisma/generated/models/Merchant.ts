@@ -186,6 +186,7 @@ export type MerchantWhereInput = {
   aisles?: Prisma.MerchantAisleListRelationFilter
   aisleRules?: Prisma.MerchantAisleRuleListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
+  missions?: Prisma.MissionListRelationFilter
 }
 
 export type MerchantOrderByWithRelationInput = {
@@ -198,6 +199,7 @@ export type MerchantOrderByWithRelationInput = {
   aisles?: Prisma.MerchantAisleOrderByRelationAggregateInput
   aisleRules?: Prisma.MerchantAisleRuleOrderByRelationAggregateInput
   receipts?: Prisma.ReceiptOrderByRelationAggregateInput
+  missions?: Prisma.MissionOrderByRelationAggregateInput
 }
 
 export type MerchantWhereUniqueInput = Prisma.AtLeast<{
@@ -213,6 +215,7 @@ export type MerchantWhereUniqueInput = Prisma.AtLeast<{
   aisles?: Prisma.MerchantAisleListRelationFilter
   aisleRules?: Prisma.MerchantAisleRuleListRelationFilter
   receipts?: Prisma.ReceiptListRelationFilter
+  missions?: Prisma.MissionListRelationFilter
 }, "id">
 
 export type MerchantOrderByWithAggregationInput = {
@@ -246,6 +249,7 @@ export type MerchantCreateInput = {
   aisles?: Prisma.MerchantAisleCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUncheckedCreateInput = {
@@ -257,6 +261,7 @@ export type MerchantUncheckedCreateInput = {
   aisles?: Prisma.MerchantAisleUncheckedCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUpdateInput = {
@@ -268,6 +273,7 @@ export type MerchantUpdateInput = {
   aisles?: Prisma.MerchantAisleUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateInput = {
@@ -279,6 +285,7 @@ export type MerchantUncheckedUpdateInput = {
   aisles?: Prisma.MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantCreateManyInput = {
@@ -341,6 +348,11 @@ export type MerchantMinOrderByAggregateInput = {
 export type MerchantScalarRelationFilter = {
   is?: Prisma.MerchantWhereInput
   isNot?: Prisma.MerchantWhereInput
+}
+
+export type MerchantNullableScalarRelationFilter = {
+  is?: Prisma.MerchantWhereInput | null
+  isNot?: Prisma.MerchantWhereInput | null
 }
 
 export type MerchantCreateNestedManyWithoutSquadInput = {
@@ -413,6 +425,22 @@ export type MerchantUpdateOneRequiredWithoutAisleRulesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MerchantUpdateToOneWithWhereWithoutAisleRulesInput, Prisma.MerchantUpdateWithoutAisleRulesInput>, Prisma.MerchantUncheckedUpdateWithoutAisleRulesInput>
 }
 
+export type MerchantCreateNestedOneWithoutMissionsInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutMissionsInput, Prisma.MerchantUncheckedCreateWithoutMissionsInput>
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutMissionsInput
+  connect?: Prisma.MerchantWhereUniqueInput
+}
+
+export type MerchantUpdateOneWithoutMissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.MerchantCreateWithoutMissionsInput, Prisma.MerchantUncheckedCreateWithoutMissionsInput>
+  connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutMissionsInput
+  upsert?: Prisma.MerchantUpsertWithoutMissionsInput
+  disconnect?: Prisma.MerchantWhereInput | boolean
+  delete?: Prisma.MerchantWhereInput | boolean
+  connect?: Prisma.MerchantWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MerchantUpdateToOneWithWhereWithoutMissionsInput, Prisma.MerchantUpdateWithoutMissionsInput>, Prisma.MerchantUncheckedUpdateWithoutMissionsInput>
+}
+
 export type MerchantCreateNestedOneWithoutReceiptsInput = {
   create?: Prisma.XOR<Prisma.MerchantCreateWithoutReceiptsInput, Prisma.MerchantUncheckedCreateWithoutReceiptsInput>
   connectOrCreate?: Prisma.MerchantCreateOrConnectWithoutReceiptsInput
@@ -435,6 +463,7 @@ export type MerchantCreateWithoutSquadInput = {
   aisles?: Prisma.MerchantAisleCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUncheckedCreateWithoutSquadInput = {
@@ -445,6 +474,7 @@ export type MerchantUncheckedCreateWithoutSquadInput = {
   aisles?: Prisma.MerchantAisleUncheckedCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantCreateOrConnectWithoutSquadInput = {
@@ -492,6 +522,7 @@ export type MerchantCreateWithoutAislesInput = {
   squad: Prisma.SquadCreateNestedOneWithoutMerchantsInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUncheckedCreateWithoutAislesInput = {
@@ -502,6 +533,7 @@ export type MerchantUncheckedCreateWithoutAislesInput = {
   squadId: string
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantCreateOrConnectWithoutAislesInput = {
@@ -528,6 +560,7 @@ export type MerchantUpdateWithoutAislesInput = {
   squad?: Prisma.SquadUpdateOneRequiredWithoutMerchantsNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateWithoutAislesInput = {
@@ -538,6 +571,7 @@ export type MerchantUncheckedUpdateWithoutAislesInput = {
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantCreateWithoutAisleRulesInput = {
@@ -548,6 +582,7 @@ export type MerchantCreateWithoutAisleRulesInput = {
   squad: Prisma.SquadCreateNestedOneWithoutMerchantsInput
   aisles?: Prisma.MerchantAisleCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUncheckedCreateWithoutAisleRulesInput = {
@@ -558,6 +593,7 @@ export type MerchantUncheckedCreateWithoutAisleRulesInput = {
   squadId: string
   aisles?: Prisma.MerchantAisleUncheckedCreateNestedManyWithoutMerchantInput
   receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantCreateOrConnectWithoutAisleRulesInput = {
@@ -584,6 +620,7 @@ export type MerchantUpdateWithoutAisleRulesInput = {
   squad?: Prisma.SquadUpdateOneRequiredWithoutMerchantsNestedInput
   aisles?: Prisma.MerchantAisleUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateWithoutAisleRulesInput = {
@@ -593,6 +630,67 @@ export type MerchantUncheckedUpdateWithoutAisleRulesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
   aisles?: Prisma.MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput
+  receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantCreateWithoutMissionsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMerchantsInput
+  aisles?: Prisma.MerchantAisleCreateNestedManyWithoutMerchantInput
+  aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantInput
+  receipts?: Prisma.ReceiptCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantUncheckedCreateWithoutMissionsInput = {
+  id?: string
+  name: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squadId: string
+  aisles?: Prisma.MerchantAisleUncheckedCreateNestedManyWithoutMerchantInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantInput
+  receipts?: Prisma.ReceiptUncheckedCreateNestedManyWithoutMerchantInput
+}
+
+export type MerchantCreateOrConnectWithoutMissionsInput = {
+  where: Prisma.MerchantWhereUniqueInput
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutMissionsInput, Prisma.MerchantUncheckedCreateWithoutMissionsInput>
+}
+
+export type MerchantUpsertWithoutMissionsInput = {
+  update: Prisma.XOR<Prisma.MerchantUpdateWithoutMissionsInput, Prisma.MerchantUncheckedUpdateWithoutMissionsInput>
+  create: Prisma.XOR<Prisma.MerchantCreateWithoutMissionsInput, Prisma.MerchantUncheckedCreateWithoutMissionsInput>
+  where?: Prisma.MerchantWhereInput
+}
+
+export type MerchantUpdateToOneWithWhereWithoutMissionsInput = {
+  where?: Prisma.MerchantWhereInput
+  data: Prisma.XOR<Prisma.MerchantUpdateWithoutMissionsInput, Prisma.MerchantUncheckedUpdateWithoutMissionsInput>
+}
+
+export type MerchantUpdateWithoutMissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMerchantsNestedInput
+  aisles?: Prisma.MerchantAisleUpdateManyWithoutMerchantNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantNestedInput
+  receipts?: Prisma.ReceiptUpdateManyWithoutMerchantNestedInput
+}
+
+export type MerchantUncheckedUpdateWithoutMissionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisles?: Prisma.MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
@@ -604,6 +702,7 @@ export type MerchantCreateWithoutReceiptsInput = {
   squad: Prisma.SquadCreateNestedOneWithoutMerchantsInput
   aisles?: Prisma.MerchantAisleCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantUncheckedCreateWithoutReceiptsInput = {
@@ -614,6 +713,7 @@ export type MerchantUncheckedCreateWithoutReceiptsInput = {
   squadId: string
   aisles?: Prisma.MerchantAisleUncheckedCreateNestedManyWithoutMerchantInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMerchantInput
+  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutMerchantInput
 }
 
 export type MerchantCreateOrConnectWithoutReceiptsInput = {
@@ -640,6 +740,7 @@ export type MerchantUpdateWithoutReceiptsInput = {
   squad?: Prisma.SquadUpdateOneRequiredWithoutMerchantsNestedInput
   aisles?: Prisma.MerchantAisleUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateWithoutReceiptsInput = {
@@ -650,6 +751,7 @@ export type MerchantUncheckedUpdateWithoutReceiptsInput = {
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
   aisles?: Prisma.MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantCreateManySquadInput = {
@@ -667,6 +769,7 @@ export type MerchantUpdateWithoutSquadInput = {
   aisles?: Prisma.MerchantAisleUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateWithoutSquadInput = {
@@ -677,6 +780,7 @@ export type MerchantUncheckedUpdateWithoutSquadInput = {
   aisles?: Prisma.MerchantAisleUncheckedUpdateManyWithoutMerchantNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMerchantNestedInput
   receipts?: Prisma.ReceiptUncheckedUpdateManyWithoutMerchantNestedInput
+  missions?: Prisma.MissionUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
 export type MerchantUncheckedUpdateManyWithoutSquadInput = {
@@ -695,12 +799,14 @@ export type MerchantCountOutputType = {
   aisles: number
   aisleRules: number
   receipts: number
+  missions: number
 }
 
 export type MerchantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   aisles?: boolean | MerchantCountOutputTypeCountAislesArgs
   aisleRules?: boolean | MerchantCountOutputTypeCountAisleRulesArgs
   receipts?: boolean | MerchantCountOutputTypeCountReceiptsArgs
+  missions?: boolean | MerchantCountOutputTypeCountMissionsArgs
 }
 
 /**
@@ -734,6 +840,13 @@ export type MerchantCountOutputTypeCountReceiptsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ReceiptWhereInput
 }
 
+/**
+ * MerchantCountOutputType without action
+ */
+export type MerchantCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.MissionWhereInput
+}
+
 
 export type MerchantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -745,6 +858,7 @@ export type MerchantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   aisles?: boolean | Prisma.Merchant$aislesArgs<ExtArgs>
   aisleRules?: boolean | Prisma.Merchant$aisleRulesArgs<ExtArgs>
   receipts?: boolean | Prisma.Merchant$receiptsArgs<ExtArgs>
+  missions?: boolean | Prisma.Merchant$missionsArgs<ExtArgs>
   _count?: boolean | Prisma.MerchantCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["merchant"]>
 
@@ -780,6 +894,7 @@ export type MerchantInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   aisles?: boolean | Prisma.Merchant$aislesArgs<ExtArgs>
   aisleRules?: boolean | Prisma.Merchant$aisleRulesArgs<ExtArgs>
   receipts?: boolean | Prisma.Merchant$receiptsArgs<ExtArgs>
+  missions?: boolean | Prisma.Merchant$missionsArgs<ExtArgs>
   _count?: boolean | Prisma.MerchantCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MerchantIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -796,6 +911,7 @@ export type $MerchantPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     aisles: Prisma.$MerchantAislePayload<ExtArgs>[]
     aisleRules: Prisma.$MerchantAisleRulePayload<ExtArgs>[]
     receipts: Prisma.$ReceiptPayload<ExtArgs>[]
+    missions: Prisma.$MissionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1201,6 +1317,7 @@ export interface Prisma__MerchantClient<T, Null = never, ExtArgs extends runtime
   aisles<T extends Prisma.Merchant$aislesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$aislesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantAislePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aisleRules<T extends Prisma.Merchant$aisleRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$aisleRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantAisleRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receipts<T extends Prisma.Merchant$receiptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$receiptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReceiptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  missions<T extends Prisma.Merchant$missionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Merchant$missionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1705,6 +1822,30 @@ export type Merchant$receiptsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ReceiptScalarFieldEnum | Prisma.ReceiptScalarFieldEnum[]
+}
+
+/**
+ * Merchant.missions
+ */
+export type Merchant$missionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Mission
+   */
+  select?: Prisma.MissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Mission
+   */
+  omit?: Prisma.MissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionInclude<ExtArgs> | null
+  where?: Prisma.MissionWhereInput
+  orderBy?: Prisma.MissionOrderByWithRelationInput | Prisma.MissionOrderByWithRelationInput[]
+  cursor?: Prisma.MissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.MissionScalarFieldEnum | Prisma.MissionScalarFieldEnum[]
 }
 
 /**

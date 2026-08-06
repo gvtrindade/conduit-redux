@@ -6,10 +6,12 @@ import { Menu, MenuItem, MenuPopup, MenuPositioner, MenuTrigger } from "@/compon
 
 export default function PageHeader({
   title,
+  showBack = true,
   onBack,
   menu,
 }: {
   title: string;
+  showBack?: boolean;
   onBack?: () => void;
   menu?: { label: string; onSelect: () => void }[];
 }) {
@@ -22,14 +24,18 @@ export default function PageHeader({
 
   return (
     <div className="flex items-center justify-between gap-2 py-3.5">
-      <button
-        type="button"
-        aria-label="Go back"
-        onClick={goBack}
-        className="flex items-center justify-center size-8 cursor-pointer transition-colors text-sand hover:text-amber"
-      >
-        <ArrowLeft size={16} />
-      </button>
+      {showBack ? (
+        <button
+          type="button"
+          aria-label="Go back"
+          onClick={goBack}
+          className="flex items-center justify-center size-8 cursor-pointer transition-colors text-sand hover:text-amber"
+        >
+          <ArrowLeft size={16} />
+        </button>
+      ) : (
+        <div className="size-8" />
+      )}
 
       <h1 className="font-heading text-sm font-bold tracking-widest text-cream uppercase truncate">
         {title}

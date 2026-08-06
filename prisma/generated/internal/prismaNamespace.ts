@@ -406,12 +406,12 @@ export const ModelName = {
   SquadCrew: 'SquadCrew',
   SquadCrewInvite: 'SquadCrewInvite',
   Merchant: 'Merchant',
+  Aisle: 'Aisle',
   MerchantAisle: 'MerchantAisle',
   MerchantAisleRule: 'MerchantAisleRule',
   Mission: 'Mission',
   MissionItem: 'MissionItem',
   MissionItemEst: 'MissionItemEst',
-  MissionCrew: 'MissionCrew',
   Receipt: 'Receipt',
   ReceiptItem: 'ReceiptItem',
   Item: 'Item',
@@ -431,7 +431,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "session" | "account" | "verification" | "member" | "squad" | "squadCrew" | "squadCrewInvite" | "merchant" | "merchantAisle" | "merchantAisleRule" | "mission" | "missionItem" | "missionItemEst" | "missionCrew" | "receipt" | "receiptItem" | "item" | "processingRules"
+    modelProps: "user" | "session" | "account" | "verification" | "member" | "squad" | "squadCrew" | "squadCrewInvite" | "merchant" | "aisle" | "merchantAisle" | "merchantAisleRule" | "mission" | "missionItem" | "missionItemEst" | "receipt" | "receiptItem" | "item" | "processingRules"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1101,6 +1101,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Aisle: {
+      payload: Prisma.$AislePayload<ExtArgs>
+      fields: Prisma.AisleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AisleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AisleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        findFirst: {
+          args: Prisma.AisleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AisleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        findMany: {
+          args: Prisma.AisleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>[]
+        }
+        create: {
+          args: Prisma.AisleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        createMany: {
+          args: Prisma.AisleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AisleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>[]
+        }
+        delete: {
+          args: Prisma.AisleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        update: {
+          args: Prisma.AisleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        deleteMany: {
+          args: Prisma.AisleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AisleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AisleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>[]
+        }
+        upsert: {
+          args: Prisma.AisleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AislePayload>
+        }
+        aggregate: {
+          args: Prisma.AisleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAisle>
+        }
+        groupBy: {
+          args: Prisma.AisleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AisleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AisleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AisleCountAggregateOutputType> | number
+        }
+      }
+    }
     MerchantAisle: {
       payload: Prisma.$MerchantAislePayload<ExtArgs>
       fields: Prisma.MerchantAisleFieldRefs
@@ -1468,80 +1542,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.MissionItemEstCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.MissionItemEstCountAggregateOutputType> | number
-        }
-      }
-    }
-    MissionCrew: {
-      payload: Prisma.$MissionCrewPayload<ExtArgs>
-      fields: Prisma.MissionCrewFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.MissionCrewFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.MissionCrewFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        findFirst: {
-          args: Prisma.MissionCrewFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.MissionCrewFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        findMany: {
-          args: Prisma.MissionCrewFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>[]
-        }
-        create: {
-          args: Prisma.MissionCrewCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        createMany: {
-          args: Prisma.MissionCrewCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.MissionCrewCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>[]
-        }
-        delete: {
-          args: Prisma.MissionCrewDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        update: {
-          args: Prisma.MissionCrewUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        deleteMany: {
-          args: Prisma.MissionCrewDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.MissionCrewUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.MissionCrewUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>[]
-        }
-        upsert: {
-          args: Prisma.MissionCrewUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$MissionCrewPayload>
-        }
-        aggregate: {
-          args: Prisma.MissionCrewAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateMissionCrew>
-        }
-        groupBy: {
-          args: Prisma.MissionCrewGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MissionCrewGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.MissionCrewCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.MissionCrewCountAggregateOutputType> | number
         }
       }
     }
@@ -1994,13 +1994,24 @@ export const MerchantScalarFieldEnum = {
 export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]
 
 
-export const MerchantAisleScalarFieldEnum = {
+export const AisleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  squadId: 'squadId'
+} as const
+
+export type AisleScalarFieldEnum = (typeof AisleScalarFieldEnum)[keyof typeof AisleScalarFieldEnum]
+
+
+export const MerchantAisleScalarFieldEnum = {
+  id: 'id',
   order: 'order',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  merchantId: 'merchantId'
+  merchantId: 'merchantId',
+  aisleId: 'aisleId'
 } as const
 
 export type MerchantAisleScalarFieldEnum = (typeof MerchantAisleScalarFieldEnum)[keyof typeof MerchantAisleScalarFieldEnum]
@@ -2023,9 +2034,11 @@ export const MissionScalarFieldEnum = {
   id: 'id',
   title: 'title',
   state: 'state',
+  finalStatus: 'finalStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  squadId: 'squadId'
+  squadId: 'squadId',
+  merchantId: 'merchantId'
 } as const
 
 export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
@@ -2036,7 +2049,9 @@ export const MissionItemScalarFieldEnum = {
   title: 'title',
   category: 'category',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  squadId: 'squadId',
+  aisleId: 'aisleId'
 } as const
 
 export type MissionItemScalarFieldEnum = (typeof MissionItemScalarFieldEnum)[keyof typeof MissionItemScalarFieldEnum]
@@ -2045,20 +2060,12 @@ export type MissionItemScalarFieldEnum = (typeof MissionItemScalarFieldEnum)[key
 export const MissionItemEstScalarFieldEnum = {
   id: 'id',
   estValue: 'estValue',
+  complete: 'complete',
   missionId: 'missionId',
   missionItemId: 'missionItemId'
 } as const
 
 export type MissionItemEstScalarFieldEnum = (typeof MissionItemEstScalarFieldEnum)[keyof typeof MissionItemEstScalarFieldEnum]
-
-
-export const MissionCrewScalarFieldEnum = {
-  id: 'id',
-  missionId: 'missionId',
-  memberId: 'memberId'
-} as const
-
-export type MissionCrewScalarFieldEnum = (typeof MissionCrewScalarFieldEnum)[keyof typeof MissionCrewScalarFieldEnum]
 
 
 export const ReceiptScalarFieldEnum = {
@@ -2406,12 +2413,12 @@ export type GlobalOmitConfig = {
   squadCrew?: Prisma.SquadCrewOmit
   squadCrewInvite?: Prisma.SquadCrewInviteOmit
   merchant?: Prisma.MerchantOmit
+  aisle?: Prisma.AisleOmit
   merchantAisle?: Prisma.MerchantAisleOmit
   merchantAisleRule?: Prisma.MerchantAisleRuleOmit
   mission?: Prisma.MissionOmit
   missionItem?: Prisma.MissionItemOmit
   missionItemEst?: Prisma.MissionItemEstOmit
-  missionCrew?: Prisma.MissionCrewOmit
   receipt?: Prisma.ReceiptOmit
   receiptItem?: Prisma.ReceiptItemOmit
   item?: Prisma.ItemOmit

@@ -31,6 +31,7 @@ export type MissionMinAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   squadId: string | null
+  merchantId: string | null
 }
 
 export type MissionMaxAggregateOutputType = {
@@ -40,15 +41,18 @@ export type MissionMaxAggregateOutputType = {
   createdAt: Date | null
   updatedAt: Date | null
   squadId: string | null
+  merchantId: string | null
 }
 
 export type MissionCountAggregateOutputType = {
   id: number
   title: number
   state: number
+  finalStatus: number
   createdAt: number
   updatedAt: number
   squadId: number
+  merchantId: number
   _all: number
 }
 
@@ -60,6 +64,7 @@ export type MissionMinAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   squadId?: true
+  merchantId?: true
 }
 
 export type MissionMaxAggregateInputType = {
@@ -69,15 +74,18 @@ export type MissionMaxAggregateInputType = {
   createdAt?: true
   updatedAt?: true
   squadId?: true
+  merchantId?: true
 }
 
 export type MissionCountAggregateInputType = {
   id?: true
   title?: true
   state?: true
+  finalStatus?: true
   createdAt?: true
   updatedAt?: true
   squadId?: true
+  merchantId?: true
   _all?: true
 }
 
@@ -157,9 +165,11 @@ export type MissionGroupByOutputType = {
   id: string
   title: string
   state: string
+  finalStatus: runtime.JsonValue | null
   createdAt: Date
   updatedAt: Date
   squadId: string
+  merchantId: string | null
   _count: MissionCountAggregateOutputType | null
   _min: MissionMinAggregateOutputType | null
   _max: MissionMaxAggregateOutputType | null
@@ -187,24 +197,28 @@ export type MissionWhereInput = {
   id?: Prisma.StringFilter<"Mission"> | string
   title?: Prisma.StringFilter<"Mission"> | string
   state?: Prisma.StringFilter<"Mission"> | string
+  finalStatus?: Prisma.JsonNullableFilter<"Mission">
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   squadId?: Prisma.StringFilter<"Mission"> | string
+  merchantId?: Prisma.StringNullableFilter<"Mission"> | string | null
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
+  merchant?: Prisma.XOR<Prisma.MerchantNullableScalarRelationFilter, Prisma.MerchantWhereInput> | null
   itemEstimates?: Prisma.MissionItemEstListRelationFilter
-  crew?: Prisma.MissionCrewListRelationFilter
 }
 
 export type MissionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  finalStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
+  merchantId?: Prisma.SortOrderInput | Prisma.SortOrder
   squad?: Prisma.SquadOrderByWithRelationInput
+  merchant?: Prisma.MerchantOrderByWithRelationInput
   itemEstimates?: Prisma.MissionItemEstOrderByRelationAggregateInput
-  crew?: Prisma.MissionCrewOrderByRelationAggregateInput
 }
 
 export type MissionWhereUniqueInput = Prisma.AtLeast<{
@@ -214,21 +228,25 @@ export type MissionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.MissionWhereInput | Prisma.MissionWhereInput[]
   title?: Prisma.StringFilter<"Mission"> | string
   state?: Prisma.StringFilter<"Mission"> | string
+  finalStatus?: Prisma.JsonNullableFilter<"Mission">
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   squadId?: Prisma.StringFilter<"Mission"> | string
+  merchantId?: Prisma.StringNullableFilter<"Mission"> | string | null
   squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
+  merchant?: Prisma.XOR<Prisma.MerchantNullableScalarRelationFilter, Prisma.MerchantWhereInput> | null
   itemEstimates?: Prisma.MissionItemEstListRelationFilter
-  crew?: Prisma.MissionCrewListRelationFilter
 }, "id">
 
 export type MissionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  finalStatus?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
+  merchantId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MissionCountOrderByAggregateInput
   _max?: Prisma.MissionMaxOrderByAggregateInput
   _min?: Prisma.MissionMinOrderByAggregateInput
@@ -241,68 +259,77 @@ export type MissionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Mission"> | string
   title?: Prisma.StringWithAggregatesFilter<"Mission"> | string
   state?: Prisma.StringWithAggregatesFilter<"Mission"> | string
+  finalStatus?: Prisma.JsonNullableWithAggregatesFilter<"Mission">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Mission"> | Date | string
   squadId?: Prisma.StringWithAggregatesFilter<"Mission"> | string
+  merchantId?: Prisma.StringNullableWithAggregatesFilter<"Mission"> | string | null
 }
 
 export type MissionCreateInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   squad: Prisma.SquadCreateNestedOneWithoutMissionsInput
+  merchant?: Prisma.MerchantCreateNestedOneWithoutMissionsInput
   itemEstimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionInput
-  crew?: Prisma.MissionCrewCreateNestedManyWithoutMissionInput
 }
 
 export type MissionUncheckedCreateInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
+  merchantId?: string | null
   itemEstimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionInput
-  crew?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutMissionInput
 }
 
 export type MissionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutMissionsNestedInput
+  merchant?: Prisma.MerchantUpdateOneWithoutMissionsNestedInput
   itemEstimates?: Prisma.MissionItemEstUpdateManyWithoutMissionNestedInput
-  crew?: Prisma.MissionCrewUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  merchantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemEstimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionNestedInput
-  crew?: Prisma.MissionCrewUncheckedUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionCreateManyInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
+  merchantId?: string | null
 }
 
 export type MissionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -311,9 +338,11 @@ export type MissionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  merchantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MissionListRelationFilter = {
@@ -330,9 +359,11 @@ export type MissionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   state?: Prisma.SortOrder
+  finalStatus?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
+  merchantId?: Prisma.SortOrder
 }
 
 export type MissionMaxOrderByAggregateInput = {
@@ -342,6 +373,7 @@ export type MissionMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
+  merchantId?: Prisma.SortOrder
 }
 
 export type MissionMinOrderByAggregateInput = {
@@ -351,6 +383,7 @@ export type MissionMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   squadId?: Prisma.SortOrder
+  merchantId?: Prisma.SortOrder
 }
 
 export type MissionScalarRelationFilter = {
@@ -400,6 +433,48 @@ export type MissionUncheckedUpdateManyWithoutSquadNestedInput = {
   deleteMany?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
 }
 
+export type MissionCreateNestedManyWithoutMerchantInput = {
+  create?: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput> | Prisma.MissionCreateWithoutMerchantInput[] | Prisma.MissionUncheckedCreateWithoutMerchantInput[]
+  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutMerchantInput | Prisma.MissionCreateOrConnectWithoutMerchantInput[]
+  createMany?: Prisma.MissionCreateManyMerchantInputEnvelope
+  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+}
+
+export type MissionUncheckedCreateNestedManyWithoutMerchantInput = {
+  create?: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput> | Prisma.MissionCreateWithoutMerchantInput[] | Prisma.MissionUncheckedCreateWithoutMerchantInput[]
+  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutMerchantInput | Prisma.MissionCreateOrConnectWithoutMerchantInput[]
+  createMany?: Prisma.MissionCreateManyMerchantInputEnvelope
+  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+}
+
+export type MissionUpdateManyWithoutMerchantNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput> | Prisma.MissionCreateWithoutMerchantInput[] | Prisma.MissionUncheckedCreateWithoutMerchantInput[]
+  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutMerchantInput | Prisma.MissionCreateOrConnectWithoutMerchantInput[]
+  upsert?: Prisma.MissionUpsertWithWhereUniqueWithoutMerchantInput | Prisma.MissionUpsertWithWhereUniqueWithoutMerchantInput[]
+  createMany?: Prisma.MissionCreateManyMerchantInputEnvelope
+  set?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  disconnect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  delete?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  update?: Prisma.MissionUpdateWithWhereUniqueWithoutMerchantInput | Prisma.MissionUpdateWithWhereUniqueWithoutMerchantInput[]
+  updateMany?: Prisma.MissionUpdateManyWithWhereWithoutMerchantInput | Prisma.MissionUpdateManyWithWhereWithoutMerchantInput[]
+  deleteMany?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
+}
+
+export type MissionUncheckedUpdateManyWithoutMerchantNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput> | Prisma.MissionCreateWithoutMerchantInput[] | Prisma.MissionUncheckedCreateWithoutMerchantInput[]
+  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutMerchantInput | Prisma.MissionCreateOrConnectWithoutMerchantInput[]
+  upsert?: Prisma.MissionUpsertWithWhereUniqueWithoutMerchantInput | Prisma.MissionUpsertWithWhereUniqueWithoutMerchantInput[]
+  createMany?: Prisma.MissionCreateManyMerchantInputEnvelope
+  set?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  disconnect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  delete?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
+  update?: Prisma.MissionUpdateWithWhereUniqueWithoutMerchantInput | Prisma.MissionUpdateWithWhereUniqueWithoutMerchantInput[]
+  updateMany?: Prisma.MissionUpdateManyWithWhereWithoutMerchantInput | Prisma.MissionUpdateManyWithWhereWithoutMerchantInput[]
+  deleteMany?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
+}
+
 export type MissionCreateNestedOneWithoutItemEstimatesInput = {
   create?: Prisma.XOR<Prisma.MissionCreateWithoutItemEstimatesInput, Prisma.MissionUncheckedCreateWithoutItemEstimatesInput>
   connectOrCreate?: Prisma.MissionCreateOrConnectWithoutItemEstimatesInput
@@ -414,38 +489,26 @@ export type MissionUpdateOneRequiredWithoutItemEstimatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MissionUpdateToOneWithWhereWithoutItemEstimatesInput, Prisma.MissionUpdateWithoutItemEstimatesInput>, Prisma.MissionUncheckedUpdateWithoutItemEstimatesInput>
 }
 
-export type MissionCreateNestedOneWithoutCrewInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutCrewInput, Prisma.MissionUncheckedCreateWithoutCrewInput>
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutCrewInput
-  connect?: Prisma.MissionWhereUniqueInput
-}
-
-export type MissionUpdateOneRequiredWithoutCrewNestedInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutCrewInput, Prisma.MissionUncheckedCreateWithoutCrewInput>
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutCrewInput
-  upsert?: Prisma.MissionUpsertWithoutCrewInput
-  connect?: Prisma.MissionWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.MissionUpdateToOneWithWhereWithoutCrewInput, Prisma.MissionUpdateWithoutCrewInput>, Prisma.MissionUncheckedUpdateWithoutCrewInput>
-}
-
 export type MissionCreateWithoutSquadInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  merchant?: Prisma.MerchantCreateNestedOneWithoutMissionsInput
   itemEstimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionInput
-  crew?: Prisma.MissionCrewCreateNestedManyWithoutMissionInput
 }
 
 export type MissionUncheckedCreateWithoutSquadInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  merchantId?: string | null
   itemEstimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionInput
-  crew?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutMissionInput
 }
 
 export type MissionCreateOrConnectWithoutSquadInput = {
@@ -481,29 +544,81 @@ export type MissionScalarWhereInput = {
   id?: Prisma.StringFilter<"Mission"> | string
   title?: Prisma.StringFilter<"Mission"> | string
   state?: Prisma.StringFilter<"Mission"> | string
+  finalStatus?: Prisma.JsonNullableFilter<"Mission">
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   squadId?: Prisma.StringFilter<"Mission"> | string
+  merchantId?: Prisma.StringNullableFilter<"Mission"> | string | null
+}
+
+export type MissionCreateWithoutMerchantInput = {
+  id?: string
+  title: string
+  state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMissionsInput
+  itemEstimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionInput
+}
+
+export type MissionUncheckedCreateWithoutMerchantInput = {
+  id?: string
+  title: string
+  state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squadId: string
+  itemEstimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionInput
+}
+
+export type MissionCreateOrConnectWithoutMerchantInput = {
+  where: Prisma.MissionWhereUniqueInput
+  create: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput>
+}
+
+export type MissionCreateManyMerchantInputEnvelope = {
+  data: Prisma.MissionCreateManyMerchantInput | Prisma.MissionCreateManyMerchantInput[]
+  skipDuplicates?: boolean
+}
+
+export type MissionUpsertWithWhereUniqueWithoutMerchantInput = {
+  where: Prisma.MissionWhereUniqueInput
+  update: Prisma.XOR<Prisma.MissionUpdateWithoutMerchantInput, Prisma.MissionUncheckedUpdateWithoutMerchantInput>
+  create: Prisma.XOR<Prisma.MissionCreateWithoutMerchantInput, Prisma.MissionUncheckedCreateWithoutMerchantInput>
+}
+
+export type MissionUpdateWithWhereUniqueWithoutMerchantInput = {
+  where: Prisma.MissionWhereUniqueInput
+  data: Prisma.XOR<Prisma.MissionUpdateWithoutMerchantInput, Prisma.MissionUncheckedUpdateWithoutMerchantInput>
+}
+
+export type MissionUpdateManyWithWhereWithoutMerchantInput = {
+  where: Prisma.MissionScalarWhereInput
+  data: Prisma.XOR<Prisma.MissionUpdateManyMutationInput, Prisma.MissionUncheckedUpdateManyWithoutMerchantInput>
 }
 
 export type MissionCreateWithoutItemEstimatesInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   squad: Prisma.SquadCreateNestedOneWithoutMissionsInput
-  crew?: Prisma.MissionCrewCreateNestedManyWithoutMissionInput
+  merchant?: Prisma.MerchantCreateNestedOneWithoutMissionsInput
 }
 
 export type MissionUncheckedCreateWithoutItemEstimatesInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
   squadId: string
-  crew?: Prisma.MissionCrewUncheckedCreateNestedManyWithoutMissionInput
+  merchantId?: string | null
 }
 
 export type MissionCreateOrConnectWithoutItemEstimatesInput = {
@@ -526,112 +641,106 @@ export type MissionUpdateWithoutItemEstimatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squad?: Prisma.SquadUpdateOneRequiredWithoutMissionsNestedInput
-  crew?: Prisma.MissionCrewUpdateManyWithoutMissionNestedInput
+  merchant?: Prisma.MerchantUpdateOneWithoutMissionsNestedInput
 }
 
 export type MissionUncheckedUpdateWithoutItemEstimatesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  crew?: Prisma.MissionCrewUncheckedUpdateManyWithoutMissionNestedInput
-}
-
-export type MissionCreateWithoutCrewInput = {
-  id?: string
-  title: string
-  state: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  squad: Prisma.SquadCreateNestedOneWithoutMissionsInput
-  itemEstimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionInput
-}
-
-export type MissionUncheckedCreateWithoutCrewInput = {
-  id?: string
-  title: string
-  state: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  squadId: string
-  itemEstimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionInput
-}
-
-export type MissionCreateOrConnectWithoutCrewInput = {
-  where: Prisma.MissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.MissionCreateWithoutCrewInput, Prisma.MissionUncheckedCreateWithoutCrewInput>
-}
-
-export type MissionUpsertWithoutCrewInput = {
-  update: Prisma.XOR<Prisma.MissionUpdateWithoutCrewInput, Prisma.MissionUncheckedUpdateWithoutCrewInput>
-  create: Prisma.XOR<Prisma.MissionCreateWithoutCrewInput, Prisma.MissionUncheckedCreateWithoutCrewInput>
-  where?: Prisma.MissionWhereInput
-}
-
-export type MissionUpdateToOneWithWhereWithoutCrewInput = {
-  where?: Prisma.MissionWhereInput
-  data: Prisma.XOR<Prisma.MissionUpdateWithoutCrewInput, Prisma.MissionUncheckedUpdateWithoutCrewInput>
-}
-
-export type MissionUpdateWithoutCrewInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionsNestedInput
-  itemEstimates?: Prisma.MissionItemEstUpdateManyWithoutMissionNestedInput
-}
-
-export type MissionUncheckedUpdateWithoutCrewInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  state?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  squadId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemEstimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionNestedInput
+  merchantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MissionCreateManySquadInput = {
   id?: string
   title: string
   state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  merchantId?: string | null
 }
 
 export type MissionUpdateWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchant?: Prisma.MerchantUpdateOneWithoutMissionsNestedInput
   itemEstimates?: Prisma.MissionItemEstUpdateManyWithoutMissionNestedInput
-  crew?: Prisma.MissionCrewUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionUncheckedUpdateWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemEstimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionNestedInput
-  crew?: Prisma.MissionCrewUncheckedUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionUncheckedUpdateManyWithoutSquadInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  merchantId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MissionCreateManyMerchantInput = {
+  id?: string
+  title: string
+  state: string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squadId: string
+}
+
+export type MissionUpdateWithoutMerchantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionsNestedInput
+  itemEstimates?: Prisma.MissionItemEstUpdateManyWithoutMissionNestedInput
+}
+
+export type MissionUncheckedUpdateWithoutMerchantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  itemEstimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionNestedInput
+}
+
+export type MissionUncheckedUpdateManyWithoutMerchantInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  state?: Prisma.StringFieldUpdateOperationsInput | string
+  finalStatus?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -641,12 +750,10 @@ export type MissionUncheckedUpdateManyWithoutSquadInput = {
 
 export type MissionCountOutputType = {
   itemEstimates: number
-  crew: number
 }
 
 export type MissionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   itemEstimates?: boolean | MissionCountOutputTypeCountItemEstimatesArgs
-  crew?: boolean | MissionCountOutputTypeCountCrewArgs
 }
 
 /**
@@ -666,24 +773,19 @@ export type MissionCountOutputTypeCountItemEstimatesArgs<ExtArgs extends runtime
   where?: Prisma.MissionItemEstWhereInput
 }
 
-/**
- * MissionCountOutputType without action
- */
-export type MissionCountOutputTypeCountCrewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MissionCrewWhereInput
-}
-
 
 export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   state?: boolean
+  finalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
+  merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
   itemEstimates?: boolean | Prisma.Mission$itemEstimatesArgs<ExtArgs>
-  crew?: boolean | Prisma.Mission$crewArgs<ExtArgs>
   _count?: boolean | Prisma.MissionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
@@ -691,59 +793,71 @@ export type MissionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   title?: boolean
   state?: boolean
+  finalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
+  merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
 export type MissionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   state?: boolean
+  finalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
+  merchantId?: boolean
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
 
 export type MissionSelectScalar = {
   id?: boolean
   title?: boolean
   state?: boolean
+  finalStatus?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   squadId?: boolean
+  merchantId?: boolean
 }
 
-export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "state" | "createdAt" | "updatedAt" | "squadId", ExtArgs["result"]["mission"]>
+export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "state" | "finalStatus" | "createdAt" | "updatedAt" | "squadId" | "merchantId", ExtArgs["result"]["mission"]>
 export type MissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
   itemEstimates?: boolean | Prisma.Mission$itemEstimatesArgs<ExtArgs>
-  crew?: boolean | Prisma.Mission$crewArgs<ExtArgs>
   _count?: boolean | Prisma.MissionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MissionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
 }
 export type MissionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  merchant?: boolean | Prisma.Mission$merchantArgs<ExtArgs>
 }
 
 export type $MissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Mission"
   objects: {
     squad: Prisma.$SquadPayload<ExtArgs>
+    merchant: Prisma.$MerchantPayload<ExtArgs> | null
     itemEstimates: Prisma.$MissionItemEstPayload<ExtArgs>[]
-    crew: Prisma.$MissionCrewPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     title: string
     state: string
+    finalStatus: runtime.JsonValue | null
     createdAt: Date
     updatedAt: Date
     squadId: string
+    merchantId: string | null
   }, ExtArgs["result"]["mission"]>
   composites: {}
 }
@@ -1139,8 +1253,8 @@ readonly fields: MissionFieldRefs;
 export interface Prisma__MissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   squad<T extends Prisma.SquadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SquadDefaultArgs<ExtArgs>>): Prisma.Prisma__SquadClient<runtime.Types.Result.GetResult<Prisma.$SquadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  merchant<T extends Prisma.Mission$merchantArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mission$merchantArgs<ExtArgs>>): Prisma.Prisma__MerchantClient<runtime.Types.Result.GetResult<Prisma.$MerchantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   itemEstimates<T extends Prisma.Mission$itemEstimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mission$itemEstimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionItemEstPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  crew<T extends Prisma.Mission$crewArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mission$crewArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionCrewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1173,9 +1287,11 @@ export interface MissionFieldRefs {
   readonly id: Prisma.FieldRef<"Mission", 'String'>
   readonly title: Prisma.FieldRef<"Mission", 'String'>
   readonly state: Prisma.FieldRef<"Mission", 'String'>
+  readonly finalStatus: Prisma.FieldRef<"Mission", 'Json'>
   readonly createdAt: Prisma.FieldRef<"Mission", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Mission", 'DateTime'>
   readonly squadId: Prisma.FieldRef<"Mission", 'String'>
+  readonly merchantId: Prisma.FieldRef<"Mission", 'String'>
 }
     
 
@@ -1577,6 +1693,25 @@ export type MissionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
+ * Mission.merchant
+ */
+export type Mission$merchantArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Merchant
+   */
+  select?: Prisma.MerchantSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Merchant
+   */
+  omit?: Prisma.MerchantOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MerchantInclude<ExtArgs> | null
+  where?: Prisma.MerchantWhereInput
+}
+
+/**
  * Mission.itemEstimates
  */
 export type Mission$itemEstimatesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1598,30 +1733,6 @@ export type Mission$itemEstimatesArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   distinct?: Prisma.MissionItemEstScalarFieldEnum | Prisma.MissionItemEstScalarFieldEnum[]
-}
-
-/**
- * Mission.crew
- */
-export type Mission$crewArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the MissionCrew
-   */
-  select?: Prisma.MissionCrewSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the MissionCrew
-   */
-  omit?: Prisma.MissionCrewOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MissionCrewInclude<ExtArgs> | null
-  where?: Prisma.MissionCrewWhereInput
-  orderBy?: Prisma.MissionCrewOrderByWithRelationInput | Prisma.MissionCrewOrderByWithRelationInput[]
-  cursor?: Prisma.MissionCrewWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MissionCrewScalarFieldEnum | Prisma.MissionCrewScalarFieldEnum[]
 }
 
 /**

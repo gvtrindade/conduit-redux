@@ -32,7 +32,7 @@ export default async function MerchantPage({
     await Promise.all([
       getAisles(session.user.id, squad.id, merchant.id),
       getAisleRules(session.user.id, squad.id, merchant.id),
-      getMissionItems(),
+      getMissionItems(session.user.id, squad.id),
       getMerchantReceipts(session.user.id, squad.id, merchant.id),
     ]);
 

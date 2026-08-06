@@ -30,6 +30,8 @@ export type MissionItemMinAggregateOutputType = {
   category: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  squadId: string | null
+  aisleId: string | null
 }
 
 export type MissionItemMaxAggregateOutputType = {
@@ -38,6 +40,8 @@ export type MissionItemMaxAggregateOutputType = {
   category: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  squadId: string | null
+  aisleId: string | null
 }
 
 export type MissionItemCountAggregateOutputType = {
@@ -46,6 +50,8 @@ export type MissionItemCountAggregateOutputType = {
   category: number
   createdAt: number
   updatedAt: number
+  squadId: number
+  aisleId: number
   _all: number
 }
 
@@ -56,6 +62,8 @@ export type MissionItemMinAggregateInputType = {
   category?: true
   createdAt?: true
   updatedAt?: true
+  squadId?: true
+  aisleId?: true
 }
 
 export type MissionItemMaxAggregateInputType = {
@@ -64,6 +72,8 @@ export type MissionItemMaxAggregateInputType = {
   category?: true
   createdAt?: true
   updatedAt?: true
+  squadId?: true
+  aisleId?: true
 }
 
 export type MissionItemCountAggregateInputType = {
@@ -72,6 +82,8 @@ export type MissionItemCountAggregateInputType = {
   category?: true
   createdAt?: true
   updatedAt?: true
+  squadId?: true
+  aisleId?: true
   _all?: true
 }
 
@@ -153,6 +165,8 @@ export type MissionItemGroupByOutputType = {
   category: string
   createdAt: Date
   updatedAt: Date
+  squadId: string
+  aisleId: string | null
   _count: MissionItemCountAggregateOutputType | null
   _min: MissionItemMinAggregateOutputType | null
   _max: MissionItemMaxAggregateOutputType | null
@@ -182,6 +196,10 @@ export type MissionItemWhereInput = {
   category?: Prisma.StringFilter<"MissionItem"> | string
   createdAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
+  squadId?: Prisma.StringFilter<"MissionItem"> | string
+  aisleId?: Prisma.StringNullableFilter<"MissionItem"> | string | null
+  squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
+  aisle?: Prisma.XOR<Prisma.AisleNullableScalarRelationFilter, Prisma.AisleWhereInput> | null
   estimates?: Prisma.MissionItemEstListRelationFilter
   aisleRules?: Prisma.MerchantAisleRuleListRelationFilter
 }
@@ -192,6 +210,10 @@ export type MissionItemOrderByWithRelationInput = {
   category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  squadId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrderInput | Prisma.SortOrder
+  squad?: Prisma.SquadOrderByWithRelationInput
+  aisle?: Prisma.AisleOrderByWithRelationInput
   estimates?: Prisma.MissionItemEstOrderByRelationAggregateInput
   aisleRules?: Prisma.MerchantAisleRuleOrderByRelationAggregateInput
 }
@@ -205,6 +227,10 @@ export type MissionItemWhereUniqueInput = Prisma.AtLeast<{
   category?: Prisma.StringFilter<"MissionItem"> | string
   createdAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
+  squadId?: Prisma.StringFilter<"MissionItem"> | string
+  aisleId?: Prisma.StringNullableFilter<"MissionItem"> | string | null
+  squad?: Prisma.XOR<Prisma.SquadScalarRelationFilter, Prisma.SquadWhereInput>
+  aisle?: Prisma.XOR<Prisma.AisleNullableScalarRelationFilter, Prisma.AisleWhereInput> | null
   estimates?: Prisma.MissionItemEstListRelationFilter
   aisleRules?: Prisma.MerchantAisleRuleListRelationFilter
 }, "id">
@@ -215,6 +241,8 @@ export type MissionItemOrderByWithAggregationInput = {
   category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  squadId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MissionItemCountOrderByAggregateInput
   _max?: Prisma.MissionItemMaxOrderByAggregateInput
   _min?: Prisma.MissionItemMinOrderByAggregateInput
@@ -229,6 +257,8 @@ export type MissionItemScalarWhereWithAggregatesInput = {
   category?: Prisma.StringWithAggregatesFilter<"MissionItem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"MissionItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"MissionItem"> | Date | string
+  squadId?: Prisma.StringWithAggregatesFilter<"MissionItem"> | string
+  aisleId?: Prisma.StringNullableWithAggregatesFilter<"MissionItem"> | string | null
 }
 
 export type MissionItemCreateInput = {
@@ -237,6 +267,8 @@ export type MissionItemCreateInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMissionItemsInput
+  aisle?: Prisma.AisleCreateNestedOneWithoutMissionItemsInput
   estimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionItemInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMissionItemInput
 }
@@ -247,6 +279,8 @@ export type MissionItemUncheckedCreateInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squadId: string
+  aisleId?: string | null
   estimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionItemInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMissionItemInput
 }
@@ -257,6 +291,8 @@ export type MissionItemUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionItemsNestedInput
+  aisle?: Prisma.AisleUpdateOneWithoutMissionItemsNestedInput
   estimates?: Prisma.MissionItemEstUpdateManyWithoutMissionItemNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMissionItemNestedInput
 }
@@ -267,6 +303,8 @@ export type MissionItemUncheckedUpdateInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionItemNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMissionItemNestedInput
 }
@@ -277,6 +315,8 @@ export type MissionItemCreateManyInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squadId: string
+  aisleId?: string | null
 }
 
 export type MissionItemUpdateManyMutationInput = {
@@ -293,6 +333,18 @@ export type MissionItemUncheckedUpdateManyInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MissionItemListRelationFilter = {
+  every?: Prisma.MissionItemWhereInput
+  some?: Prisma.MissionItemWhereInput
+  none?: Prisma.MissionItemWhereInput
+}
+
+export type MissionItemOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type MissionItemScalarRelationFilter = {
@@ -306,6 +358,8 @@ export type MissionItemCountOrderByAggregateInput = {
   category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  squadId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
 }
 
 export type MissionItemMaxOrderByAggregateInput = {
@@ -314,6 +368,8 @@ export type MissionItemMaxOrderByAggregateInput = {
   category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  squadId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
 }
 
 export type MissionItemMinOrderByAggregateInput = {
@@ -322,6 +378,92 @@ export type MissionItemMinOrderByAggregateInput = {
   category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  squadId?: Prisma.SortOrder
+  aisleId?: Prisma.SortOrder
+}
+
+export type MissionItemCreateNestedManyWithoutSquadInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput> | Prisma.MissionItemCreateWithoutSquadInput[] | Prisma.MissionItemUncheckedCreateWithoutSquadInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutSquadInput | Prisma.MissionItemCreateOrConnectWithoutSquadInput[]
+  createMany?: Prisma.MissionItemCreateManySquadInputEnvelope
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+}
+
+export type MissionItemUncheckedCreateNestedManyWithoutSquadInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput> | Prisma.MissionItemCreateWithoutSquadInput[] | Prisma.MissionItemUncheckedCreateWithoutSquadInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutSquadInput | Prisma.MissionItemCreateOrConnectWithoutSquadInput[]
+  createMany?: Prisma.MissionItemCreateManySquadInputEnvelope
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+}
+
+export type MissionItemUpdateManyWithoutSquadNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput> | Prisma.MissionItemCreateWithoutSquadInput[] | Prisma.MissionItemUncheckedCreateWithoutSquadInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutSquadInput | Prisma.MissionItemCreateOrConnectWithoutSquadInput[]
+  upsert?: Prisma.MissionItemUpsertWithWhereUniqueWithoutSquadInput | Prisma.MissionItemUpsertWithWhereUniqueWithoutSquadInput[]
+  createMany?: Prisma.MissionItemCreateManySquadInputEnvelope
+  set?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  disconnect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  delete?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  update?: Prisma.MissionItemUpdateWithWhereUniqueWithoutSquadInput | Prisma.MissionItemUpdateWithWhereUniqueWithoutSquadInput[]
+  updateMany?: Prisma.MissionItemUpdateManyWithWhereWithoutSquadInput | Prisma.MissionItemUpdateManyWithWhereWithoutSquadInput[]
+  deleteMany?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
+}
+
+export type MissionItemUncheckedUpdateManyWithoutSquadNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput> | Prisma.MissionItemCreateWithoutSquadInput[] | Prisma.MissionItemUncheckedCreateWithoutSquadInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutSquadInput | Prisma.MissionItemCreateOrConnectWithoutSquadInput[]
+  upsert?: Prisma.MissionItemUpsertWithWhereUniqueWithoutSquadInput | Prisma.MissionItemUpsertWithWhereUniqueWithoutSquadInput[]
+  createMany?: Prisma.MissionItemCreateManySquadInputEnvelope
+  set?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  disconnect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  delete?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  update?: Prisma.MissionItemUpdateWithWhereUniqueWithoutSquadInput | Prisma.MissionItemUpdateWithWhereUniqueWithoutSquadInput[]
+  updateMany?: Prisma.MissionItemUpdateManyWithWhereWithoutSquadInput | Prisma.MissionItemUpdateManyWithWhereWithoutSquadInput[]
+  deleteMany?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
+}
+
+export type MissionItemCreateNestedManyWithoutAisleInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput> | Prisma.MissionItemCreateWithoutAisleInput[] | Prisma.MissionItemUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutAisleInput | Prisma.MissionItemCreateOrConnectWithoutAisleInput[]
+  createMany?: Prisma.MissionItemCreateManyAisleInputEnvelope
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+}
+
+export type MissionItemUncheckedCreateNestedManyWithoutAisleInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput> | Prisma.MissionItemCreateWithoutAisleInput[] | Prisma.MissionItemUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutAisleInput | Prisma.MissionItemCreateOrConnectWithoutAisleInput[]
+  createMany?: Prisma.MissionItemCreateManyAisleInputEnvelope
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+}
+
+export type MissionItemUpdateManyWithoutAisleNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput> | Prisma.MissionItemCreateWithoutAisleInput[] | Prisma.MissionItemUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutAisleInput | Prisma.MissionItemCreateOrConnectWithoutAisleInput[]
+  upsert?: Prisma.MissionItemUpsertWithWhereUniqueWithoutAisleInput | Prisma.MissionItemUpsertWithWhereUniqueWithoutAisleInput[]
+  createMany?: Prisma.MissionItemCreateManyAisleInputEnvelope
+  set?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  disconnect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  delete?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  update?: Prisma.MissionItemUpdateWithWhereUniqueWithoutAisleInput | Prisma.MissionItemUpdateWithWhereUniqueWithoutAisleInput[]
+  updateMany?: Prisma.MissionItemUpdateManyWithWhereWithoutAisleInput | Prisma.MissionItemUpdateManyWithWhereWithoutAisleInput[]
+  deleteMany?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
+}
+
+export type MissionItemUncheckedUpdateManyWithoutAisleNestedInput = {
+  create?: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput> | Prisma.MissionItemCreateWithoutAisleInput[] | Prisma.MissionItemUncheckedCreateWithoutAisleInput[]
+  connectOrCreate?: Prisma.MissionItemCreateOrConnectWithoutAisleInput | Prisma.MissionItemCreateOrConnectWithoutAisleInput[]
+  upsert?: Prisma.MissionItemUpsertWithWhereUniqueWithoutAisleInput | Prisma.MissionItemUpsertWithWhereUniqueWithoutAisleInput[]
+  createMany?: Prisma.MissionItemCreateManyAisleInputEnvelope
+  set?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  disconnect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  delete?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  connect?: Prisma.MissionItemWhereUniqueInput | Prisma.MissionItemWhereUniqueInput[]
+  update?: Prisma.MissionItemUpdateWithWhereUniqueWithoutAisleInput | Prisma.MissionItemUpdateWithWhereUniqueWithoutAisleInput[]
+  updateMany?: Prisma.MissionItemUpdateManyWithWhereWithoutAisleInput | Prisma.MissionItemUpdateManyWithWhereWithoutAisleInput[]
+  deleteMany?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
 }
 
 export type MissionItemCreateNestedOneWithoutAisleRulesInput = {
@@ -352,12 +494,123 @@ export type MissionItemUpdateOneRequiredWithoutEstimatesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MissionItemUpdateToOneWithWhereWithoutEstimatesInput, Prisma.MissionItemUpdateWithoutEstimatesInput>, Prisma.MissionItemUncheckedUpdateWithoutEstimatesInput>
 }
 
+export type MissionItemCreateWithoutSquadInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aisle?: Prisma.AisleCreateNestedOneWithoutMissionItemsInput
+  estimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionItemInput
+  aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMissionItemInput
+}
+
+export type MissionItemUncheckedCreateWithoutSquadInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aisleId?: string | null
+  estimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionItemInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMissionItemInput
+}
+
+export type MissionItemCreateOrConnectWithoutSquadInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput>
+}
+
+export type MissionItemCreateManySquadInputEnvelope = {
+  data: Prisma.MissionItemCreateManySquadInput | Prisma.MissionItemCreateManySquadInput[]
+  skipDuplicates?: boolean
+}
+
+export type MissionItemUpsertWithWhereUniqueWithoutSquadInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.MissionItemUpdateWithoutSquadInput, Prisma.MissionItemUncheckedUpdateWithoutSquadInput>
+  create: Prisma.XOR<Prisma.MissionItemCreateWithoutSquadInput, Prisma.MissionItemUncheckedCreateWithoutSquadInput>
+}
+
+export type MissionItemUpdateWithWhereUniqueWithoutSquadInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.MissionItemUpdateWithoutSquadInput, Prisma.MissionItemUncheckedUpdateWithoutSquadInput>
+}
+
+export type MissionItemUpdateManyWithWhereWithoutSquadInput = {
+  where: Prisma.MissionItemScalarWhereInput
+  data: Prisma.XOR<Prisma.MissionItemUpdateManyMutationInput, Prisma.MissionItemUncheckedUpdateManyWithoutSquadInput>
+}
+
+export type MissionItemScalarWhereInput = {
+  AND?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
+  OR?: Prisma.MissionItemScalarWhereInput[]
+  NOT?: Prisma.MissionItemScalarWhereInput | Prisma.MissionItemScalarWhereInput[]
+  id?: Prisma.StringFilter<"MissionItem"> | string
+  title?: Prisma.StringFilter<"MissionItem"> | string
+  category?: Prisma.StringFilter<"MissionItem"> | string
+  createdAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"MissionItem"> | Date | string
+  squadId?: Prisma.StringFilter<"MissionItem"> | string
+  aisleId?: Prisma.StringNullableFilter<"MissionItem"> | string | null
+}
+
+export type MissionItemCreateWithoutAisleInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMissionItemsInput
+  estimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionItemInput
+  aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMissionItemInput
+}
+
+export type MissionItemUncheckedCreateWithoutAisleInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squadId: string
+  estimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionItemInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMissionItemInput
+}
+
+export type MissionItemCreateOrConnectWithoutAisleInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  create: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput>
+}
+
+export type MissionItemCreateManyAisleInputEnvelope = {
+  data: Prisma.MissionItemCreateManyAisleInput | Prisma.MissionItemCreateManyAisleInput[]
+  skipDuplicates?: boolean
+}
+
+export type MissionItemUpsertWithWhereUniqueWithoutAisleInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  update: Prisma.XOR<Prisma.MissionItemUpdateWithoutAisleInput, Prisma.MissionItemUncheckedUpdateWithoutAisleInput>
+  create: Prisma.XOR<Prisma.MissionItemCreateWithoutAisleInput, Prisma.MissionItemUncheckedCreateWithoutAisleInput>
+}
+
+export type MissionItemUpdateWithWhereUniqueWithoutAisleInput = {
+  where: Prisma.MissionItemWhereUniqueInput
+  data: Prisma.XOR<Prisma.MissionItemUpdateWithoutAisleInput, Prisma.MissionItemUncheckedUpdateWithoutAisleInput>
+}
+
+export type MissionItemUpdateManyWithWhereWithoutAisleInput = {
+  where: Prisma.MissionItemScalarWhereInput
+  data: Prisma.XOR<Prisma.MissionItemUpdateManyMutationInput, Prisma.MissionItemUncheckedUpdateManyWithoutAisleInput>
+}
+
 export type MissionItemCreateWithoutAisleRulesInput = {
   id?: string
   title: string
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMissionItemsInput
+  aisle?: Prisma.AisleCreateNestedOneWithoutMissionItemsInput
   estimates?: Prisma.MissionItemEstCreateNestedManyWithoutMissionItemInput
 }
 
@@ -367,6 +620,8 @@ export type MissionItemUncheckedCreateWithoutAisleRulesInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squadId: string
+  aisleId?: string | null
   estimates?: Prisma.MissionItemEstUncheckedCreateNestedManyWithoutMissionItemInput
 }
 
@@ -392,6 +647,8 @@ export type MissionItemUpdateWithoutAisleRulesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionItemsNestedInput
+  aisle?: Prisma.AisleUpdateOneWithoutMissionItemsNestedInput
   estimates?: Prisma.MissionItemEstUpdateManyWithoutMissionItemNestedInput
 }
 
@@ -401,6 +658,8 @@ export type MissionItemUncheckedUpdateWithoutAisleRulesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   estimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionItemNestedInput
 }
 
@@ -410,6 +669,8 @@ export type MissionItemCreateWithoutEstimatesInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squad: Prisma.SquadCreateNestedOneWithoutMissionItemsInput
+  aisle?: Prisma.AisleCreateNestedOneWithoutMissionItemsInput
   aisleRules?: Prisma.MerchantAisleRuleCreateNestedManyWithoutMissionItemInput
 }
 
@@ -419,6 +680,8 @@ export type MissionItemUncheckedCreateWithoutEstimatesInput = {
   category: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  squadId: string
+  aisleId?: string | null
   aisleRules?: Prisma.MerchantAisleRuleUncheckedCreateNestedManyWithoutMissionItemInput
 }
 
@@ -444,6 +707,8 @@ export type MissionItemUpdateWithoutEstimatesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionItemsNestedInput
+  aisle?: Prisma.AisleUpdateOneWithoutMissionItemsNestedInput
   aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMissionItemNestedInput
 }
 
@@ -453,7 +718,89 @@ export type MissionItemUncheckedUpdateWithoutEstimatesInput = {
   category?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMissionItemNestedInput
+}
+
+export type MissionItemCreateManySquadInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  aisleId?: string | null
+}
+
+export type MissionItemUpdateWithoutSquadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisle?: Prisma.AisleUpdateOneWithoutMissionItemsNestedInput
+  estimates?: Prisma.MissionItemEstUpdateManyWithoutMissionItemNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMissionItemNestedInput
+}
+
+export type MissionItemUncheckedUpdateWithoutSquadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  estimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionItemNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMissionItemNestedInput
+}
+
+export type MissionItemUncheckedUpdateManyWithoutSquadInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  aisleId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type MissionItemCreateManyAisleInput = {
+  id?: string
+  title: string
+  category: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  squadId: string
+}
+
+export type MissionItemUpdateWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squad?: Prisma.SquadUpdateOneRequiredWithoutMissionItemsNestedInput
+  estimates?: Prisma.MissionItemEstUpdateManyWithoutMissionItemNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUpdateManyWithoutMissionItemNestedInput
+}
+
+export type MissionItemUncheckedUpdateWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
+  estimates?: Prisma.MissionItemEstUncheckedUpdateManyWithoutMissionItemNestedInput
+  aisleRules?: Prisma.MerchantAisleRuleUncheckedUpdateManyWithoutMissionItemNestedInput
+}
+
+export type MissionItemUncheckedUpdateManyWithoutAisleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  category?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  squadId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -502,6 +849,10 @@ export type MissionItemSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  squadId?: boolean
+  aisleId?: boolean
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
   estimates?: boolean | Prisma.MissionItem$estimatesArgs<ExtArgs>
   aisleRules?: boolean | Prisma.MissionItem$aisleRulesArgs<ExtArgs>
   _count?: boolean | Prisma.MissionItemCountOutputTypeDefaultArgs<ExtArgs>
@@ -513,6 +864,10 @@ export type MissionItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  squadId?: boolean
+  aisleId?: boolean
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
 }, ExtArgs["result"]["missionItem"]>
 
 export type MissionItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -521,6 +876,10 @@ export type MissionItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  squadId?: boolean
+  aisleId?: boolean
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
 }, ExtArgs["result"]["missionItem"]>
 
 export type MissionItemSelectScalar = {
@@ -529,20 +888,32 @@ export type MissionItemSelectScalar = {
   category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  squadId?: boolean
+  aisleId?: boolean
 }
 
-export type MissionItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["missionItem"]>
+export type MissionItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "category" | "createdAt" | "updatedAt" | "squadId" | "aisleId", ExtArgs["result"]["missionItem"]>
 export type MissionItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
   estimates?: boolean | Prisma.MissionItem$estimatesArgs<ExtArgs>
   aisleRules?: boolean | Prisma.MissionItem$aisleRulesArgs<ExtArgs>
   _count?: boolean | Prisma.MissionItemCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type MissionItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type MissionItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type MissionItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
+}
+export type MissionItemIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  squad?: boolean | Prisma.SquadDefaultArgs<ExtArgs>
+  aisle?: boolean | Prisma.MissionItem$aisleArgs<ExtArgs>
+}
 
 export type $MissionItemPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "MissionItem"
   objects: {
+    squad: Prisma.$SquadPayload<ExtArgs>
+    aisle: Prisma.$AislePayload<ExtArgs> | null
     estimates: Prisma.$MissionItemEstPayload<ExtArgs>[]
     aisleRules: Prisma.$MerchantAisleRulePayload<ExtArgs>[]
   }
@@ -552,6 +923,8 @@ export type $MissionItemPayload<ExtArgs extends runtime.Types.Extensions.Interna
     category: string
     createdAt: Date
     updatedAt: Date
+    squadId: string
+    aisleId: string | null
   }, ExtArgs["result"]["missionItem"]>
   composites: {}
 }
@@ -946,6 +1319,8 @@ readonly fields: MissionItemFieldRefs;
  */
 export interface Prisma__MissionItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  squad<T extends Prisma.SquadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SquadDefaultArgs<ExtArgs>>): Prisma.Prisma__SquadClient<runtime.Types.Result.GetResult<Prisma.$SquadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  aisle<T extends Prisma.MissionItem$aisleArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MissionItem$aisleArgs<ExtArgs>>): Prisma.Prisma__AisleClient<runtime.Types.Result.GetResult<Prisma.$AislePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   estimates<T extends Prisma.MissionItem$estimatesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MissionItem$estimatesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionItemEstPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   aisleRules<T extends Prisma.MissionItem$aisleRulesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MissionItem$aisleRulesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MerchantAisleRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -982,6 +1357,8 @@ export interface MissionItemFieldRefs {
   readonly category: Prisma.FieldRef<"MissionItem", 'String'>
   readonly createdAt: Prisma.FieldRef<"MissionItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"MissionItem", 'DateTime'>
+  readonly squadId: Prisma.FieldRef<"MissionItem", 'String'>
+  readonly aisleId: Prisma.FieldRef<"MissionItem", 'String'>
 }
     
 
@@ -1236,6 +1613,10 @@ export type MissionItemCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    */
   data: Prisma.MissionItemCreateManyInput | Prisma.MissionItemCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionItemIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1306,6 +1687,10 @@ export type MissionItemUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many MissionItems to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.MissionItemIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1372,6 +1757,25 @@ export type MissionItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many MissionItems to delete.
    */
   limit?: number
+}
+
+/**
+ * MissionItem.aisle
+ */
+export type MissionItem$aisleArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Aisle
+   */
+  select?: Prisma.AisleSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Aisle
+   */
+  omit?: Prisma.AisleOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AisleInclude<ExtArgs> | null
+  where?: Prisma.AisleWhereInput
 }
 
 /**

@@ -38,7 +38,9 @@ export default function AddAisleForm({
             ? "errorRequired"
             : res.error === "forbidden"
               ? "errorForbidden"
-              : "errorFailed";
+              : res.error === "duplicate"
+                ? "errorDuplicate"
+                : "errorFailed";
         setError(t(errorKey));
       } else if (res?.success) {
         setValue("");

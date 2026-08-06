@@ -60,12 +60,12 @@ export const ModelName = {
   SquadCrew: 'SquadCrew',
   SquadCrewInvite: 'SquadCrewInvite',
   Merchant: 'Merchant',
+  Aisle: 'Aisle',
   MerchantAisle: 'MerchantAisle',
   MerchantAisleRule: 'MerchantAisleRule',
   Mission: 'Mission',
   MissionItem: 'MissionItem',
   MissionItemEst: 'MissionItemEst',
-  MissionCrew: 'MissionCrew',
   Receipt: 'Receipt',
   ReceiptItem: 'ReceiptItem',
   Item: 'Item',
@@ -202,13 +202,24 @@ export const MerchantScalarFieldEnum = {
 export type MerchantScalarFieldEnum = (typeof MerchantScalarFieldEnum)[keyof typeof MerchantScalarFieldEnum]
 
 
-export const MerchantAisleScalarFieldEnum = {
+export const AisleScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  squadId: 'squadId'
+} as const
+
+export type AisleScalarFieldEnum = (typeof AisleScalarFieldEnum)[keyof typeof AisleScalarFieldEnum]
+
+
+export const MerchantAisleScalarFieldEnum = {
+  id: 'id',
   order: 'order',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  merchantId: 'merchantId'
+  merchantId: 'merchantId',
+  aisleId: 'aisleId'
 } as const
 
 export type MerchantAisleScalarFieldEnum = (typeof MerchantAisleScalarFieldEnum)[keyof typeof MerchantAisleScalarFieldEnum]
@@ -231,9 +242,11 @@ export const MissionScalarFieldEnum = {
   id: 'id',
   title: 'title',
   state: 'state',
+  finalStatus: 'finalStatus',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  squadId: 'squadId'
+  squadId: 'squadId',
+  merchantId: 'merchantId'
 } as const
 
 export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
@@ -244,7 +257,9 @@ export const MissionItemScalarFieldEnum = {
   title: 'title',
   category: 'category',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  squadId: 'squadId',
+  aisleId: 'aisleId'
 } as const
 
 export type MissionItemScalarFieldEnum = (typeof MissionItemScalarFieldEnum)[keyof typeof MissionItemScalarFieldEnum]
@@ -253,20 +268,12 @@ export type MissionItemScalarFieldEnum = (typeof MissionItemScalarFieldEnum)[key
 export const MissionItemEstScalarFieldEnum = {
   id: 'id',
   estValue: 'estValue',
+  complete: 'complete',
   missionId: 'missionId',
   missionItemId: 'missionItemId'
 } as const
 
 export type MissionItemEstScalarFieldEnum = (typeof MissionItemEstScalarFieldEnum)[keyof typeof MissionItemEstScalarFieldEnum]
-
-
-export const MissionCrewScalarFieldEnum = {
-  id: 'id',
-  missionId: 'missionId',
-  memberId: 'memberId'
-} as const
-
-export type MissionCrewScalarFieldEnum = (typeof MissionCrewScalarFieldEnum)[keyof typeof MissionCrewScalarFieldEnum]
 
 
 export const ReceiptScalarFieldEnum = {

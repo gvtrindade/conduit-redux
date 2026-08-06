@@ -95,7 +95,6 @@ model Member {
   squadsCreated  Squad[]            @relation("SquadCreator")
   squadCrews     SquadCrew[]
   crewInvites    SquadCrewInvite[]
-  missionsCrewed MissionCrew[]
 
   @@map("member")
 }
@@ -116,6 +115,8 @@ model Squad {
   missions        Mission[]
   receipts        Receipt[]
   items           Item[]
+  aisles          Aisle[]
+  missionItems    MissionItem[]
   processingRules ProcessingRules[]
 
   @@map("squad")
@@ -157,22 +158,41 @@ model Merchant {
   aisles     MerchantAisle[]
   aisleRules MerchantAisleRule[]
   receipts   Receipt[]
+  missions   Mission[]
 
   @@map("merchant")
 }
 
-model MerchantAisle {
+model Aisle {
   id        String   @id @default(cuid())
   name      String
+  createdAt DateTime @default(now()) @db.Timestamptz
+  updatedAt DateTime @updatedAt @db.Timestamptz
+
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  merchantAisles MerchantAisle[]
+
+  missionItems MissionItem[]
+
+  @@map("aisle")
+}
+
+model MerchantAisle {
+  id        String   @id @default(cuid())
   order     Int
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
 
   merchantId String
+  aisleId    String
   merchant   Merchant @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  aisle      Aisle    @relation(fields: [aisleId], references: [id], onDelete: Cascade)
 
   rules MerchantAisleRule[]
 
+  @@unique([merchantId, aisleId])
   @@map("merchant_aisle")
 }
 
@@ -193,17 +213,20 @@ model MerchantAisleRule {
 }
 
 model Mission {
-  id        String   @id @default(cuid())
-  title     String
-  state     String
-  createdAt DateTime @default(now()) @db.Timestamptz
-  updatedAt DateTime @updatedAt @db.Timestamptz
+  id          String   @id @default(cuid())
+  title       String
+  state       String
+  finalStatus Json?    @db.JsonB
+  createdAt   DateTime @default(now()) @db.Timestamptz
+  updatedAt   DateTime @updatedAt @db.Timestamptz
 
   squadId String
   squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
 
+  merchantId String?
+  merchant   Merchant? @relation(fields: [merchantId], references: [id])
+
   itemEstimates MissionItemEst[]
-  crew          MissionCrew[]
 
   @@map("mission")
 }
@@ -215,6 +238,12 @@ model MissionItem {
   createdAt DateTime @default(now()) @db.Timestamptz
   updatedAt DateTime @updatedAt @db.Timestamptz
 
+  squadId String
+  squad   Squad  @relation(fields: [squadId], references: [id], onDelete: Cascade)
+
+  aisleId String?
+  aisle   Aisle?  @relation(fields: [aisleId], references: [id], onDelete: SetNull)
+
   estimates  MissionItemEst[]
   aisleRules MerchantAisleRule[]
 
@@ -224,6 +253,7 @@ model MissionItem {
 model MissionItemEst {
   id       String @id @default(cuid())
   estValue Float
+  complete Boolean @default(false)
 
   missionId     String
   missionItemId String
@@ -231,17 +261,6 @@ model MissionItemEst {
   missionItem   MissionItem @relation(fields: [missionItemId], references: [id])
 
   @@map("mission_item_est")
-}
-
-model MissionCrew {
-  id String @id @default(cuid())
-
-  missionId String
-  memberId  String
-  mission   Mission @relation(fields: [missionId], references: [id], onDelete: Cascade)
-  member    Member? @relation(fields: [memberId], references: [id])
-
-  @@map("mission_crew")
 }
 
 model Receipt {

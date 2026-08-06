@@ -87,6 +87,11 @@ export type SquadCrewInvite = Prisma.SquadCrewInviteModel
  */
 export type Merchant = Prisma.MerchantModel
 /**
+ * Model Aisle
+ * 
+ */
+export type Aisle = Prisma.AisleModel
+/**
  * Model MerchantAisle
  * 
  */
@@ -111,11 +116,6 @@ export type MissionItem = Prisma.MissionItemModel
  * 
  */
 export type MissionItemEst = Prisma.MissionItemEstModel
-/**
- * Model MissionCrew
- * 
- */
-export type MissionCrew = Prisma.MissionCrewModel
 /**
  * Model Receipt
  * 

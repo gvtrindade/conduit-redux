@@ -159,7 +159,126 @@
     "title": "Items"
   },
   "MissionsPage": {
-    "title": "Missions"
+    "title": "Missions",
+    "empty": "NO_MISSIONS_REGISTERED",
+    "manageItems": "MANAGE_ITEMS"
+  },
+  "AddMissionButton": {
+    "add": "ADD_MISSION",
+    "creating": "CREATING...",
+    "errorFailed": "Failed to create mission"
+  },
+  "MissionPage": {
+    "editName": "EDIT_NAME",
+    "deleteMission": "DELETE_MISSION",
+    "estimatedTotal": "ESTIMATED_TOTAL",
+    "merchant": "MERCHANT",
+    "completion": "COMPLETION",
+    "completionValue": "{completed}/{total} · {percent}%",
+    "finished": "MISSION_FINISHED",
+    "itemsTopic": "MISSION_ITEMS"
+  },
+  "MissionLink": {
+    "protocol": "PROTOCOL: {id}"
+  },
+  "RenameMissionForm": {
+    "title": "RENAME MISSION",
+    "placeholder": "enter mission name...",
+    "saving": "SAVING...",
+    "save": "SAVE_MISSION",
+    "errorRequired": "Mission name is required",
+    "errorFailed": "Failed to rename mission"
+  },
+  "ActivateMissionForm": {
+    "activate": "ACTIVATE_MISSION",
+    "title": "ACTIVATE MISSION",
+    "confirmation": "Pick the merchant and activate the mission.",
+    "merchantPlaceholder": "select merchant...",
+    "noMerchants": "NO_MERCHANTS",
+    "cancel": "CANCEL",
+    "confirm": "ACTIVATE",
+    "activating": "ACTIVATING...",
+    "activated": "Mission activated",
+    "errorInvalidMerchant": "Merchant is not valid",
+    "errorFailed": "Failed to activate mission"
+  },
+  "FinishMissionForm": {
+    "finish": "FINISH_MISSION",
+    "title": "FINISH MISSION",
+    "confirmation": "Finish this mission?",
+    "cancel": "CANCEL",
+    "confirm": "FINISH",
+    "finishing": "FINISHING...",
+    "finished": "Mission finished",
+    "errorFailed": "Failed to finish mission"
+  },
+  "DeleteMissionForm": {
+    "title": "DELETE MISSION",
+    "confirmation": "Delete this mission? This cannot be undone.",
+    "cancel": "CANCEL",
+    "confirm": "DELETE",
+    "deleting": "DELETING...",
+    "errorFailed": "Failed to delete mission"
+  },
+  "MissionItemsList": {
+    "addItem": "ADD_ITEM",
+    "empty": "NO_ITEMS_IN_MISSION",
+    "remove": "REMOVE_ITEM",
+    "removeTitle": "REMOVE ITEM",
+    "removeConfirmation": "Remove {title} from mission?",
+    "cancel": "CANCEL",
+    "confirmRemove": "REMOVE",
+    "removing": "REMOVING...",
+    "errorFailed": "Failed to remove item"
+  },
+  "MissionItemsPage": {
+    "title": "MISSION_ITEMS"
+  },
+  "MissionItemsManager": {
+    "empty": "NO_MISSION_ITEMS",
+    "edit": "Edit {title}",
+    "delete": "Delete {title}",
+    "deleteDisabled": "{title} is in a mission and cannot be deleted",
+    "deleteDisabledHint": "Item is used in a mission and cannot be deleted"
+  },
+  "EditMissionItemForm": {
+    "title": "EDIT MISSION ITEM",
+    "namePlaceholder": "enter item name...",
+    "aislePlaceholder": "select merchant aisle...",
+    "noAisles": "NO_MERCHANT_AISLES",
+    "saving": "SAVING...",
+    "save": "SAVE_ITEM",
+    "errorRequired": "Name and aisle are required",
+    "errorInvalidAisle": "Aisle is not valid",
+    "errorFailed": "Failed to update item"
+  },
+  "DeleteMissionItemForm": {
+    "title": "DELETE MISSION ITEM",
+    "confirmation": "Delete {title}? This cannot be undone.",
+    "cancel": "CANCEL",
+    "confirm": "DELETE",
+    "deleting": "DELETING...",
+    "errorInUse": "This item is used in a draft or active mission and cannot be deleted",
+    "errorFailed": "Failed to delete item"
+  },
+  "MissionItemPicker": {
+    "title": "ADD_ITEMS",
+    "searchPlaceholder": "search items...",
+    "noItems": "NO_MISSION_ITEMS",
+    "addNew": "ADD_{query}",
+    "namePlaceholder": "enter item name...",
+    "aislePlaceholder": "select merchant aisle...",
+    "noAisles": "NO_MERCHANT_AISLES",
+    "cancel": "CANCEL",
+    "confirm": "CONFIRM",
+    "creating": "CREATING...",
+    "remove": "REMOVE",
+    "delete": "DELETE",
+    "addToMission": "ADD {count} ITEM(S) TO MISSION",
+    "adding": "ADDING...",
+    "errorInvalidAisle": "Aisle is not valid",
+    "errorFailed": "Failed to add items",
+    "errorDeleteFailed": "Failed to delete item"
   },
   "ReportsPage": {
     "title": "Reports"
@@ -281,6 +400,7 @@
     "createAisle": "CREATE_AISLE",
     "errorRequired": "Aisle name is required",
     "errorForbidden": "You are not a member of this squad",
+    "errorDuplicate": "This aisle is already in this merchant",
     "errorFailed": "Failed to create aisle"
   },
   "RenameAisleForm": {
