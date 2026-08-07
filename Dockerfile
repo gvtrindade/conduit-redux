@@ -12,30 +12,24 @@ RUN bun install --frozen-lockfile
 FROM deps AS builder
 WORKDIR /app
 
-# Coolify injects your environment variables as build args (disable in
-# Advanced → Inject Build Args if you prefer to manage these manually).
-ARG NEXT_APPLICATION_URL
-ARG BETTER_AUTH_SECRET
-ARG DATABASE_URL
-ARG AUTH_GOOGLE_ID
-ARG AUTH_GOOGLE_SECRET
-ARG RESEND_API_KEY
-ARG RESEND_SENDER
-ARG SENTRY_DSN
-ARG SENTRY_AUTH_TOKEN
-ARG VERSION
-
+# Coolify injects build args by inserting `ARG KEY=value` lines right after
+# every FROM. Do NOT redeclare those ARGs here: a later no-value `ARG KEY`
+# in the same stage would shadow the injected value and reset it to empty.
+# These ENV mappings pick up whatever Coolify injected and keep real values;
+# the ${VAR:-default} fallbacks keep the build green when a variable is
+# missing or flagged runtime-only in Coolify (placeholders are enough for
+# `prisma generate` and `next build`; real values override at runtime).
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_APPLICATION_URL=$NEXT_APPLICATION_URL
-ENV BETTER_AUTH_SECRET=$BETTER_AUTH_SECRET
-ENV DATABASE_URL=$DATABASE_URL
-ENV AUTH_GOOGLE_ID=$AUTH_GOOGLE_ID
-ENV AUTH_GOOGLE_SECRET=$AUTH_GOOGLE_SECRET
-ENV RESEND_API_KEY=$RESEND_API_KEY
-ENV RESEND_SENDER=$RESEND_SENDER
-ENV SENTRY_DSN=$SENTRY_DSN
-ENV SENTRY_AUTH_TOKEN=$SENTRY_AUTH_TOKEN
-ENV VERSION=$VERSION
+ENV NEXT_APPLICATION_URL=${NEXT_APPLICATION_URL:-http://localhost:3000} \
+    BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET:-build-placeholder-secret} \
+    DATABASE_URL=${DATABASE_URL:-postgresql://user:pass@localhost:5432/db} \
+    AUTH_GOOGLE_ID=${AUTH_GOOGLE_ID:-} \
+    AUTH_GOOGLE_SECRET=${AUTH_GOOGLE_SECRET:-} \
+    RESEND_API_KEY=${RESEND_API_KEY:-re_build_placeholder} \
+    RESEND_SENDER=${RESEND_SENDER:-noreply@localhost} \
+    SENTRY_DSN=${SENTRY_DSN:-} \
+    SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN:-} \
+    VERSION=${VERSION:-}
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
