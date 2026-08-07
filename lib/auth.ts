@@ -49,7 +49,7 @@ export const auth = betterAuth({
     },
   },
   basePath: "/api/auth",
-  baseURL: process.env.APPLICATION_URL,
+  baseURL: process.env.NEXT_APPLICATION_URL,
   secret: process.env.BETTER_AUTH_SECRET,
   user: {
     additionalFields: {
@@ -80,7 +80,7 @@ export const auth = betterAuth({
     autoSignInAfterVerification: true,
     expiresIn: 3600,
     sendVerificationEmail: async ({ user, token }) => {
-      const verifyUrl = `${process.env.APPLICATION_URL}/api/auth/verify-email?token=${token}&callbackURL=${encodeURIComponent("/email-verified")}`;
+      const verifyUrl = `${process.env.NEXT_APPLICATION_URL}/api/auth/verify-email?token=${token}&callbackURL=${encodeURIComponent("/email-verified")}`;
       await sendVerificationEmail({ to: user.email, url: verifyUrl });
     },
   },
